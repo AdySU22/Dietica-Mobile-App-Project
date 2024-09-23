@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Scan, Manage, Consume"
-        android:fontFamily=""
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/subHeadingText"
@@ -32,7 +32,8 @@
         android:text="@string/subHeadingText"
         android:fontFamily="@font/inter_light"
         android:textAlignment="center"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
     
     <Button
         android:id="@+id/getStartedButton"

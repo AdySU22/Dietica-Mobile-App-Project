@@ -18,24 +18,4 @@
         android:width="2dp"
         android:color="@color/white" />
 
-    <layer-list>
-        <item>
-            <shape>
-                <solid android:color="@android:color/transparent" />
-                <corners android:radius="12dp" />
-                <padding
-                    android:left="10dp"
-                    android:right="10dp"
-                    android:top="10dp"
-                    android:bottom="10dp" />
-
-                <shadow
-                    android:shadowColor="#FFFFFF"
-                    android:dx="6dp"
-                    android:dy="6dp"
-                    android:radius="10dp" />
-            </shape>
-        </item>
-    </layer-list>
-
 </shape>

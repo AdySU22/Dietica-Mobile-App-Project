@@ -17,7 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".OTPVerification"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -29,10 +29,13 @@
         </activity>
         <activity
             android:name=".OpeningPageActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".SignInActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>

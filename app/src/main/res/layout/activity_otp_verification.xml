@@ -49,13 +49,14 @@
 
         <TextView
             android:id="@+id/text_code_sent"
-            android:layout_width="120dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="We sent a code to your email"
             android:textSize="16sp"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:fontFamily="@font/alef_regular"
+            android:padding="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="2dp"/>
 
@@ -68,8 +69,8 @@
 
             <EditText
                 android:id="@+id/et_otp_1"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="72dp"
+                android:layout_height="70dp"
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
@@ -79,8 +80,8 @@
 
             <EditText
                 android:id="@+id/et_otp_2"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="72dp"
+                android:layout_height="70dp"
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
@@ -91,8 +92,8 @@
 
             <EditText
                 android:id="@+id/et_otp_3"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="72dp"
+                android:layout_height="70dp"
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
@@ -103,8 +104,8 @@
 
             <EditText
                 android:id="@+id/et_otp_4"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="72dp"
+                android:layout_height="70dp"
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
@@ -115,7 +116,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_confirm"
+            android:id="@+id/btnConfirm"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Confirm"

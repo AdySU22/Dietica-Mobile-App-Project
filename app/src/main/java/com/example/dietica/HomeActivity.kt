@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
         notificationIconImageView = findViewById(R.id.notification_icon)
 
         // Example: Update today's total dynamically
-        updateTodayTotal(2500)  // Set your desired total
+        //updateTodayTotal(2500)  // Set your desired total
     }
 
     private fun updateTodayTotal(total: Int) {

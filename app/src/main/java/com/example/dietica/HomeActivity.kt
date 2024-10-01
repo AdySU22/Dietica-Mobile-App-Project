@@ -26,12 +26,6 @@ class HomeActivity : AppCompatActivity() {
         profileImageView = findViewById(R.id.profile_image)
         notificationIconImageView = findViewById(R.id.notification_icon)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
         // Example: Update today's total dynamically
         updateTodayTotal(2500)  // Set your desired total
     }

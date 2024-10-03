@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="80dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"/>
 
@@ -124,7 +124,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/orText"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="190dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="8dp"/>
 
@@ -139,7 +139,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btnRegister"
                 app:layout_constraintStart_toEndOf="@id/orLineLeft"
                 app:layout_constraintEnd_toStartOf="@id/orLineRight"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="180dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"/>
 
@@ -151,7 +151,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btnRegister"
                 app:layout_constraintStart_toEndOf="@id/orText"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="190dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="32dp"/>
 

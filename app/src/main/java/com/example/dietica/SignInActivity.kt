@@ -23,9 +23,9 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        forgotPasswordText.setOnClickListener {
-//            forgotPassword()
-//        }
+        forgotPasswordText.setOnClickListener {
+            forgotPassword()
+        }
 
         signUpAccountText.setOnClickListener {
             signUpAccount()
@@ -36,4 +36,10 @@ class SignInActivity : AppCompatActivity() {
         val intent = Intent(this, SignUpActivity::class.java)
         startActivity(intent)
     }
+
+    fun forgotPassword() {
+        val intent =Intent(this, ForgotPasswordActivity::class.java)
+        startActivity(intent)
+    }
+
 }

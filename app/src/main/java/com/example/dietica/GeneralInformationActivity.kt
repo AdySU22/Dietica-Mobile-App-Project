@@ -17,10 +17,8 @@ class GeneralInformationActivity : AppCompatActivity() {
 
         // Set the click listener
         getStartedButton.setOnClickListener {
-            // Create an intent to start HomeActivity
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, TellMeActivity::class.java)
             startActivity(intent)
-            // Optional: finish the current activity if you don't want to return to it
             finish()
         }
     }

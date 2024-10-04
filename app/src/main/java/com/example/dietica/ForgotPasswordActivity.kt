@@ -14,7 +14,12 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
 
+        val btnGetCode: Button = findViewById(R.id.btnGetCode)
 
+        btnGetCode.setOnClickListener {
+            val intent = Intent(this, ResetPasswordActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

@@ -6,13 +6,14 @@
             android:useLevel="false">
 
             <solid
-                android:color="#e0e0e0"/>
+                android:color="#E0E0E0"/>
 
         </shape>
     </item>
 
     <item
         android:id="@android:id/progress">
+
         <rotate
             android:fromDegrees="270"
             android:toDegrees="270">

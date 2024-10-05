@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <!-- Background Image Section -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
@@ -18,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Title Text -->
     <TextView
         android:id="@+id/tellMeText"
         android:layout_width="200dp"
@@ -34,6 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"/>
 
+    <!-- Rounded CardView Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/roundedWhiteCard"
         android:layout_width="0dp"
@@ -47,10 +50,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="-190dp">
 
+        <!-- Inner Constraint Layout for Inputs -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- Subtitle Text -->
             <TextView
                 android:id="@+id/physicallyText"
                 android:layout_width="210dp"
@@ -67,89 +72,121 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginEnd="36dp"/>
 
+            <!-- Age Input -->
             <EditText
-                android:id="@+id/firstNameInput"
+                android:id="@+id/ageInput"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="64dp"
                 android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
-                android:hint="First name"
+                android:hint="Age"
                 android:fontFamily="@font/quicksand_regular"
-                android:inputType="textPersonName"
-                android:padding="16dp"
+                android:inputType="number"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/physicallyText"/>
 
-            <!-- Input for Last Name -->
-            <EditText
-                android:id="@+id/lastNameInput"
+            <!-- Gender Spinner -->
+            <Spinner
+                android:id="@+id/genderInput"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
                 android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
-                android:hint="Last name"
-                android:fontFamily="@font/quicksand_regular"
-                android:inputType="textPersonName"
-                android:padding="16dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textColorHint="@color/black"
+                android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/firstNameInput"/>
+                app:layout_constraintTop_toBottomOf="@id/ageInput" />
 
-            <!-- Input for Password -->
+            <!-- Current Height Input -->
             <EditText
-                android:id="@+id/passwordInput"
+                android:id="@+id/heightInput"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
                 android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
-                android:hint="Password"
+                android:hint="Current Height"
                 android:fontFamily="@font/quicksand_regular"
-                android:inputType="textPassword"
-                android:padding="16dp"
+                android:inputType="number"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lastNameInput"/>
+                app:layout_constraintTop_toBottomOf="@id/genderInput" />
 
-            <!-- Input for Confirm Password -->
+            <!-- Current Weight Input -->
             <EditText
-                android:id="@+id/confirmPasswordInput"
+                android:id="@+id/weightInput"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
                 android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
-                android:hint="Confirm password"
+                android:hint="Current Weight"
                 android:fontFamily="@font/quicksand_regular"
-                android:inputType="textPassword"
-                android:padding="16dp"
+                android:inputType="number"
+                android:padding="10dp"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/passwordInput"/>
+                app:layout_constraintTop_toBottomOf="@id/heightInput" />
 
+            <!-- Activity Level Spinner -->
+            <Spinner
+                android:id="@+id/activityLevelInput"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:elevation="10dp"
+                android:background="@drawable/general_information_input_background"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weightInput" />
+
+            <!-- Medication Input -->
+            <EditText
+                android:id="@+id/medicationInput"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:elevation="10dp"
+                android:background="@drawable/general_information_input_background"
+                android:hint="Medication"
+                android:fontFamily="@font/quicksand_regular"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activityLevelInput" />
+
+            <!-- Let’s Get Started Button -->
             <Button
                 android:id="@+id/btnLetsGetStarted"
                 android:layout_width="0dp"
@@ -158,7 +195,7 @@
                 android:textAllCaps="false"
                 android:textSize="20sp"
                 android:background="@drawable/button_background"
-                app:layout_constraintTop_toBottomOf="@id/confirmPasswordInput"
+                app:layout_constraintTop_toBottomOf="@id/medicationInput"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="60dp"

@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var todayTotalTextView: TextView
-    private lateinit var editButtonTextView: TextView
+    private lateinit var inputMealTextView: TextView
     private lateinit var profileImageView: ImageView
     private lateinit var notificationIconImageView: ImageView
 
@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Setting up the UI elements
         todayTotalTextView = findViewById(R.id.today_total)
-        editButtonTextView = findViewById(R.id.edit_button)
+        inputMealTextView = findViewById(R.id.inputMealText)
         profileImageView = findViewById(R.id.profile_image)
         notificationIconImageView = findViewById(R.id.notification_icon)
 

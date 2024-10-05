@@ -101,16 +101,60 @@
             app:layout_constraintTop_toBottomOf="@+id/today_label"/>
 
         <TextView
-            android:id="@+id/edit_button"
+            android:id="@+id/inputMealText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:fontFamily="@font/inter_semi_bold"
-            android:text="Edit"
+            android:text="Input Meal"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/today_label"/>
 
+        <!-- Circular Progress Bars -->
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="70"
+            android:progressDrawable="@drawable/circular_progress_bar_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/today_total"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="20dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/circular_progress_bar_2"
+            app:layout_constraintStart_toEndOf="@id/progressBar1"
+            app:layout_constraintTop_toBottomOf="@id/today_total"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="20dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="90"
+            android:progressDrawable="@drawable/circular_progress_bar_3"
+            app:layout_constraintStart_toEndOf="@id/progressBar2"
+            app:layout_constraintTop_toBottomOf="@id/today_total"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

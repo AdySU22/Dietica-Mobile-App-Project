@@ -1,0 +1,64 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:id="@android:id/background">
+        <shape>
+            <corners
+                android:radius="6dp"/>
+
+            <solid
+                android:color="#125488"/>
+
+        </shape>
+    </item>
+
+    <item
+        android:id="@+id/part1"
+        android:top="0dp"
+        android:bottom="0dp"
+        android:left="0dp"
+        android:right="66dp">
+
+        <shape>
+            <corners
+                android:radius="6dp"/>
+
+            <solid
+                android:color="#3DD9D6"/>
+
+        </shape>
+    </item>
+
+
+    <item
+        android:id="@+id/part2"
+        android:top="0dp"
+        android:bottom="0dp"
+        android:left="66dp"
+        android:right="33dp">
+        <shape>
+            <corners
+                android:radius="6dp"/>
+
+            <solid
+                android:color="#37CAEC"/>
+
+        </shape>
+    </item>
+
+    <item
+        android:id="@+id/part3"
+        android:top="0dp"
+        android:bottom="0dp"
+        android:left="150dp"
+        android:right="0dp">
+        <shape>
+            <corners
+                android:radius="6dp"/>
+
+            <solid
+                android:color="#2A93D5"/>
+
+        </shape>
+    </item>
+
+</layer-list>

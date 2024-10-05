@@ -23,7 +23,7 @@
             android:scaleType="fitCenter"
             android:src="@drawable/background_image_otp"
             android:alpha="1.0"
-            android:background="#37CAEC"/>
+            android:background="@drawable/gradient_background"/>
     </LinearLayout>
 
     <!-- Container To Hold The Rest Of The Design -->

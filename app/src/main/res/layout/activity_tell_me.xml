@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <!-- Background Image Section -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
@@ -19,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Title Text -->
     <TextView
         android:id="@+id/tellMeText"
         android:layout_width="200dp"
@@ -36,7 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"/>
 
-    <!-- Rounded CardView Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/roundedWhiteCard"
         android:layout_width="0dp"
@@ -50,12 +47,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="-190dp">
 
-        <!-- Inner Constraint Layout for Inputs -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- Subtitle Text -->
             <TextView
                 android:id="@+id/physicallyText"
                 android:layout_width="210dp"
@@ -72,7 +67,6 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginEnd="36dp"/>
 
-            <!-- Age Input -->
             <EditText
                 android:id="@+id/ageInput"
                 android:layout_width="0dp"
@@ -93,7 +87,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/physicallyText"/>
 
-            <!-- Gender Spinner -->
             <Spinner
                 android:id="@+id/genderInput"
                 android:layout_width="0dp"
@@ -108,7 +101,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ageInput" />
 
-            <!-- Current Height Input -->
             <EditText
                 android:id="@+id/heightInput"
                 android:layout_width="0dp"
@@ -129,7 +121,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/genderInput" />
 
-            <!-- Current Weight Input -->
             <EditText
                 android:id="@+id/weightInput"
                 android:layout_width="0dp"
@@ -150,7 +141,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/heightInput" />
 
-            <!-- Activity Level Spinner -->
             <Spinner
                 android:id="@+id/activityLevelInput"
                 android:layout_width="0dp"
@@ -165,7 +155,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/weightInput" />
 
-            <!-- Medication Input -->
             <EditText
                 android:id="@+id/medicationInput"
                 android:layout_width="0dp"
@@ -186,7 +175,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activityLevelInput" />
 
-            <!-- Let’s Get Started Button -->
             <Button
                 android:id="@+id/btnLetsGetStarted"
                 android:layout_width="0dp"

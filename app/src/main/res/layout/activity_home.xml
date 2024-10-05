@@ -67,7 +67,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="390dp"
-        android:layout_height="200dp"
+        android:layout_height="246dp"
         android:layout_marginTop="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,8 +112,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/today_label"/>
 
-        <!-- Circular Progress Bars -->
-
         <ProgressBar
             android:id="@+id/progressBar1"
             style="?android:attr/progressBarStyleHorizontal"
@@ -127,6 +125,19 @@
             android:progressDrawable="@drawable/circular_progress_bar_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/today_total"/>
+
+        <TextView
+            android:id="@+id/progressBarText1"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Net Carbs"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_semi_bold"
+            app:layout_constraintTop_toBottomOf="@id/progressBar1"
+            app:layout_constraintStart_toStartOf="@id/progressBar1"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="6dp"/>
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -142,6 +153,19 @@
             app:layout_constraintStart_toEndOf="@id/progressBar1"
             app:layout_constraintTop_toBottomOf="@id/today_total"/>
 
+        <TextView
+            android:id="@+id/progressBarText2"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Fat"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_semi_bold"
+            app:layout_constraintTop_toBottomOf="@id/progressBar2"
+            app:layout_constraintStart_toStartOf="@id/progressBar2"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="6dp"/>
+
         <ProgressBar
             android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyleHorizontal"
@@ -155,6 +179,19 @@
             android:progressDrawable="@drawable/circular_progress_bar_3"
             app:layout_constraintStart_toEndOf="@id/progressBar2"
             app:layout_constraintTop_toBottomOf="@id/today_total"/>
+
+        <TextView
+            android:id="@+id/progressBarText3"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Protein"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_semi_bold"
+            app:layout_constraintTop_toBottomOf="@id/progressBar3"
+            app:layout_constraintStart_toStartOf="@id/progressBar3"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="6dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -465,11 +465,13 @@
 
                 <TextView
                     android:id="@+id/timeRange"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:text="23:10 - 7:10"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/inter_medium"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="8sp"
                     app:layout_constraintStart_toStartOf="@id/sleepCount"
                     app:layout_constraintTop_toBottomOf="@id/sleepCount"
                     android:layout_marginTop="8dp"/>
@@ -479,7 +481,7 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="100dp"
                     android:layout_height="6dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="2dp"
                     android:indeterminate="false"
                     android:max="100"
                     android:progress="70"
@@ -496,6 +498,57 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="187dp"
                     android:layout_marginTop="-6dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout11"
+                android:layout_width="310dp"
+                android:layout_height="100dp"
+                android:background="@drawable/rounded_background"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginStart="50dp">
+
+                <TextView
+                    android:id="@+id/bodyCompositionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semi_bold"
+                    android:text="Body Composition"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"/>
+
+                <ImageView
+                    android:id="@+id/arrowIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_right"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/bodyCompositionText"
+                    app:layout_constraintBottom_toBottomOf="@id/bodyCompositionText"/>
+
+                <ProgressBar
+                    android:id="@+id/compositionProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="16dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="70"
+                    android:progressDrawable="@drawable/progress_bar_composition"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bodyCompositionText"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

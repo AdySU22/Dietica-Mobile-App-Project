@@ -13,10 +13,10 @@ class GeneralInformationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_general_information)
 
         // Initialize the button
-        val getStartedButton: Button = findViewById(R.id.btnLetsGetStarted)
+        val btnNext: Button = findViewById(R.id.btnNext)
 
         // Set the click listener
-        getStartedButton.setOnClickListener {
+        btnNext.setOnClickListener {
             val intent = Intent(this, TellMeActivity::class.java)
             startActivity(intent)
             finish()

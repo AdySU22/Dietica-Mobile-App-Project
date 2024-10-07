@@ -583,12 +583,34 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/navbar"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="68dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_navbar"
                 app:layout_constraintTop_toBottomOf="@id/constraintLayout11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/homeIcon"
+                    android:layout_width="30dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/home_icon"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="20dp"
+                    android:contentDescription="Home Icon"/>
+
+                <TextView
+                    android:id="@+id/homeText"
+                    android:layout_width="40dp"
+                    android:layout_height="28dp"
+                    android:text="Home"
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/homeIcon"
+                    app:layout_constraintTop_toBottomOf="@id/homeIcon" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

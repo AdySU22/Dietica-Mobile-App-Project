@@ -353,6 +353,19 @@
                         android:layout_marginStart="16sp"
                         android:layout_marginTop="36dp"/>
 
+                    <ImageView
+                        android:id="@+id/exercisePlus"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/plus_icon"
+                        android:tint="@color/black"
+                        android:background="@drawable/plus_button_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -387,7 +400,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginStart="-34dp"
-                        android:layout_marginTop="-12dp" />
+                        android:layout_marginTop="-12dp"/>
+
+                    <ImageView
+                        android:id="@+id/weightPlus"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/plus_icon"
+                        android:tint="@color/black"
+                        android:background="@drawable/plus_button_background"
+                        app:layout_constraintTop_toTopOf="we"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -558,15 +584,13 @@
                 android:id="@+id/navbar"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="#37C9EE"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_navbar"
                 app:layout_constraintTop_toBottomOf="@id/constraintLayout11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </LinearLayout>
 

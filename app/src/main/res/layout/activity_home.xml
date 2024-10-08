@@ -411,7 +411,7 @@
                         android:src="@drawable/plus_icon"
                         android:tint="@color/black"
                         android:background="@drawable/plus_button_background"
-                        app:layout_constraintTop_toTopOf="we"
+                        app:layout_constraintTop_toTopOf="weightImage"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"/>
 

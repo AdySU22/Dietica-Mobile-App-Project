@@ -613,6 +613,7 @@
                             android:id="@+id/homeIcon"
                             android:layout_width="40dp"
                             android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
                             android:src="@drawable/home_icon"
                             android:contentDescription="Home Icon"/>
 
@@ -644,7 +645,7 @@
                             android:contentDescription="Exercise Icon"/>
 
                         <TextView
-                            android:id="@+id/exerciseText"
+                            android:id="@+id/exerciseNavbarText"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:layout_marginTop="22dp"

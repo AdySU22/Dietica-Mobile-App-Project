@@ -17,11 +17,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp">
 
-        <ImageView
+        <Button
             android:id="@+id/backButton"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/back_arrow" />
+            android:background="@drawable/back_arrow"/>
 
         <TextView
             android:id="@+id/headerTitle"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@id/headerContainer"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="26dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp" />
 
     <FrameLayout
         android:id="@+id/graphContainer"
@@ -66,7 +66,7 @@
             android:text="Weekly Average"
             android:fontFamily="@font/poppins_semi_bold"
             android:textColor="#005FFA"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp" />
 
         <Button
             android:id="@+id/graphButton"
@@ -74,8 +74,47 @@
             android:layout_height="24dp"
             android:background="@drawable/right_arrow"
             android:layout_marginStart="350dp"
-            android:backgroundTint="#005FFA"/>
+            android:backgroundTint="#005FFA" />
 
     </FrameLayout>
+    
+    <LinearLayout
+        android:id="@+id/bmiProgressBarContainer"
+        android:layout_width="380dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/graphContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/bmiText"
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:text="BMI"
+            android:fontFamily="@font/inter_semi_bold"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+
+        <ProgressBar
+            android:id="@+id/bmiProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="70"
+            android:progressDrawable="@drawable/progress_bar_composition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bodyCompositionText"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -346,4 +346,22 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/downloadReportButton"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:background="@drawable/download_button_background"
+        android:text="Download report.PDF"
+        android:textAllCaps="false"
+        android:textColor="#093B8D"
+        android:drawableEnd="@drawable/download_icon"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="start|center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/statisticsContainer2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

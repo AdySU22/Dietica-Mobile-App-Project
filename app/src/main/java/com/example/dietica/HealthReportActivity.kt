@@ -17,7 +17,7 @@ class HealthReportActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_health_report)
 
-        val backButton: ImageView = findViewById(R.id.backButton)
+        val backButton: Button = findViewById(R.id.backButton)
         backButton.setOnClickListener {
             finish()
         }

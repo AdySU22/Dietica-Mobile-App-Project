@@ -29,7 +29,7 @@
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@drawable/home_background" />
+                    android:background="@drawable/home_background"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
@@ -38,7 +38,7 @@
                     android:background="@drawable/curved_background"
                     android:backgroundTint="#37C9EE"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
@@ -47,17 +47,17 @@
                     android:background="@drawable/curved_background"
                     android:rotation="6"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-                <ImageView
-                    android:id="@+id/profile_image"
+                <Button
+                    android:id="@+id/profileButton"
                     android:layout_width="54dp"
                     android:layout_height="54dp"
-                    android:src="@drawable/profile"
+                    android:background="@drawable/profile"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="44dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/welcome_message"
@@ -69,8 +69,8 @@
                     android:fontFamily="@font/inter_bold"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@+id/profile_image"
-                    app:layout_constraintTop_toTopOf="@+id/profile_image" />
+                    app:layout_constraintStart_toEndOf="@+id/profileButton"
+                    app:layout_constraintTop_toTopOf="@+id/profileButton"/>
 
                 <ImageView
                     android:id="@+id/notification_icon"
@@ -80,11 +80,10 @@
                     android:layout_marginEnd="32dp"
                     android:src="@drawable/notifications"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- constraintLayout4 and its contents -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
                 android:layout_width="390dp"
@@ -103,7 +102,7 @@
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.046"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
                     android:id="@+id/today_total"
@@ -117,19 +116,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.049"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/today_label" />
+                    app:layout_constraintTop_toBottomOf="@+id/today_label"/>
 
                 <TextView
                     android:id="@+id/inputMealText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="32dp"
                     android:fontFamily="@font/inter_semi_bold"
                     android:text="Input Meal"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/today_label" />
+                    app:layout_constraintTop_toTopOf="@+id/today_label"/>
 
                 <ProgressBar
                     android:id="@+id/progressBar1"
@@ -143,7 +143,7 @@
                     android:progress="70"
                     android:progressDrawable="@drawable/circular_progress_bar_1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/today_total" />
+                    app:layout_constraintTop_toBottomOf="@id/today_total"/>
 
                 <TextView
                     android:id="@+id/progressBarText1"
@@ -156,7 +156,7 @@
                     app:layout_constraintTop_toBottomOf="@id/progressBar1"
                     app:layout_constraintStart_toStartOf="@id/progressBar1"
                     android:layout_marginTop="8dp"
-                    android:layout_marginStart="6dp" />
+                    android:layout_marginStart="6dp"/>
 
                 <ProgressBar
                     android:id="@+id/progressBar2"
@@ -170,7 +170,7 @@
                     android:progress="50"
                     android:progressDrawable="@drawable/circular_progress_bar_2"
                     app:layout_constraintStart_toEndOf="@id/progressBar1"
-                    app:layout_constraintTop_toBottomOf="@id/today_total" />
+                    app:layout_constraintTop_toBottomOf="@id/today_total"/>
 
                 <TextView
                     android:id="@+id/progressBarText2"
@@ -183,7 +183,7 @@
                     app:layout_constraintTop_toBottomOf="@id/progressBar2"
                     app:layout_constraintStart_toStartOf="@id/progressBar2"
                     android:layout_marginTop="8dp"
-                    android:layout_marginStart="6dp" />
+                    android:layout_marginStart="6dp"/>
 
                 <ProgressBar
                     android:id="@+id/progressBar3"
@@ -197,7 +197,7 @@
                     android:progress="90"
                     android:progressDrawable="@drawable/circular_progress_bar_3"
                     app:layout_constraintStart_toEndOf="@id/progressBar2"
-                    app:layout_constraintTop_toBottomOf="@id/today_total" />
+                    app:layout_constraintTop_toBottomOf="@id/today_total"/>
 
                 <TextView
                     android:id="@+id/progressBarText3"
@@ -210,7 +210,7 @@
                     app:layout_constraintTop_toBottomOf="@id/progressBar3"
                     app:layout_constraintStart_toStartOf="@id/progressBar3"
                     android:layout_marginTop="8dp"
-                    android:layout_marginStart="6dp" />
+                    android:layout_marginStart="6dp"/>
 
                 <LinearLayout
                     android:id="@+id/tripleDots"
@@ -229,7 +229,7 @@
                         android:text="●"
                         android:textSize="10sp"
                         android:textColor="@android:color/black"
-                        android:layout_marginEnd="4dp" />
+                        android:layout_marginEnd="4dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -237,14 +237,14 @@
                         android:text="●"
                         android:textSize="10sp"
                         android:textColor="@android:color/black"
-                        android:layout_marginEnd="4dp" />
+                        android:layout_marginEnd="4dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="●"
                         android:textSize="10sp"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"/>
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -282,7 +282,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="55dp" />
+                    android:layout_marginTop="55dp"/>
 
                 <TextView
                     android:id="@+id/percentageText"
@@ -553,12 +553,12 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"/>
 
-                <ImageView
-                    android:id="@+id/arrowIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                <Button
+                    android:id="@+id/buttonBodyComposition"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_arrow_right"
+                    android:background="@drawable/ic_arrow_right"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/bodyCompositionText"
                     app:layout_constraintBottom_toBottomOf="@id/bodyCompositionText"/>

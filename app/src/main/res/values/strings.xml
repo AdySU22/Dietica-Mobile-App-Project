@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Dietica</string>
-    <string name="subHeadingText">Let’s start a healthier life one scan at a time. Understand your meals, plan your habits, and manage diabetes in one click!</string>
-    <string name="general_information_text">Let us know your name! Don’t forget your password!</string>
+    <string name="subHeadingText">
+        Let’s start a healthier life one scan at a time. Understand your meals, plan your habits, and manage your activity in one click!
+    </string>
+    <string name="general_information_text">
+        Let us know your name! Don’t forget your password!
+    </string>
 
     <string-array name="gender_options">
         <item>Male</item>

@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profilePictureContainer"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="330dp"
         android:background="@drawable/up_side_down_semi_circle"
         app:layout_constraintTop_toTopOf="@id/backgroundContainer"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginStart="132dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginTop="80dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -44,7 +44,7 @@
                 android:layout_height="130dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/profile_picture" />
+                android:src="@drawable/profile_picture"/>
 
         </FrameLayout>
 
@@ -78,7 +78,6 @@
         android:drawableLeft="@drawable/person"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"/>
-
 
     <LinearLayout
         android:id="@+id/achievementsContainer"
@@ -123,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@id/achievementsContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"/>
 
     <Button
         android:id="@+id/logoutButton"
@@ -136,6 +135,6 @@
         app:layout_constraintTop_toBottomOf="@id/weeklySummaryButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

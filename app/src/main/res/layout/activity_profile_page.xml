@@ -91,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Profile"
+            android:textSize="18sp"
             android:textColor="@color/white"
             android:fontFamily="@font/inter_medium"
             android:gravity="center_vertical"
@@ -147,31 +148,34 @@
             android:contentDescription="Achievement 3"/>
     </LinearLayout>
 
-
     <Button
         android:id="@+id/weeklySummaryButton"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
         android:text="Weekly Summary"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:background="@drawable/edit_profile_button"
+        android:textColor="@color/white"
         android:fontFamily="@font/inter_medium"
         app:layout_constraintTop_toBottomOf="@id/achievementsContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="14dp"/>
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="160dp"
+        android:layout_height="33dp"
         android:text="Log Out"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:background="@drawable/rounded_logout_button"
+        android:textColor="#13548A"
         android:fontFamily="@font/inter_medium"
         app:layout_constraintTop_toBottomOf="@id/weeklySummaryButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="44dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

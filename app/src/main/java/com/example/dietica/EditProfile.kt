@@ -1,6 +1,7 @@
 package com.example.dietica
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -24,6 +25,7 @@ class EditProfile : AppCompatActivity() {
         val subheaderText: TextView = findViewById(R.id.subheaderText)
 
         // Find views for personal information sections
+        val guestUserText: TextView = findViewById(R.id.guestUserText)
         val genderText: TextView = findViewById(R.id.genderText)
         val genderIcon: ImageView = findViewById(R.id.genderIcon)
         val heightText: TextView = findViewById(R.id.heightText)
@@ -32,7 +34,8 @@ class EditProfile : AppCompatActivity() {
         val weightIcon: ImageView = findViewById(R.id.weightIcon)
         val birthDateText: TextView = findViewById(R.id.birtDateText)
         val birthDateIcon: ImageView = findViewById(R.id.birtDateIcon)
-        val guestUserText: TextView = findViewById(R.id.guestUserText) // Guest User TextView
+        val btnCancel: Button = findViewById(R.id.btnCancel)
+        val btnSave: Button = findViewById(R.id.btnSave)
 
         // Set click listener for Guest User TextView to edit the name
         guestUserText.setOnClickListener {
@@ -80,6 +83,17 @@ class EditProfile : AppCompatActivity() {
 
         birthDateText.setOnClickListener { showDatePicker(birthDateText) }
         birthDateIcon.setOnClickListener { showDatePicker(birthDateText) }
+
+        btnCancel.setOnClickListener {
+            val intent = Intent(this, ProfilePageActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnSave.setOnClickListener {
+            val intent = Intent(this, ProfilePageActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     // Function to show a dialog with EditText to edit the name
@@ -144,3 +158,5 @@ class EditProfile : AppCompatActivity() {
             .show()
     }
 }
+
+

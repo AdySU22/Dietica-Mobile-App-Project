@@ -36,6 +36,11 @@ class HomeActivity : AppCompatActivity() {
         // Example: Update today's total dynamically
         updateTodayTotal(2500)  // Set your desired total
 
+        inputMealTextView.setOnClickListener {
+            val intent = Intent(this, InputMealActivity::class.java)
+            startActivity(intent)
+        }
+
         profileButton.setOnClickListener {
             val intent = Intent(this, ProfilePageActivity::class.java)
             startActivity(intent)

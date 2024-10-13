@@ -54,9 +54,9 @@
             android:background="@drawable/edit_profile_rounded_edge_container"
             android:elevation="4dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/searchFoodText"
-                android:layout_width="wrap_content"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:text="Search Food..."
                 android:fontFamily="@font/inter_medium"
@@ -65,7 +65,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="14dp"/>
+                android:layout_marginTop="3dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

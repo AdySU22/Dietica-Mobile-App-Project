@@ -344,7 +344,7 @@
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/cancelButton"
+            android:id="@+id/btnCancel"
             android:layout_width="110dp"
             android:layout_height="34dp"
             android:background="@drawable/edit_profile_rounded_edge_container"
@@ -358,7 +358,7 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/btnSave"
             android:layout_width="110dp"
             android:layout_height="34dp"
             android:background="@drawable/edit_profile_rounded_edge_container"

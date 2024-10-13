@@ -105,7 +105,7 @@
     <LinearLayout
         android:id="@+id/resultContainer"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="210dp"
         android:orientation="vertical"
         android:gravity="center"
         android:layout_marginTop="30dp"
@@ -142,5 +142,200 @@
         app:layout_constraintTop_toBottomOf="@id/resultContainer"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/mealHistoryLayout1"
+        android:layout_width="410dp"
+        android:layout_height="110dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/historyTitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mealHistoryContainer1"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:elevation="10dp"
+            android:background="@drawable/transparent_rounded_edge_container">
+
+            <ImageView
+                android:id="@+id/mealHistoryImage1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/nasi_padang"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nasi Padang"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_bold"
+                app:layout_constraintStart_toEndOf="@id/mealHistoryImage1"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/subTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home made"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter_medium"
+                app:layout_constraintStart_toEndOf="@id/mealHistoryImage1"
+                app:layout_constraintTop_toBottomOf="@id/titleText"
+                android:layout_marginStart="12dp"/>
+
+            <ImageView
+                android:id="@+id/btnPlus1"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="78dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/plus_icon"
+                android:tint="@color/black"
+                android:background="@drawable/plus_button_background_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mealHistoryLayout2"
+        android:layout_width="410dp"
+        android:layout_height="110dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/mealHistoryLayout1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mealHistoryContainer2"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:elevation="10dp"
+            android:background="@drawable/transparent_rounded_edge_container">
+
+            <ImageView
+                android:id="@+id/meaHistoryImage2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/kfc"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/titleText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KFC"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_bold"
+                app:layout_constraintStart_toEndOf="@id/meaHistoryImage2"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/subTitleText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 pieces, fried chicken"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter_medium"
+                app:layout_constraintStart_toEndOf="@id/meaHistoryImage2"
+                app:layout_constraintTop_toBottomOf="@id/titleText1"
+                android:layout_marginStart="12dp"/>
+
+            <ImageView
+                android:id="@+id/btnPlus2"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="78dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/plus_icon"
+                android:tint="@color/black"
+                android:background="@drawable/plus_button_background_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mealHistoryLayout3"
+        android:layout_width="410dp"
+        android:layout_height="110dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/mealHistoryLayout2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mealHistoryContainer3"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:elevation="10dp"
+            android:background="@drawable/transparent_rounded_edge_container">
+
+            <ImageView
+                android:id="@+id/meaHistoryImage3"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/fried_noodles"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/titleText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fried Noodles"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_bold"
+                app:layout_constraintStart_toEndOf="@id/meaHistoryImage3"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/subTitleText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home made"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:fontFamily="@font/inter_medium"
+                app:layout_constraintStart_toEndOf="@id/meaHistoryImage3"
+                app:layout_constraintTop_toBottomOf="@id/titleText3"
+                android:layout_marginStart="12dp"/>
+
+            <ImageView
+                android:id="@+id/btnPlus3"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="78dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/plus_icon"
+                android:tint="@color/black"
+                android:background="@drawable/plus_button_background_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,7 +63,7 @@
         <LinearLayout
             android:id="@+id/otp_input_container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="90dp"
             android:orientation="horizontal"
             android:layout_marginTop="40dp">
 
@@ -74,6 +74,8 @@
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksand_bold"
                 android:maxLength="1"
                 android:textSize="18sp"
                 android:layout_marginTop="10dp"/>
@@ -85,6 +87,8 @@
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksand_bold"
                 android:maxLength="1"
                 android:textSize="18sp"
                 android:layout_marginStart="8dp"
@@ -97,6 +101,8 @@
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksand_bold"
                 android:maxLength="1"
                 android:textSize="18sp"
                 android:layout_marginStart="8dp"
@@ -109,6 +115,8 @@
                 android:background="@drawable/otp_input_background"
                 android:gravity="center"
                 android:inputType="number"
+                android:textColor="@color/black"
+                android:fontFamily="@font/quicksand_bold"
                 android:maxLength="1"
                 android:textSize="18sp"
                 android:layout_marginStart="8dp"

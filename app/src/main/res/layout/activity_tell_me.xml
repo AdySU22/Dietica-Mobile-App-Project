@@ -36,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_gravity="center"/>
 
-    <!-- Card View -->
+    <!-- Rounded CardView Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/roundedWhiteCard"
         android:layout_width="0dp"
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="-130dp">
 
-        <!-- Inner Constraint Layout -->
+        <!-- Inner Constraint Layout for Inputs -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -80,9 +80,7 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="64dp"
-                android:elevation="4dp"
-                android:translationZ="4dp"
-                android:clipToOutline="false"
+                android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
                 android:hint="Age"
                 android:fontFamily="@font/quicksand_regular"
@@ -95,44 +93,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/physicallyText"/>
 
-            <!-- FrameLayout for Gender Spinner -->
-            <FrameLayout
-                android:id="@+id/frameGender"
+            <!-- Gender Spinner -->
+            <Spinner
+                android:id="@+id/genderInput"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:elevation="10dp"
+                android:entries="@array/gender_options"
+                android:background="@android:drawable/btn_dropdown"
+                android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ageInput"
-                android:elevation="4dp"
-                android:translationZ="4dp"
-                android:clipToOutline="false"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:layout_marginTop="16dp">
-
-                <!-- Gender TextView on top -->
-                <TextView
-                    android:id="@+id/genderText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:elevation="10dp"
-                    android:text="Gender"
-                    android:fontFamily="@font/quicksand_regular"
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:padding="10dp"/>
-
-                <!-- Gender Spinner underneath -->
-                <Spinner
-                    android:id="@+id/genderInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:elevation="5dp"
-                    android:background="@drawable/general_information_input_background"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"/>
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@id/ageInput"/>
 
             <!-- Current Height Input -->
             <EditText
@@ -142,9 +117,7 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:elevation="4dp"
-                android:translationZ="4dp"
-                android:clipToOutline="false"
+                android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
                 android:hint="Current Height"
                 android:fontFamily="@font/quicksand_regular"
@@ -155,9 +128,9 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/frameGender"/>
+                app:layout_constraintTop_toBottomOf="@id/genderInput" />
 
-            <!-- Weight Input -->
+            <!-- Current Weight Input -->
             <EditText
                 android:id="@+id/weightInput"
                 android:layout_width="0dp"
@@ -165,9 +138,7 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:elevation="4dp"
-                android:translationZ="4dp"
-                android:clipToOutline="false"
+                android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
                 android:hint="Current Weight"
                 android:fontFamily="@font/quicksand_regular"
@@ -178,41 +149,23 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/heightInput"/>
+                app:layout_constraintTop_toBottomOf="@id/heightInput" />
 
-            <!-- FrameLayout for Activity Level Spinner -->
-            <FrameLayout
-                android:id="@+id/frameActivity"
+            <!-- Activity Level Spinner -->
+            <Spinner
+                android:id="@+id/activityLevelInput"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:entries="@array/activity_level_options"
+                android:elevation="10dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/weightInput"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="64dp"
-                android:layout_marginTop="16dp">
-
-                <!-- Activity Level TextView on top -->
-                <TextView
-                    android:id="@+id/activityText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:elevation="10dp"
-                    android:text="Activity Level"
-                    android:fontFamily="@font/quicksand_regular"
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:padding="10dp"/>
-
-                <!-- Activity Level Spinner underneath -->
-                <Spinner
-                    android:id="@+id/activityLevelInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:elevation="5dp"
-                    android:padding="10dp"
-                    android:background="@drawable/general_information_input_background"/>
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@id/weightInput" />
 
             <!-- Medication Input -->
             <EditText
@@ -222,11 +175,9 @@
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="64dp"
-                android:elevation="4dp"
-                android:translationZ="4dp"
-                android:clipToOutline="false"
+                android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
-                android:hint="Medication"
+                android:hint="Chronic Illness"
                 android:fontFamily="@font/quicksand_regular"
                 android:inputType="text"
                 android:padding="10dp"
@@ -235,9 +186,9 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/frameActivity"/>
+                app:layout_constraintTop_toBottomOf="@id/activityLevelInput" />
 
-            <!-- Let's Get Started Button -->
+            <!-- Let’s Get Started Button -->
             <Button
                 android:id="@+id/btnLetsGetStarted"
                 android:layout_width="0dp"

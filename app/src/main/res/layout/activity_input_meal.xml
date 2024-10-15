@@ -146,7 +146,7 @@
     <LinearLayout
         android:id="@+id/mealHistoryLayout1"
         android:layout_width="410dp"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/historyTitle">
@@ -211,7 +211,7 @@
     <LinearLayout
         android:id="@+id/mealHistoryLayout2"
         android:layout_width="410dp"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/mealHistoryLayout1">
@@ -276,7 +276,7 @@
     <LinearLayout
         android:id="@+id/mealHistoryLayout3"
         android:layout_width="410dp"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/mealHistoryLayout2">

@@ -8,418 +8,659 @@
     android:background="@color/white"
     tools:context=".ManuallyInputMeal">
 
-    <LinearLayout
-        android:id="@+id/inputMealLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="30dp"
-        android:paddingStart="10dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_arrow_left"
-            android:layout_marginEnd="10dp" />
-
-        <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
-            android:text="Input Meal"
-            android:textColor="@color/black"
-            android:textSize="26sp"
-            android:layout_gravity="center_vertical" />
-    </LinearLayout>
-
-    <!-- Food Name Section -->
-    <LinearLayout
-        android:id="@+id/foodNameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/inputMealLayout"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/foodNameContainer"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_profile_rounded_edge_container"
-            android:elevation="4dp">
-
-            <EditText
-                android:id="@+id/inputFoodName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Food Name..."
-                android:fontFamily="@font/inter_medium"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/foodNameContainer"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="3dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-
-    <!-- Serving Size Section -->
-    <LinearLayout
-        android:id="@+id/servingSizeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        app:layout_constraintTop_toBottomOf="@id/foodNameLayout">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/servingSizeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_profile_rounded_edge_container"
-            android:elevation="4dp">
-
-            <TextView
-                android:id="@+id/servingSizeText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Serving Size"
-                android:fontFamily="@font/inter_medium"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp" />
-
-            <TextView
-                android:id="@+id/servingTypeText"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Serving Type"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/servingSizeText"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="14dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-
-    <!-- Nutrition Facts Section -->
+    <!-- Scrollable Content Section -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        app:layout_constraintTop_toBottomOf="@id/servingSizeLayout"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
         android:paddingStart="30dp"
         android:paddingEnd="30dp">
 
         <LinearLayout
-            android:id="@+id/nutritionFactsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/edit_profile_rounded_edge_container"
-            android:padding="16dp"
-            android:elevation="4dp">
+            android:paddingBottom="16dp">
 
-            <TextView
-                android:id="@+id/nutritionFactsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nutrition Facts(per serving)"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/inter_medium"
-                android:layout_marginBottom="8dp"/>
-
+            <!-- Header Section -->
             <LinearLayout
-                android:id="@+id/caloriesLayout"
+                android:id="@+id/inputMealLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:weightSum="10">
+                android:paddingTop="30dp"
+                android:paddingBottom="16dp">
+
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/ic_arrow_left"
+                    android:layout_marginEnd="10dp" />
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Calories"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Input Meal"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="start|center_vertical"/>
-
-                <EditText
-                    android:id="@+id/inputCalories"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:inputType="number"
-                    android:hint="0"
-                    android:gravity="center"
-                    android:padding="4dp"/>
-
-                <TextView
-                    android:layout_width="wra"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="cals"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="end|center_vertical"/>
+                    android:textSize="26sp"
+                    android:layout_gravity="center_vertical" />
             </LinearLayout>
 
-            <View
-                android:layout_width="410dp"
-                android:layout_height="1dp"
-                android:background="#2C93D6"
-                app:layout_constraintTop_toBottomOf="@id/caloriesLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="-14dp"
-                android:layout_marginTop="10dp"/>
-
+            <!-- Food Name Section -->
             <LinearLayout
-                android:id="@+id/fatLayout"
+                android:id="@+id/foodNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/foodNameContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_profile_rounded_edge_container"
+                    android:elevation="4dp">
+
+                    <EditText
+                        android:id="@+id/inputFoodName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="Food Name..."
+                        android:fontFamily="@font/inter_medium"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="3dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <!-- Serving Size Section -->
+            <LinearLayout
+                android:id="@+id/servingSizeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/servingSizeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_profile_rounded_edge_container"
+                    android:elevation="4dp">
+
+                    <TextView
+                        android:id="@+id/servingSizeText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Serving Size"
+                        android:fontFamily="@font/inter_medium"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp" />
+
+                    <TextView
+                        android:id="@+id/servingTypeText"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Serving Type"
+                        android:textColor="@color/black"
+                        app:layout_constraintTop_toBottomOf="@id/servingSizeText"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="14dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <!-- Nutrition Facts Section -->
+            <LinearLayout
+                android:id="@+id/nutritionFactsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:weightSum="10">
+                android:orientation="vertical"
+                android:background="@drawable/edit_profile_rounded_edge_container"
+                android:padding="16dp"
+                android:layout_marginTop="20dp"
+                android:elevation="4dp">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/nutritionFactsTitle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Fat"
+                    android:text="Nutrition Facts (per serving)"
+                    android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="start|center_vertical"/>
+                    android:fontFamily="@font/inter_medium"
+                    android:layout_marginBottom="8dp" />
 
-                <EditText
-                    android:id="@+id/inputFats"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/caloriesLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:inputType="number"
-                    android:hint="0"
-                    android:gravity="center"
-                    android:padding="4dp"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Calories"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputCalories"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="cals"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/caloriesLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/fatLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="g"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="end|center_vertical"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Fat"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputFats"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/fatLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/saturatedFatLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Saturated Fat"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputSaturatedFat"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/saturatedFatLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/unsaturatedFatLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Unsaturated Fat"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputUnsaturatedFat"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/unsaturatedFatLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/transFatLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Trans Fat"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputTransFat"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/transFatLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/cholesterolLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Cholesterol"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputCholesterol"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="mg"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/cholesterolLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/sodiumLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Sodium"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputSodium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="mg"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/sodiumLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/carbohydratesLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Carbohydrates"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputCarbohydrates"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/carbohydratesLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/proteinLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Protein"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputProtein"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/carbohydratesLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/sugarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Sugar"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputSugar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="410dp"
+                    android:layout_height="1dp"
+                    android:background="#2C93D6"
+                    app:layout_constraintTop_toBottomOf="@id/sugarLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="-14dp"
+                    android:layout_marginTop="10dp"/>
+
+                <LinearLayout
+                    android:id="@+id/fiberLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Fiber"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="start|center_vertical"/>
+
+                    <EditText
+                        android:id="@+id/inputFiber"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:background="@drawable/edit_profile_rounded_edge_container"
+                        android:inputType="number"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="g"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:gravity="end|center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="410dp"
-                android:layout_height="1dp"
-                android:background="#2C93D6"
-                app:layout_constraintTop_toBottomOf="@id/fatLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="-14dp"
-                android:layout_marginTop="10dp"/>
-
-            <LinearLayout
-                android:id="@+id/saturatedFatLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Saturated Fat"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="start|center_vertical"/>
-
-                <EditText
-                    android:id="@+id/inputSaturatedFat"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:inputType="number"
-                    android:hint="0"
-                    android:gravity="center"
-                    android:padding="4dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="g"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="end|center_vertical"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="410dp"
-                android:layout_height="1dp"
-                android:background="#2C93D6"
-                app:layout_constraintTop_toBottomOf="@id/saturatedFatLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="-14dp"
-                android:layout_marginTop="10dp"/>
-
-            <LinearLayout
-                android:id="@+id/unsaturatedFatLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Unsaturated Fat"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="start|center_vertical"/>
-
-                <EditText
-                    android:id="@+id/inputUnsaturatedFat"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:inputType="number"
-                    android:hint="0"
-                    android:gravity="center"
-                    android:padding="4dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="g"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="end|center_vertical"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="410dp"
-                android:layout_height="1dp"
-                android:background="#2C93D6"
-                app:layout_constraintTop_toBottomOf="@id/unsaturatedFatLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="-14dp"
-                android:layout_marginTop="10dp"/>
-
-            <LinearLayout
-                android:id="@+id/transFatLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Trans Fat"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="start|center_vertical"/>
-
-                <EditText
-                    android:id="@+id/inputTransFat"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:inputType="number"
-                    android:hint="0"
-                    android:gravity="center"
-                    android:padding="4dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="g"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="end|center_vertical"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="410dp"
-                android:layout_height="1dp"
-                android:background="#2C93D6"
-                app:layout_constraintTop_toBottomOf="@id/transFatLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="-14dp"
-                android:layout_marginTop="10dp"/>
-
-            <LinearLayout
-                android:id="@+id/cholesterolLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:text="Cholesterol"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="start|center_vertical"/>
-
-                <EditText
-                    android:id="@+id/inputCholesterol"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:inputType="number"
-                    android:hint="0"
-                    android:gravity="center"
-                    android:padding="4dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="mg"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:gravity="end|center_vertical"/>
-            </LinearLayout>
-
-
-            <!-- Additional rows for Saturated Fat, Trans Fat, Cholesterol, etc. -->
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,9 +13,15 @@ class InputMealActivity : AppCompatActivity() {
         setContentView(R.layout.activity_input_meal)
 
         val btnBack: Button = findViewById(R.id.btnBack)
+        val btnManualInput: Button = findViewById(R.id.btnManualInput)
 
         btnBack.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnManualInput.setOnClickListener {
+            val intent = Intent(this, ManuallyInputMeal::class.java)
             startActivity(intent)
         }
 

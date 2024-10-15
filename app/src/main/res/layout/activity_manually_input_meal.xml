@@ -158,7 +158,7 @@
 
                 <EditText
                     android:id="@+id/inputCalories"
-                    android:layout_width=""
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/edit_profile_rounded_edge_container"
@@ -194,8 +194,8 @@
                     android:gravity="start|center_vertical"/>
 
                 <EditText
-                    android:id="@+id/inputCalories"
-                    android:layout_width=""
+                    android:id="@+id/inputFats"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:background="@drawable/edit_profile_rounded_edge_container"

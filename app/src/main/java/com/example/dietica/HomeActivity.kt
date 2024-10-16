@@ -17,6 +17,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var notificationIconImageView: ImageView
     private lateinit var buttonBodyComposition : Button
     private lateinit var homeLinearLayout: LinearLayout
+    private lateinit var exerciseFrameLayout: FrameLayout
     private lateinit var reportLinearLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
         notificationIconImageView = findViewById(R.id.notification_icon)
         buttonBodyComposition = findViewById(R.id.buttonBodyComposition)
         homeLinearLayout = findViewById(R.id.homeLinearLayout)
+        exerciseFrameLayout = findViewById(R.id.exerciseFrameLayout)
         reportLinearLayout = findViewById(R.id.reportLinearLayout)
 
         // Example: Update today's total dynamically
@@ -54,6 +56,11 @@ class HomeActivity : AppCompatActivity() {
         homeLinearLayout.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+        }
+
+        exerciseFrameLayout.setOnClickListener {
+            val intent = Intent(this, ExerciseActivity::class.java)
             startActivity(intent)
         }
 

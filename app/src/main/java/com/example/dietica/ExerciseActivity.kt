@@ -13,9 +13,9 @@ class ExerciseActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_exercise)
 
-        val btnBack: ImageView = findViewById(R.id.btnBack)
+        val leftArrow: ImageView = findViewById(R.id.leftArrow)
 
-        btnBack.setOnClickListener {
+        leftArrow.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }

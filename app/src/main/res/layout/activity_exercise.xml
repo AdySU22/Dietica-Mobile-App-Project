@@ -269,6 +269,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_profile_rounded_edge_container"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -276,7 +277,7 @@
                 android:layout_height="80dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout6"
+                    android:id="@+id/ConstraintLayout2"
                     android:layout_width="70dp"
                     android:layout_height="66dp"
                     android:layout_marginStart="8dp"
@@ -295,12 +296,12 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/walking_steps_image"/>
+                        app:srcCompat="@drawable/walking_steps_image" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -308,7 +309,7 @@
                     android:text="Walking Steps"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
+                    app:layout_constraintStart_toEndOf="@+id/ConstraintLayout2"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -319,11 +320,11 @@
                     android:layout_marginTop="8dp"
                     android:text="6000 steps a day"
                     android:textColor="#242424"
-                    app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintStart_toEndOf="@+id/ConstraintLayout2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageView14"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="10dp"
@@ -340,6 +341,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_profile_rounded_edge_container"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -347,7 +349,7 @@
                 android:layout_height="80dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout6"
+                    android:id="@+id/ConstraintLayout3"
                     android:layout_width="70dp"
                     android:layout_height="66dp"
                     android:layout_marginStart="8dp"
@@ -359,7 +361,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/imageView13"
+                        android:id="@+id/imageView15"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -371,7 +373,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -379,22 +381,22 @@
                     android:text="Physical Exercise"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
+                    app:layout_constraintStart_toEndOf="@+id/ConstraintLayout3"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     android:text="60 minutes a day"
                     android:textColor="#242424"
-                    app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintStart_toEndOf="@+id/ConstraintLayout3"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageView16"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="10dp"
@@ -410,14 +412,16 @@
             android:id="@+id/frameLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_profile_rounded_edge_container">
+            android:background="@drawable/edit_profile_rounded_edge_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="308dp"
                 android:layout_height="80dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout6"
+                    android:id="@+id/ConstraintLayout4"
                     android:layout_width="70dp"
                     android:layout_height="66dp"
                     android:layout_marginStart="8dp"
@@ -429,19 +433,19 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/imageView13"
+                        android:id="@+id/imageView17"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/daily_meditation_image"/>
+                        app:srcCompat="@drawable/daily_meditation_image" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -449,22 +453,22 @@
                     android:text="Daily Meditation"
                     android:textColor="#000000"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
+                    app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     android:text="30 minutes a day"
                     android:textColor="#242424"
-                    app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageView18"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="10dp"

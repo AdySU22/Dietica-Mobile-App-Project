@@ -7,12 +7,15 @@ import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 
 class EditProfile : AppCompatActivity() {
 
+    private val PICK_IMAGE_REQUEST = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge() // Optional: Enable immersive display
+        enableEdgeToEdge()
         setContentView(R.layout.activity_edit_profile)
 
         // Find views by ID for activity level icons
@@ -25,6 +28,7 @@ class EditProfile : AppCompatActivity() {
         val subheaderText: TextView = findViewById(R.id.subheaderText)
 
         // Find views for personal information sections
+        val btnEditProfilePicture: FrameLayout = findViewById(R.id.btnEditProfilePicture)
         val guestUserText: TextView = findViewById(R.id.guestUserText)
         val genderText: TextView = findViewById(R.id.genderText)
         val genderIcon: ImageView = findViewById(R.id.genderIcon)
@@ -37,7 +41,11 @@ class EditProfile : AppCompatActivity() {
         val btnCancel: Button = findViewById(R.id.btnCancel)
         val btnSave: Button = findViewById(R.id.btnSave)
 
-        // Set click listener for Guest User TextView to edit the name
+        // Set click listener to open image chooser
+        btnEditProfilePicture.setOnClickListener {
+            openImageChooser()
+        }
+
         guestUserText.setOnClickListener {
             showNameEditDialog(guestUserText)
         }
@@ -93,7 +101,27 @@ class EditProfile : AppCompatActivity() {
             val intent = Intent(this, ProfilePageActivity::class.java)
             startActivity(intent)
         }
+    }
 
+    // Function to open an image picker
+    private fun openImageChooser() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+            val imageUri = data.data
+            val profileImage: ImageView = findViewById(R.id.profileImage)
+
+            // Load the image with Glide and apply a circular transformation
+            Glide.with(this)
+                .load(imageUri)
+                .circleCrop()
+                .into(profileImage)
+        }
     }
 
     // Function to show a dialog with EditText to edit the name
@@ -158,5 +186,3 @@ class EditProfile : AppCompatActivity() {
             .show()
     }
 }
-
-

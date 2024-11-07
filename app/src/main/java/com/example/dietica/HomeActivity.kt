@@ -19,6 +19,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var homeLinearLayout: LinearLayout
     private lateinit var exerciseFrameLayout: FrameLayout
     private lateinit var reportLinearLayout: LinearLayout
+    private lateinit var toDoFrameLayout: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
         homeLinearLayout = findViewById(R.id.homeLinearLayout)
         exerciseFrameLayout = findViewById(R.id.exerciseFrameLayout)
         reportLinearLayout = findViewById(R.id.reportLinearLayout)
+        toDoFrameLayout = findViewById(R.id.toDoFrameLayout)
 
         // Example: Update today's total dynamically
         updateTodayTotal(2500)  // Set your desired total
@@ -68,6 +70,12 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, HealthReportActivity::class.java)
             startActivity(intent)
         }
+
+        toDoFrameLayout.setOnClickListener {
+            val intent = Intent(this, TodoActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun updateTodayTotal(total: Int) {

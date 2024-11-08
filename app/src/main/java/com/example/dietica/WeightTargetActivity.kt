@@ -18,9 +18,9 @@ class WeightTargetActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val geBacktoExercise: ImageView = findViewById(R.id.leftArrow2)
+        val leftArrow2: ImageView = findViewById(R.id.leftArrow2)
 
-        geBacktoExercise.setOnClickListener {
+        leftArrow2.setOnClickListener {
             val intent = Intent(this, ExerciseActivity::class.java)
             startActivity(intent)
         }

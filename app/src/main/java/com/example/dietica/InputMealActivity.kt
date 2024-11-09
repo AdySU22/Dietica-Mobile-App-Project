@@ -50,16 +50,20 @@ class InputMealActivity : AppCompatActivity() {
 
     private fun initHistory() {
         lifecycleScope.launch {
-            val data = mapOf(
-                "authId" to "authId-test-0", // TODO
-                "page" to 0,
-                "limit" to 3
-            )
-            val result = functions.getHttpsCallable("getAllFood")
-                .call(data)
-                .await()
-
-            showHistoryFood(result.data)
+            try {
+                val data = mapOf(
+                    "authId" to "authId-test-0", // TODO
+                    "page" to 0,
+                    "limit" to 3
+                )
+                val result = functions.getHttpsCallable("getAllFood")
+                    .call(data)
+                    .await()
+                showHistoryFood(result.data)
+            } catch (e: Exception) {
+                Log.e("initHistory", "Error fetching history: ${e.message}", e)
+                Toast.makeText(this@InputMealActivity, "Failed to load history", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -7,28 +7,50 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <FrameLayout
+        android:id="@+id/profilePictureFrame"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/circular_border"/>
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_picture"/>
+
         <FrameLayout
-            android:id="@+id/profilePictureFrame"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginStart="132dp"
-            android:layout_marginTop="80dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/btnEditProfilePicture"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end|top"
+            android:layout_margin="8dp"
+            android:clickable="true"
+            android:focusable="true">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/circular_border"/>
+                android:background="@drawable/edit_profile_picture_background"/>
 
             <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:id="@+id/editProfilePicture"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profile_picture"/>
+                android:src="@drawable/edit_profile_picture_icon"/>
         </FrameLayout>
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nicknameLayout"
@@ -82,12 +104,11 @@
                 android:layout_marginStart="16dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/personalInformationLayout"
-        android:layout_width="410dp"
+        android:layout_width="match_parent"
         android:layout_height="210dp"
         app:layout_constraintTop_toBottomOf="@id/nicknameLayout">
 
@@ -235,7 +256,6 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="14dp"/>
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -373,6 +393,4 @@
             android:layout_weight="1"/>
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

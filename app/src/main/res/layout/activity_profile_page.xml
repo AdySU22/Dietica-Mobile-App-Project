@@ -25,6 +25,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="34dp"
+            android:layout_height="44dp"
+            android:contentDescription="Back Button"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"/>
+
         <FrameLayout
             android:id="@+id/profilePictureFrame"
             android:layout_width="140dp"
@@ -67,11 +78,11 @@
     <LinearLayout
         android:id="@+id/editProfileButton"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="@drawable/edit_profile_button"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintTop_toBottomOf="@id/profilePictureContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -101,67 +112,20 @@
             android:layout_marginTop="2dp"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/achievementsTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Achievements"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/inter_medium"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="30dp"
-        android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@id/editProfileButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <LinearLayout
-        android:id="@+id/achievementsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/achievementsTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/achievement1"
-            android:contentDescription="Achievement 1"
-            android:layout_marginEnd="8dp"/>
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/achievement1"
-            android:contentDescription="Achievement 2"
-            android:layout_marginEnd="8dp"/>
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/achievement1"
-            android:contentDescription="Achievement 3"/>
-    </LinearLayout>
-
     <Button
         android:id="@+id/weeklySummaryButton"
         android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:text="Weekly Summary"
-        android:textSize="18sp"
-        android:textAllCaps="false"
+        android:layout_height="60dp"
         android:background="@drawable/edit_profile_button"
-        android:textColor="@color/white"
         android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toBottomOf="@id/achievementsContainer"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Weekly Summary"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="14dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileButton"
+        tools:layout_marginTop="30dp"/>
 
     <Button
         android:id="@+id/logoutButton"
@@ -176,6 +140,6 @@
         app:layout_constraintTop_toBottomOf="@id/weeklySummaryButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="44dp"/>
+        android:layout_marginTop="250dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

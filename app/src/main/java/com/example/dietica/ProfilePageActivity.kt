@@ -20,7 +20,7 @@ class ProfilePageActivity : AppCompatActivity() {
         val logoutButton: Button = findViewById(R.id.logoutButton)
 
         btnBack.setOnClickListener {
-            val intent = Intent(this, EditProfile::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 

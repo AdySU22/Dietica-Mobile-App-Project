@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="410dp"
+    android:layout_height="100dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:elevation="10dp"
+        android:background="@drawable/transparent_rounded_edge_container">
+
+        <ImageView
+            android:id="@+id/mealItemImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/nasi_padang"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/mealItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meal Item Title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter_bold"
+            app:layout_constraintStart_toEndOf="@id/mealItemImage"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/mealItemSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Meal Item Subtitle"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/mealItemImage"
+            app:layout_constraintTop_toBottomOf="@+id/mealItemTitle" />
+
+        <ImageView
+            android:id="@+id/mealItemBtn"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="78dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/plus_icon"
+            android:tint="@color/black"
+            android:background="@drawable/plus_button_background_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

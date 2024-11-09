@@ -157,4 +157,88 @@
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/topConstraintLayout">
+
+    <TextView
+        android:id="@+id/toDoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To-do"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/inter_semi_bold"
+        android:layout_marginEnd="240dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <FrameLayout
+        android:id="@+id/exerciseFrameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_profile_rounded_edge_container"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toDoText">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="308dp"
+          android:layout_height="80dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstraintLayout4"
+            android:layout_width="70dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/rounded_background_input_meal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+          <ImageView
+              android:id="@+id/imageView17"
+              android:layout_width="60dp"
+              android:layout_height="60dp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              app:srcCompat="@drawable/daily_meditation_image"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
+            android:text="Daily Meditation"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="30 minutes a day"
+            android:textColor="#242424"
+            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+      </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

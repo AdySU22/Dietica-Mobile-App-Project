@@ -1,6 +1,7 @@
 package com.example.dietica
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,9 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var inputMealTextView: TextView
     private lateinit var profileButton: Button
     private lateinit var notificationIconImageView: ImageView
+    private lateinit var goButton: Button
+    private lateinit var exercisePlus: ImageView
+    private lateinit var weightPlus: ImageView
     private lateinit var buttonBodyComposition : Button
     private lateinit var homeLinearLayout: LinearLayout
     private lateinit var exerciseFrameLayout: FrameLayout
@@ -31,6 +35,9 @@ class HomeActivity : AppCompatActivity() {
         inputMealTextView = findViewById(R.id.inputMealText)
         profileButton = findViewById(R.id.profileButton)
         notificationIconImageView = findViewById(R.id.notification_icon)
+        goButton = findViewById(R.id.goButton)
+        exercisePlus = findViewById(R.id.exercisePlus)
+        weightPlus = findViewById(R.id.weightPlus)
         buttonBodyComposition = findViewById(R.id.buttonBodyComposition)
         homeLinearLayout = findViewById(R.id.homeLinearLayout)
         exerciseFrameLayout = findViewById(R.id.exerciseFrameLayout)
@@ -50,8 +57,23 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        buttonBodyComposition.setOnClickListener {
+        goButton.setOnClickListener {
             val intent = Intent(this, HealthReportActivity::class.java)
+            startActivity(intent)
+        }
+
+        exercisePlus.setOnClickListener {
+            val intent = Intent(this, ExerciseActivity::class.java)
+            startActivity(intent)
+        }
+
+        weightPlus.setOnClickListener {
+            val intent = Intent(this, WeightTargetActivity::class.java)
+            startActivity(intent)
+        }
+
+        buttonBodyComposition.setOnClickListener {
+            val intent = Intent(this, WeightTargetActivity::class.java)
             startActivity(intent)
         }
 

@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.SignInServices
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -22,6 +23,7 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_sign_in)
 
         // Initialize FirebaseAuth and SecureTokenManager

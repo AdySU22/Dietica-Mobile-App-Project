@@ -1,6 +1,7 @@
 package com.example.dietica
 
 import android.content.Intent
+import android.hardware.camera2.params.BlackLevelPattern
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView

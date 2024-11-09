@@ -26,7 +26,7 @@ class TodoActivity : AppCompatActivity() {
         val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
         val calendar = Calendar.getInstance()
 
-        // Set back button functionality
+
         btnBack.setOnClickListener {
             val intent = Intent(this, WeightTargetActivity::class.java)
             startActivity(intent)

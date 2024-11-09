@@ -1,8 +1,8 @@
 package com.example.dietica
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.FrameLayout
@@ -29,6 +29,10 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+
+        val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+        val authId = sharedPreferences.getString("authId", null)
+        Log.d("HomeActivity", authId ?: "Token is null")
 
         // Setting up the UI elements
         todayTotalTextView = findViewById(R.id.today_total)

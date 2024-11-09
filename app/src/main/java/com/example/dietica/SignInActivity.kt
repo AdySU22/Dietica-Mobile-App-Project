@@ -1,6 +1,5 @@
 package com.example.dietica
 
-import SecureTokenManager
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -16,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var signInServices: SignInServices
-    private lateinit var secureTokenManager: SecureTokenManager  // Declare SecureTokenManager
 
     companion object {
         private const val RC_SIGN_IN = 9001
@@ -29,7 +27,6 @@ class SignInActivity : AppCompatActivity() {
         // Initialize FirebaseAuth and SecureTokenManager
         val auth = FirebaseAuth.getInstance()
         signInServices = SignInServices(this, auth)
-        secureTokenManager = SecureTokenManager(this) // Initialize SecureTokenManager
         signInServices.initializeGoogleSignInClient(getString(R.string.default_web_client_id))
 
         val btnLogin: Button = findViewById(R.id.btnLogin)
@@ -45,8 +42,13 @@ class SignInActivity : AppCompatActivity() {
             if (isValidInput(email, password)) {
                 signInServices.signInWithEmailAndPassword(email, password) { success, uid ->
                     if (success) {
-                        // Save the user's token securely
-                        secureTokenManager.saveToken(uid ?: "")
+                        // Store authId to SharedPreferences
+                        val sharedPreferences =
+                            getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("authId", uid)
+                        editor.apply()
+
                         proceedToNextActivity(uid)
                     } else {
                         Toast.makeText(this, "Sign in failed: Incorrect Email or Password", Toast.LENGTH_SHORT).show()
@@ -92,7 +94,11 @@ class SignInActivity : AppCompatActivity() {
             signInServices.handleGoogleSignInResult(task) { success, uid ->
                 if (success) {
                     // Save the Google sign-in token securely
-                    secureTokenManager.saveToken(uid ?: "")
+                    val sharedPreferences =
+                        getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("authId", uid)
+                    editor.apply()
                     proceedToNextActivity(uid)
                 } else {
                     Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show()

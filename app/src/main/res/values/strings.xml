@@ -19,4 +19,9 @@
         <item>Heavy Active</item>
     </string-array>
 
+    <string name="default_web_client_id">
+        253336274684-2u4c7u979beoo64cca707lsnpb2pq0ta.apps.googleusercontent.com
+    </string>
+
+
 </resources>

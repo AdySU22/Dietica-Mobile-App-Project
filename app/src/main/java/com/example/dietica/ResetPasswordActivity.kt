@@ -2,23 +2,79 @@ package com.example.dietica
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.dietica.services.OTPResetPasswordServices
+import com.google.firebase.functions.FirebaseFunctionsException
 
 class ResetPasswordActivity : AppCompatActivity() {
+
+    private lateinit var otpInput1: EditText
+    private lateinit var otpInput2: EditText
+    private lateinit var otpInput3: EditText
+    private lateinit var otpInput4: EditText
+    private lateinit var btnVerify: Button
+    private lateinit var email: String
+
+    private val otpService = OTPResetPasswordServices()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_reset_password)
 
-        val btnResetPassword: Button = findViewById(R.id.btnResetPassword)
-        btnResetPassword.setOnClickListener {
-            val intent = Intent(this, UpdatePasswordActivity::class.java)
-            startActivity(intent)
+        otpInput1 = findViewById(R.id.et_otp_1)
+        otpInput2 = findViewById(R.id.et_otp_2)
+        otpInput3 = findViewById(R.id.et_otp_3)
+        otpInput4 = findViewById(R.id.et_otp_4)
+        btnVerify = findViewById(R.id.btnResetPassword)
 
+        email = intent.getStringExtra("email") ?: ""
+
+        btnVerify.setOnClickListener { verifyOTP() }
+    }
+
+    private fun verifyOTP() {
+        val otp = otpInput1.text.toString().trim() +
+                otpInput2.text.toString().trim() +
+                otpInput3.text.toString().trim() +
+                otpInput4.text.toString().trim()
+
+        if (otp.length < 4) {
+            Toast.makeText(this, "Please enter all OTP digits", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        otpService.verifyOtp(email, otp)
+            .addOnSuccessListener { result ->
+                val isValid = result["valid"] as? Boolean ?: false
+                Log.e("OTP-Validation", isValid.toString())
+
+                if (isValid) {
+                    Toast.makeText(this, "OTP verified successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, UpdatePasswordActivity::class.java).apply {
+                        putExtra("email", email)
+                    }
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("ResetPasswordActivity", "Error: ", e)
+                val errorMessage = when (e) {
+                    is FirebaseFunctionsException -> when (e.code) {
+                        FirebaseFunctionsException.Code.NOT_FOUND -> "No OTP found for this email"
+                        FirebaseFunctionsException.Code.FAILED_PRECONDITION -> "OTP has expired"
+                        FirebaseFunctionsException.Code.RESOURCE_EXHAUSTED -> "Maximum OTP attempts exceeded"
+                        else -> e.message ?: "Error verifying OTP"
+                    }
+                    else -> "Unknown error occurred"
+                }
+                Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+            }
     }
 }

@@ -91,7 +91,7 @@ class ManuallyInputMeal : AppCompatActivity() {
         val inputFiber = findViewById<EditText>(R.id.inputFiber).text.toString().toInt()
 
         val data = mapOf(
-            "authId" to "authId-test-0",
+            "authId" to "authId-test-0", // TODO Replace with actual authId
             "food" to mapOf(
                 "name" to inputFoodName,
                 "servingType" to inputServingType,

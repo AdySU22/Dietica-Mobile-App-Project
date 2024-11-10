@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.GeneralInformationServices
+import com.google.firebase.auth.FirebaseAuth
 
 class GeneralInformationActivity : AppCompatActivity() {
 
@@ -58,20 +59,40 @@ class GeneralInformationActivity : AppCompatActivity() {
 
         btnNext.isEnabled = false
 
-        generalInfoService.finalizeSignup(email, password, confirmPassword, firstName, lastName) { success, errorMessage ->
-            btnNext.isEnabled = true
-            if (success) {
-                Toast.makeText(this, "Registration Complete!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, TellMeActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        // Register the user with Firebase Auth
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { authTask ->
+                if (authTask.isSuccessful) {
+                    // Registration successful, now we proceed
+                    val auth = FirebaseAuth.getInstance()
+                    val user = auth.currentUser
+
+                    user?.let {
+                        // User is authenticated, let's save the authId (UID)
+                        val authId = it.uid
+
+                        // Save authId to SharedPreferences for future use
+                        val sharedPref = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+                        val editor = sharedPref.edit()
+                        editor.putString("authId", authId)
+                        editor.apply()
+
+                        // Pass authId to TellMeActivity
+                        val intent = Intent(this, TellMeActivity::class.java)
+                        intent.putExtra("authId", authId)
+                        startActivity(intent)
+                        finish()
+                    }
+
+                    // Optional: You can use your GeneralInfoService here if needed
+                    Toast.makeText(this, "Registration Complete!", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    // Registration failed, handle the error
+                    Toast.makeText(this, "Registration Failed: ${authTask.exception?.message}", Toast.LENGTH_LONG).show()
                 }
-                startActivity(intent)
-                finish()
-            } else {
-                errorMessage?.let {
-                    Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-                } ?: Toast.makeText(this, "Error completing registration", Toast.LENGTH_LONG).show()
+
+                btnNext.isEnabled = true
             }
-        }
     }
 }

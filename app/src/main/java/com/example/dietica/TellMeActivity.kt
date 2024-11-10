@@ -2,11 +2,13 @@ package com.example.dietica
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import com.google.firebase.functions.FirebaseFunctions
 
 class TellMeActivity : AppCompatActivity() {
 
@@ -17,6 +19,7 @@ class TellMeActivity : AppCompatActivity() {
     private lateinit var genderSpinner: Spinner
     private lateinit var activityLevelSpinner: Spinner
     private lateinit var btnLetsGetStarted: Button
+    private lateinit var firebaseFunctions: FirebaseFunctions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,50 +35,84 @@ class TellMeActivity : AppCompatActivity() {
         activityLevelSpinner = findViewById(R.id.activityLevelInput)
         btnLetsGetStarted = findViewById(R.id.btnLetsGetStarted)
 
+        // Initialize Firebase Functions
+        firebaseFunctions = FirebaseFunctions.getInstance()
+
         // Set up Adapters for Spinners
         setupSpinnerAdapter(genderSpinner, R.array.gender_options)
         setupSpinnerAdapter(activityLevelSpinner, R.array.activity_level_options)
 
-        // Add TextWatchers to EditText fields
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                validateInputs()
-            }
-            override fun afterTextChanged(s: Editable?) {}
+        // Get the authId from Intent or SharedPreferences
+        val authId = intent.getStringExtra("authId")
+        if (authId != null) {
+            // Log the received authId
+            Log.d("TellMeActivity", "Received authId: $authId")
+        } else {
+            // Handle the case where authId is missing
+            Toast.makeText(this, "AuthId is missing!", Toast.LENGTH_SHORT).show()
         }
 
-        // Attach TextWatcher to relevant fields
-        ageInput.addTextChangedListener(textWatcher)
-        heightInput.addTextChangedListener(textWatcher)
-        weightInput.addTextChangedListener(textWatcher)
-        chronicIllnessInput.addTextChangedListener(textWatcher)
+        // Check if authId is valid
+        if (authId != null) {
+            // Proceed with form filling logic
+            setupListeners(authId)
+        } else {
+            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show()
+            finish()
+        }
 
-        // Listen for selection changes in the Spinners to validate inputs
+        // Validate inputs initially to enable button
+        validateInputs()
+
+        // Add listeners to inputs for real-time validation
+        ageInput.addTextChangedListener { validateInputs() }
+        heightInput.addTextChangedListener { validateInputs() }
+        weightInput.addTextChangedListener { validateInputs() }
+        chronicIllnessInput.addTextChangedListener { validateInputs() }
         genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 validateInputs()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
-
         activityLevelSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 validateInputs()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
+    }
 
-        // Handle button click to proceed to HomeActivity
+    private fun setupListeners(authId: String) {
+        // Add listeners and validation logic for button click
         btnLetsGetStarted.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            val data = hashMapOf(
+                "authId" to authId,
+                "weight" to weightInput.text.toString().toDoubleOrNull(),
+                "height" to heightInput.text.toString().toDoubleOrNull(),
+                "gender" to genderSpinner.selectedItem.toString(),
+                "activityLevels" to activityLevelSpinner.selectedItem.toString(),
+                "illnesses" to chronicIllnessInput.text.toString().takeIf { it.isNotEmpty() }
+            )
+
+            // Call the Firebase function
+            firebaseFunctions
+                .getHttpsCallable("setUserPhysical")
+                .call(data)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val result = task.result?.data as? Map<*, *>
+                        val message = result?.get("message") as? String
+                        val id = result?.get("id") as? String
+                        Toast.makeText(this, "$message (ID: $id)", Toast.LENGTH_LONG).show()
+                        // Navigate to HomeActivity
+                        startActivity(Intent(this, HomeActivity::class.java))
+                    } else {
+                        Toast.makeText(this, "Failed to save data", Toast.LENGTH_SHORT).show()
+                    }
+                }
         }
     }
 
@@ -94,17 +131,17 @@ class TellMeActivity : AppCompatActivity() {
     // Validate inputs and enable button if valid
     private fun validateInputs() {
         val ageNotEmpty = ageInput.text.isNotEmpty()
-        val heightNotEmpty = heightInput.text.isNotEmpty()
-        val weightNotEmpty = weightInput.text.isNotEmpty()
+        val heightNotEmpty = heightInput.text.toString().toDoubleOrNull() != null
+        val weightNotEmpty = weightInput.text.toString().toDoubleOrNull() != null
         val chronicIllnessNotEmpty = chronicIllnessInput.text.isNotEmpty()
 
-        // Ensure that a valid gender and activity level are selected
-        val genderSelected = genderSpinner.selectedItemPosition != 0
+        val genderSelected = genderSpinner.selectedItemPosition != 0  // 0 means "Select Gender"
         val activitySelected = activityLevelSpinner.selectedItemPosition != 0
 
-        // Enable the button if all inputs are valid
-        /*btnLetsGetStarted.isEnabled =
-            ageNotEmpty && heightNotEmpty && weightNotEmpty &&
-                    chronicIllnessNotEmpty && genderSelected && activitySelected*/
+        val isButtonEnabled = ageNotEmpty && heightNotEmpty && weightNotEmpty &&
+                chronicIllnessNotEmpty && genderSelected && activitySelected
+
+        btnLetsGetStarted.isEnabled = isButtonEnabled
     }
 }
+

@@ -14,4 +14,7 @@
     <color name="blue_sapphire">#105C7C</color>
     <color name="light_light_blue">#2C93D6</color>
 
+    <color name="end_color_bar">#0257E1</color>
+    <color name="start_color_bar">#5897FF</color>
+
 </resources>

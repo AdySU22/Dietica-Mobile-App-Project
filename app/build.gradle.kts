@@ -52,8 +52,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     implementation ("com.diogobernardino:williamchart:3.10.1")
-    implementation ("com.diogobernardino.williamchart:tooltip-slider:3.10.1")
-    implementation ("com.diogobernardino.williamchart:tooltip-points:3.10.1")
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)

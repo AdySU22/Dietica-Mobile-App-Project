@@ -17,4 +17,10 @@
     <color name="end_color_bar">#0257E1</color>
     <color name="start_color_bar">#5897FF</color>
 
+    <color name="purple_line_chart">#800080</color>
+    <color name="blue_line_chart">#0000FF</color>
+    <color name="orange_line_chart">#FFA500</color>
+    <color name="green_line_chart">#008000</color>
+
+
 </resources>

@@ -50,6 +50,7 @@ dependencies {
     implementation("androidx.activity:activity:1.9.2")
     implementation("androidx.activity:activity-ktx:1.9.2")
     implementation("com.github.bumptech.glide:glide:4.11.0")
+    implementation(libs.firebase.firestore.ktx)
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)

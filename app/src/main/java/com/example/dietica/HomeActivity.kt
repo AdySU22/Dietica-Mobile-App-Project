@@ -15,8 +15,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var todayTotalTextView: TextView
     private lateinit var inputMealTextView: TextView
     private lateinit var profileButton: Button
-    private lateinit var notificationIconImageView: ImageView
-    private lateinit var goButton: Button
+    private lateinit var btnNotification: ImageView
+    private lateinit var btnGo: Button
     private lateinit var exercisePlus: ImageView
     private lateinit var weightPlus: ImageView
     private lateinit var buttonBodyComposition : Button
@@ -38,8 +38,8 @@ class HomeActivity : AppCompatActivity() {
         todayTotalTextView = findViewById(R.id.today_total)
         inputMealTextView = findViewById(R.id.inputMealText)
         profileButton = findViewById(R.id.profileButton)
-        notificationIconImageView = findViewById(R.id.notification_icon)
-        goButton = findViewById(R.id.goButton)
+        btnNotification = findViewById(R.id.btnNotification)
+        btnGo = findViewById(R.id.btnGo)
         exercisePlus = findViewById(R.id.exercisePlus)
         weightPlus = findViewById(R.id.weightPlus)
         buttonBodyComposition = findViewById(R.id.buttonBodyComposition)
@@ -61,7 +61,12 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        goButton.setOnClickListener {
+        btnNotification.setOnClickListener {
+            val intent = Intent(this, NotificationActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnGo.setOnClickListener {
             val intent = Intent(this, HealthReportActivity::class.java)
             startActivity(intent)
         }

@@ -73,7 +73,7 @@
                     app:layout_constraintTop_toTopOf="@+id/profileButton"/>
 
                 <ImageView
-                    android:id="@+id/notification_icon"
+                    android:id="@+id/btnNotification"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="-44dp"
@@ -379,7 +379,7 @@
                     app:srcCompat="@drawable/exercise_icon" />
 
                 <Button
-                    android:id="@+id/goButton"
+                    android:id="@+id/btnGo"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="5dp"

@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,361 +8,378 @@
     android:background="@android:color/white"
     tools:context=".HealthReportActivity">
 
-    <LinearLayout
-        android:id="@+id/headerContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp">
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/back_arrow"/>
-
-        <TextView
-            android:id="@+id/headerTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="Health Report"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/activityLevelLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activity Level"
-        android:textSize="16sp"
-        android:textColor="#005EDD"
-        android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toBottomOf="@id/headerContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="26dp"
-        android:layout_marginStart="16dp"/>
-
-    <FrameLayout
-        android:id="@+id/graphContainer"
-        android:layout_width="380dp"
-        android:layout_height="230dp"
-        android:elevation="4dp"
-        android:background="@drawable/health_report_layout_background"
-        app:layout_constraintTop_toBottomOf="@id/activityLevelLabel"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/weeklyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weekly Average"
-            android:fontFamily="@font/poppins_semi_bold"
-            android:textColor="#005FFA"
-            android:textSize="14sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"/>
-
-        <Button
-            android:id="@+id/graphButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/right_arrow"
-            android:layout_marginStart="330dp"
-            android:backgroundTint="#005FFA"
-            android:layout_marginTop="10dp"/>
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/bmiProgressBarContainer"
-        android:layout_width="380dp"
-        android:layout_height="136dp"
-        android:orientation="vertical"
-        android:elevation="4dp"
-        android:background="@drawable/health_report_layout_background"
-        app:layout_constraintTop_toBottomOf="@id/graphContainer"
+    <!-- Scrollable Container -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="30dp">
-
-        <TextView
-            android:id="@+id/bmiText"
-            android:layout_width="162dp"
-            android:layout_height="wrap_content"
-            android:text="BMI"
-            android:fontFamily="@font/inter_semi_bold"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            android:layout_marginStart="16dp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:id="@+id/differentWeightText"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:id="@+id/underWeightText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Underweight"
-                android:fontFamily="@font/inter_semi_bold"
-                android:textColor="@color/black"
-                android:textSize="10sp"
-                android:layout_marginStart="16dp"/>
-
-            <TextView
-                android:id="@+id/averageWeightText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Average"
-                android:fontFamily="@font/inter_semi_bold"
-                android:textColor="@color/black"
-                android:textSize="10sp"
-                android:layout_marginStart="28dp"/>
-
-            <TextView
-                android:id="@+id/overWeightText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Overweight"
-                android:fontFamily="@font/inter_semi_bold"
-                android:textColor="@color/black"
-                android:textSize="10sp"
-                android:layout_marginStart="88dp"/>
-
-        </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/bmiProgressBar"
-            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
-            android:layout_marginTop="16dp"
-            android:indeterminate="false"
-            android:max="100"
-            android:progress="70"
-            android:progressDrawable="@drawable/progress_bar_composition"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
 
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/statisticsContainer1"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/bmiProgressBarContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/heartRateContainer"
-            android:layout_width="140dp"
-            android:layout_height="100dp"
-            android:elevation="4dp"
-            android:background="@drawable/health_report_layout_background"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="50dp">
-
-            <TextView
-                android:id="@+id/hearRateText1"
+            <LinearLayout
+                android:id="@+id/headerContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Heart Rate"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/hearRateText2"
-                android:layout_marginBottom="4dp"/>
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp">
+
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/back_arrow" />
+
+                <TextView
+                    android:id="@+id/headerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Health Report"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/intakeHistoryContainer"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="40dp"
+                android:elevation="4dp"
+                android:background="@drawable/health_report_layout_background">
+
+                <TextView
+                    android:id="@+id/intakeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Intake History"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"/>
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/hearRateText2"
+                android:id="@+id/activityLevelLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="120 BPM"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hearRateText1"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="26dp"
+                android:text="Activity Level"
+                android:textSize="16sp"
+                android:textColor="#005EDD"
+                android:fontFamily="@font/inter_medium" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <FrameLayout
+                android:id="@+id/graphContainer"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="20dp"
+                android:elevation="4dp"
+                android:background="@drawable/health_report_layout_background">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/averageSleepContainer"
-            android:layout_width="140dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/health_report_layout_background"
-            android:elevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/weeklyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weekly Average"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:textColor="#005FFA"
+                    android:textSize="14sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp" />
 
-            <TextView
-                android:id="@+id/averageSleepText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Avg. Sleep"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/averageSleepText2"
-                android:layout_marginBottom="4dp"/>
+                <Button
+                    android:id="@+id/graphButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/right_arrow"
+                    android:backgroundTint="#005FFA"
+                    android:layout_marginStart="330dp"
+                    android:layout_marginTop="10dp" />
+            </FrameLayout>
 
-            <TextView
-                android:id="@+id/averageSleepText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="7H 20Mins"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/averageSleepText1"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            <LinearLayout
+                android:id="@+id/bmiProgressBarContainer"
+                android:layout_width="match_parent"
+                android:layout_height="136dp"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="30dp"
+                android:elevation="4dp"
+                android:background="@drawable/health_report_layout_background">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/bmiText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="BMI"
+                    android:fontFamily="@font/inter_semi_bold"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:id="@+id/differentWeightText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/statisticsContainer2"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/statisticsContainer1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+                    <TextView
+                        android:id="@+id/underWeightText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Underweight"
+                        android:fontFamily="@font/inter_semi_bold"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/averageWaterIntakeContainer"
-            android:layout_width="140dp"
-            android:layout_height="100dp"
-            android:elevation="4dp"
-            android:background="@drawable/health_report_layout_background"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="50dp">
+                    <TextView
+                        android:id="@+id/averageWeightText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:text="Average"
+                        android:fontFamily="@font/inter_semi_bold"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
 
-            <TextView
-                android:id="@+id/averageWaterIntakeText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Avg. Water Intake"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/averageWaterIntakeText2"
-                android:layout_marginBottom="4dp"/>
+                    <TextView
+                        android:id="@+id/overWeightText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="88dp"
+                        android:text="Overweight"
+                        android:fontFamily="@font/inter_semi_bold"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/averageWaterIntakeText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="3,000ml"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/averageWaterIntakeText1"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                <ProgressBar
+                    android:id="@+id/bmiProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="70"
+                    android:progressDrawable="@drawable/progress_bar_composition" />
+            </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Additional statistics containers -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/statisticsContainer1"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp">
 
+                <!-- Heart Rate Container -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/heartRateContainer"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="50dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/averageCalorieIntakeContainer"
-            android:layout_width="140dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="50dp"
-            android:background="@drawable/health_report_layout_background"
-            android:elevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/hearRateText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Heart Rate"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/hearRateText2"
+                        android:layout_marginBottom="4dp"/>
 
-            <TextView
-                android:id="@+id/averageCalorieIntakeText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Avg. Calorie Intake"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/averageCalorieIntakeText2"
-                android:layout_marginBottom="4dp"/>
+                    <TextView
+                        android:id="@+id/hearRateText2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="120 BPM"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/hearRateText1"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/averageCalorieIntakeText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="2,500cals"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/averageCalorieIntakeText1"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                <!-- Average Sleep Container -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/averageSleepContainer"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:elevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/averageSleepText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Avg. Sleep"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/averageSleepText2"
+                        android:layout_marginBottom="4dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/averageSleepText2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="7H 20Mins"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/averageSleepText1"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/downloadReportButton"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:background="@drawable/download_button_background"
-        android:text="Download report.PDF"
-        android:textAllCaps="false"
-        android:textColor="#093B8D"
-        android:drawableEnd="@drawable/download_icon"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:gravity="start|center_vertical"
-        app:layout_constraintTop_toBottomOf="@id/statisticsContainer2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:padding="16dp"/>
+            <!-- Additional statistics container 2 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/statisticsContainer2"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp">
 
+                <!-- Water Intake Container -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/averageWaterIntakeContainer"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="50dp">
+
+                    <TextView
+                        android:id="@+id/averageWaterIntakeText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Avg. Water Intake"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/averageWaterIntakeText2"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/averageWaterIntakeText2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="3,000ml"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/averageWaterIntakeText1"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Average Calorie Intake Container -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/averageCalorieIntakeContainer"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:elevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/averageCalorieIntakeText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Avg. Calorie Intake"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/averageCalorieIntakeText2"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/averageCalorieIntakeText2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="2,500cals"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/averageCalorieIntakeText1"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Download Button -->
+            <Button
+                android:id="@+id/downloadReportButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:background="@drawable/download_button_background"
+                android:text="Download report.PDF"
+                android:textAllCaps="false"
+                android:textColor="#093B8D"
+                android:drawableEnd="@drawable/download_icon"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="start|center_vertical" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

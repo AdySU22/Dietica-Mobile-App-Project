@@ -84,7 +84,7 @@
             <FrameLayout
                 android:id="@+id/graphContainer"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="20dp"
@@ -109,7 +109,13 @@
                     android:background="@drawable/right_arrow"
                     android:backgroundTint="#005FFA"
                     android:layout_marginStart="330dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"/>
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="36dp"/>
             </FrameLayout>
 
             <LinearLayout

@@ -51,7 +51,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.2")
     implementation("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)

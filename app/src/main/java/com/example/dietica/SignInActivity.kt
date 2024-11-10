@@ -69,7 +69,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun proceedToNextActivity(uid: String?) {
-        val intent = Intent(this, TellMeActivity::class.java).apply {
+        val intent = Intent(this, HomeActivity::class.java).apply {
             putExtra("uid", uid)
         }
         startActivity(intent)

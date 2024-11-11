@@ -108,28 +108,27 @@
         android:id="@+id/resultContainer"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/searchResultsTitle"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/searchResultsTitle">
 
         <TextView
             android:id="@+id/resultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Result Found"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/inter_bold"
-            android:textSize="16sp"
+            android:text="No Result Found"
             android:textColor="@color/black"
-            android:layout_marginBottom="10dp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/no_result"
-            android:contentDescription="No Results Found"/>
+            android:contentDescription="No Results Found"
+            android:src="@drawable/no_result" />
     </LinearLayout>
 
     <TextView

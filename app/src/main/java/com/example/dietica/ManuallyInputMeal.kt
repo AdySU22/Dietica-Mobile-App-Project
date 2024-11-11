@@ -105,8 +105,11 @@ class ManuallyInputMeal : AppCompatActivity() {
         val inputSugar = findViewById<EditText>(R.id.inputSugar).text.toString().toInt()
         val inputFiber = findViewById<EditText>(R.id.inputFiber).text.toString().toInt()
 
+        val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+        val authId = sharedPreferences.getString("authId", null)
+
         val data = mapOf(
-            "authId" to "authId-test-0", // TODO
+            "authId" to authId,
             "food" to mapOf(
                 "name" to inputFoodName,
                 "servingType" to inputServingType,
@@ -208,8 +211,10 @@ class ManuallyInputMeal : AppCompatActivity() {
         // Use the foodId to fetch more details or perform other actions
         if (foodId != null) {
             lifecycleScope.launch {
+                val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+                val authId = sharedPreferences.getString("authId", null)
                 val data = mapOf(
-                    "authId" to "authId-test-0", // TODO
+                    "authId" to authId,
                     "foodId" to foodId
                 )
                 val result = functions.getHttpsCallable("getFood")

@@ -51,8 +51,10 @@ class InputMealActivity : AppCompatActivity() {
     private fun initHistory() {
         lifecycleScope.launch {
             try {
+                val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+                val authId = sharedPreferences.getString("authId", null)
                 val data = mapOf(
-                    "authId" to "authId-test-0", // TODO
+                    "authId" to authId,
                     "page" to 0,
                     "limit" to 3
                 )
@@ -61,6 +63,7 @@ class InputMealActivity : AppCompatActivity() {
                     .await()
                 showHistoryFood(result.data)
             } catch (e: Exception) {
+                showHistoryFood(emptyList<Any>())
                 Log.e("initHistory", "Error fetching history: ${e.message}", e)
                 Toast.makeText(this@InputMealActivity, "Failed to load history", Toast.LENGTH_SHORT).show()
             }

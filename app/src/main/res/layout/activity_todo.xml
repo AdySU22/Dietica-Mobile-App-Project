@@ -158,6 +158,7 @@
   </androidx.constraintlayout.widget.ConstraintLayout>
 
   <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/toDoLayout"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       app:layout_constraintStart_toStartOf="parent"
@@ -375,6 +376,75 @@
       </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/setTargetBox"
+      android:layout_width="310dp"
+      android:layout_height="100dp"
+      android:layout_marginTop="80dp"
+      android:background="@drawable/rounded_background"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toDoLayout">
+
+    <TextView
+        android:id="@+id/readyToCommitText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Ready to commit?"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:fontFamily="@font/inter_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/reachGoal"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:text="Have an AI set up a to-do list! Don’t worry these are just suggestions!"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/readyToCommitText" />
+
+    <ImageView
+        android:id="@+id/aiIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="-30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ai_icon" />
+
+    <Button
+        android:id="@+id/btnGo"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background_rounded_2"
+        android:fontFamily="@font/inter_medium"
+        android:text="Go"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/reachGoal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

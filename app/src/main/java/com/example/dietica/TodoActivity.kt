@@ -40,9 +40,15 @@ class TodoActivity : AppCompatActivity() {
         val dayFormat = SimpleDateFormat("dd", Locale.getDefault())
         val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
         val calendar = Calendar.getInstance()
+        val btnGo: Button = findViewById(R.id.btnGo)
 
         btnBack.setOnClickListener {
             val intent = Intent(this, WeightTargetActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnGo.setOnClickListener {
+            val intent = Intent(this, AIChatBot::class.java)
             startActivity(intent)
         }
 

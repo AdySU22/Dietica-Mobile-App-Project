@@ -26,6 +26,9 @@
             android:name=".TodoActivity"
             android:exported="false" />
         <activity
+            android:name=".WeightTargetActivity"
+            android:exported="false"/>
+        <activity
             android:name=".ExerciseActivity"
             android:exported="false" />
         <activity

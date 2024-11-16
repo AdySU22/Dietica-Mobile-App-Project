@@ -47,16 +47,9 @@ class TellMeActivity : AppCompatActivity() {
         if (authId != null) {
             // Log the received authId
             Log.d("TellMeActivity", "Received authId: $authId")
-        } else {
-            // Handle the case where authId is missing
-            Toast.makeText(this, "AuthId is missing!", Toast.LENGTH_SHORT).show()
-        }
-
-        // Check if authId is valid
-        if (authId != null) {
-            // Proceed with form filling logic
             setupListeners(authId)
         } else {
+            // Handle the case where authId is missing
             Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show()
             finish()
         }
@@ -88,8 +81,14 @@ class TellMeActivity : AppCompatActivity() {
     private fun setupListeners(authId: String) {
         // Add listeners and validation logic for button click
         btnLetsGetStarted.setOnClickListener {
+            val email = intent.getStringExtra("email")
+            val firstName = intent.getStringExtra("firstName")
+            val lastName = intent.getStringExtra("lastName")
             val data = hashMapOf(
                 "authId" to authId,
+                "email" to email,
+                "firstName" to firstName,
+                "lastName" to lastName,
                 "weight" to weightInput.text.toString().toDoubleOrNull(),
                 "height" to heightInput.text.toString().toDoubleOrNull(),
                 "gender" to genderSpinner.selectedItem.toString(),
@@ -97,19 +96,18 @@ class TellMeActivity : AppCompatActivity() {
                 "illnesses" to chronicIllnessInput.text.toString().takeIf { it.isNotEmpty() }
             )
 
+            Log.d("TellMeActivity", "Data to be sent to Firebase: $data")
+
             // Call the Firebase function
             firebaseFunctions
-                .getHttpsCallable("setUserPhysical")
+                .getHttpsCallable("setProfileV2")
                 .call(data)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        val result = task.result?.data as? Map<*, *>
-                        val message = result?.get("message") as? String
-                        val id = result?.get("id") as? String
-                        Toast.makeText(this, "$message (ID: $id)", Toast.LENGTH_LONG).show()
-                        // Navigate to HomeActivity
+                        Toast.makeText(this, "Welcome to Dietica!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, HomeActivity::class.java))
                     } else {
+                        Log.e("TellMeActivity", "Firebase function call failed", task.exception)
                         Toast.makeText(this, "Failed to save data", Toast.LENGTH_SHORT).show()
                     }
                 }

@@ -80,6 +80,9 @@ class GeneralInformationActivity : AppCompatActivity() {
                         // Pass authId to TellMeActivity
                         val intent = Intent(this, TellMeActivity::class.java)
                         intent.putExtra("authId", authId)
+                        intent.putExtra("email", email)
+                        intent.putExtra("firstName", firstName)
+                        intent.putExtra("lastName", lastName)
                         startActivity(intent)
                         finish()
                     }

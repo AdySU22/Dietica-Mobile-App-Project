@@ -2,7 +2,9 @@ package com.example.dietica
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.*
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -33,7 +35,41 @@ class ResetPasswordActivity : AppCompatActivity() {
 
         email = intent.getStringExtra("email") ?: ""
 
+        setupOTPInputs()
+
         btnVerify.setOnClickListener { verifyOTP() }
+    }
+
+    private fun setupOTPInputs() {
+        // Helper function to move focus to the next EditText
+        fun moveToNextField(current: EditText, next: EditText?) {
+            current.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (s?.length == 1) {
+                        next?.requestFocus()
+                    }
+                }
+                override fun afterTextChanged(s: Editable?) {}
+            })
+        }
+
+        moveToNextField(otpInput1, otpInput2)
+        moveToNextField(otpInput2, otpInput3)
+        moveToNextField(otpInput3, otpInput4)
+
+        otpInput4.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s?.length == 1) {
+                    otpInput4.clearFocus()
+                    // Hide the keyboard
+                    val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(otpInput4.windowToken, 0)
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
     private fun verifyOTP() {

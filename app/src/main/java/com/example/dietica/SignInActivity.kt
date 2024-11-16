@@ -69,11 +69,15 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun proceedToNextActivity(uid: String?) {
-        val intent = Intent(this, HomeActivity::class.java).apply {
-            putExtra("uid", uid)
+        if (uid != null) {
+            val intent = Intent(this, HomeActivity::class.java).apply {
+                putExtra("authId", uid)
+            }
+            startActivity(intent)
+            finish()
+        } else {
+            Toast.makeText(this, "Failed to retrieve user ID", Toast.LENGTH_SHORT).show()
         }
-        startActivity(intent)
-        finish()
     }
 
     private fun signUpAccount() {
@@ -95,7 +99,6 @@ class SignInActivity : AppCompatActivity() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             signInServices.handleGoogleSignInResult(task) { success, uid ->
                 if (success) {
-                    // Save the Google sign-in token securely
                     val sharedPreferences =
                         getSharedPreferences("com.example.dietica", MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
@@ -103,7 +106,7 @@ class SignInActivity : AppCompatActivity() {
                     editor.apply()
                     proceedToNextActivity(uid)
                 } else {
-                    Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Google sign-in failed. Please try again.", Toast.LENGTH_SHORT).show()
                 }
             }
         }

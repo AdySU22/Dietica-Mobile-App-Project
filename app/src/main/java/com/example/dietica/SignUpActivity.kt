@@ -64,7 +64,12 @@ class SignUpActivity : AppCompatActivity() {
             signUpServices.handleSignInResult(task) { user ->
                 if (user != null) {
                     Toast.makeText(this, "Sign in successful", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, TellMeActivity::class.java))
+                    val intent = Intent(this, TellMeActivity::class.java)
+                    intent.putExtra("authId", user.uid)
+                    intent.putExtra("email", user.email)
+                    intent.putExtra("firstName", user.displayName)
+                    intent.putExtra("lastName", "")
+                    startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show()

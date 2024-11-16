@@ -30,6 +30,9 @@ class HealthReportActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_health_report)
 
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION )
+
         functions = FirebaseFunctions.getInstance()
 
         // Decide whether to use the emulator

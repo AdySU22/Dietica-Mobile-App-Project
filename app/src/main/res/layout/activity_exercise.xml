@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/myExercises"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="255dp"
         android:text="My Exercises"
         android:textColor="#000000"
@@ -33,7 +33,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/leftArrow"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/setTargetBox"
@@ -323,16 +323,6 @@
                     app:layout_constraintStart_toEndOf="@+id/ConstraintLayout2"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-                <ImageView
-                    android:id="@+id/imageView14"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/circular_progress_bar_2" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
 
@@ -395,16 +385,6 @@
                     app:layout_constraintStart_toEndOf="@+id/ConstraintLayout3"
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/circular_progress_bar_2" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
 
@@ -466,16 +446,6 @@
                     android:textColor="#242424"
                     app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
                     app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-                <ImageView
-                    android:id="@+id/imageView18"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/circular_progress_bar_2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>

@@ -10,145 +10,138 @@
 
     <!-- Scrollable Content Section -->
     <ScrollView
-        android:layout_width="410dp"
-        android:layout_height="match_parent"
-        android:paddingStart="20dp"
-        android:paddingEnd="30dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            <!-- Header Section -->
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/inputMealLayout"
-                android:layout_width="420dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="-10dp">
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="20dp">
 
                 <Button
                     android:id="@+id/btnBack"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/ic_arrow_left"
-                    android:layout_marginEnd="10dp" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="370dp"/>
 
                 <TextView
                     android:id="@+id/titleText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/inter_bold"
                     android:text="Input Meal"
                     android:textColor="@color/black"
                     android:textSize="26sp"
-                    android:layout_gravity="center_vertical" />
-            </LinearLayout>
+                    app:layout_constraintStart_toEndOf="@+id/btnBack"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Food Name Section -->
-            <LinearLayout
-                android:id="@+id/foodNameLayout"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/foodNameContainer"
+                android:layout_width="360dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_profile_rounded_edge_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputMealLayout"
+                android:elevation="4dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/foodNameContainer"
-                    android:layout_width="360dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
+                <EditText
+                    android:id="@+id/inputFoodName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Food Name..."
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/servingSizeContainer"
+                android:layout_width="360dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/edit_profile_rounded_edge_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/foodNameContainer"
+                android:elevation="4dp">
+
+                <TextView
+                    android:id="@+id/servingSizeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Serving Size"
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp" />
+
+                <TextView
+                    android:id="@+id/servingTypeText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Serving Type"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter_medium"
+                    app:layout_constraintTop_toBottomOf="@id/servingSizeText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="14dp" />
+
+                <EditText
+                    android:id="@+id/inputServingType"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:elevation="4dp">
+                    app:layout_constraintStart_toStartOf="@id/servingTypeText"
+                    app:layout_constraintTop_toBottomOf="@id/servingSizeText"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginStart="190dp"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="center"/>
 
-                    <EditText
-                        android:id="@+id/inputFoodName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Food Name..."
-                        android:fontFamily="@font/inter_medium"
-                        android:textSize="14sp"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="3dp"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Serving Size Section -->
-            <LinearLayout
-                android:id="@+id/servingSizeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/servingSizeContainer"
-                    android:layout_width="360dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/edit_profile_rounded_edge_container"
-                    android:elevation="4dp">
-
-                    <TextView
-                        android:id="@+id/servingSizeText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Serving Size"
-                        android:fontFamily="@font/inter_medium"
-                        android:textSize="16sp"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp" />
-
-                    <TextView
-                        android:id="@+id/servingTypeText"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Serving Type"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/inter_medium"
-                        app:layout_constraintTop_toBottomOf="@id/servingSizeText"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="14dp" />
-
-                    <EditText
-                        android:id="@+id/inputServingType"
-                        android:layout_width="100dp"
-                        android:layout_height="20dp"
-                        android:background="@drawable/edit_profile_rounded_edge_container"
-                        app:layout_constraintStart_toStartOf="@id/servingTypeText"
-                        app:layout_constraintTop_toBottomOf="@id/servingSizeText"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginStart="190dp"
-                        android:inputType="textMultiLine"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/inter_medium"
-                        android:gravity="center"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <!-- Nutrition Facts Section -->
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/nutritionFactsLayout"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/edit_profile_rounded_edge_container"
                 android:padding="16dp"
-                android:layout_marginTop="20dp"
-                android:elevation="4dp">
+                android:layout_marginTop="30dp"
+                android:elevation="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/servingSizeContainer">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/nutritionFactsContainer"
                     android:layout_width="match_parent"
                     android:layout_height="30dp">
 
@@ -165,12 +158,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:text="(per serving)"
+                        android:text="per serving*"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toEndOf="@id/nutritionFactsTitle"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="2dp"/>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
@@ -179,7 +172,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@+id/nutritionFactsContainer">
 
                     <TextView
                         android:layout_width="0dp"
@@ -226,8 +220,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@+id/caloriesLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -275,8 +270,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@+id/fatLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -310,6 +306,7 @@
                         android:gravity="end|center_vertical"/>
                 </LinearLayout>
 
+
                 <View
                     android:layout_width="410dp"
                     android:layout_height="1dp"
@@ -324,8 +321,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@+id/saturatedFatLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -373,8 +371,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@id/unsaturatedFatLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -422,8 +421,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@id/transFatLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -471,8 +471,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@id/cholesterolLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -520,8 +521,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@id/sodiumLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -569,8 +571,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@id/carbohydratesLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -608,7 +611,7 @@
                     android:layout_width="410dp"
                     android:layout_height="1dp"
                     android:background="#2C93D6"
-                    app:layout_constraintTop_toBottomOf="@id/carbohydratesLayout"
+                    app:layout_constraintTop_toBottomOf="@id/proteinLayout"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="-14dp"
                     android:layout_marginTop="10dp"/>
@@ -618,8 +621,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@id/proteinLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -667,8 +671,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="8dp"
-                    android:weightSum="10">
+                    android:layout_marginTop="18dp"
+                    android:weightSum="10"
+                    app:layout_constraintTop_toBottomOf="@id/sugarLayout">
 
                     <TextView
                         android:layout_width="0dp"
@@ -701,15 +706,17 @@
                         android:textSize="14sp"
                         android:gravity="end|center_vertical"/>
                 </LinearLayout>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="100dp"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/nutritionFactsLayout">
+                app:layout_constraintTop_toBottomOf="@id/nutritionFactsLayout"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <Button
                     android:id="@+id/btnCancel"
@@ -736,6 +743,7 @@
                     android:textColor="@color/light_light_blue"/>
             </LinearLayout>
 
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

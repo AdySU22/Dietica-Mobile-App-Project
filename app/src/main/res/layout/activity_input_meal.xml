@@ -9,32 +9,35 @@
     android:background="@color/white"
     tools:context=".InputMealActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/inputMealLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="30dp"
-        android:paddingStart="10dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp">
 
         <Button
             android:id="@+id/btnBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/ic_arrow_left"
-            android:layout_marginEnd="10dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="370dp"/>
 
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fontFamily="@font/inter_bold"
             android:text="Input Meal"
             android:textColor="@color/black"
             android:textSize="26sp"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
+            app:layout_constraintStart_toEndOf="@+id/btnBack"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/searchBarContainer"

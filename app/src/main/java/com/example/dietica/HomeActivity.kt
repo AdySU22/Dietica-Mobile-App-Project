@@ -15,8 +15,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
@@ -34,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var buttonBodyComposition: Button
     private lateinit var homeLinearLayout: LinearLayout
     private lateinit var exerciseFrameLayout: FrameLayout
-    private lateinit var calorieInputLayout: ConstraintLayout
     private lateinit var reportLinearLayout: LinearLayout
     private lateinit var toDoFrameLayout: FrameLayout
     private lateinit var addWaterText: EditText
@@ -48,7 +45,9 @@ class HomeActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
 
-        applyImmersiveMode()
+        window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                )
 
         // Initialize Firebase Functions
         functions = Firebase.functions
@@ -71,7 +70,6 @@ class HomeActivity : AppCompatActivity() {
         buttonBodyComposition = findViewById(R.id.buttonBodyComposition)
         homeLinearLayout = findViewById(R.id.homeLinearLayout)
         exerciseFrameLayout = findViewById(R.id.exerciseFrameLayout)
-        calorieInputLayout = findViewById(R.id.calorieInputLayout)
         reportLinearLayout = findViewById(R.id.reportLinearLayout)
         toDoFrameLayout = findViewById(R.id.toDoFrameLayout)
         addWaterText = findViewById(R.id.addWaterText)
@@ -155,11 +153,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        calorieInputLayout.setOnClickListener {
-            val intent = Intent(this, InputMealActivity::class.java)
-            startActivity(intent)
-        }
-
         reportLinearLayout.setOnClickListener {
             val intent = Intent(this, HealthReportActivity::class.java)
             startActivity(intent)
@@ -169,21 +162,6 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, TodoActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        applyImmersiveMode()
-    }
-
-    private fun applyImmersiveMode() {
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                )
     }
 
     private fun resetWaterIntakeIfNewDay() {

@@ -2,16 +2,17 @@ package com.example.dietica
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.SignInServices
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 class SignInActivity : AppCompatActivity() {
 
@@ -21,12 +22,24 @@ class SignInActivity : AppCompatActivity() {
         private const val RC_SIGN_IN = 9001
     }
 
+    private val googleSignInLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            signInServices.handleGoogleSignInResult(task) { success, uid ->
+                Log.d("SignInActivity", "Google Sign-in success: $success, uid: $uid")
+                if (success && uid != null) {
+                    proceedToHomeActivity(uid)
+                } else {
+                    Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_sign_in)
 
-        // Initialize FirebaseAuth and SecureTokenManager
         val auth = FirebaseAuth.getInstance()
         signInServices = SignInServices(this, auth)
         signInServices.initializeGoogleSignInClient(getString(R.string.default_web_client_id))
@@ -42,20 +55,24 @@ class SignInActivity : AppCompatActivity() {
             val email = emailField.text.toString().trim()
             val password = passwordField.text.toString().trim()
             if (isValidInput(email, password)) {
-                signInServices.signInWithEmailAndPassword(email, password) { success, uid ->
-                    if (success) {
-                        // Store authId to SharedPreferences
-                        val sharedPreferences =
-                            getSharedPreferences("com.example.dietica", MODE_PRIVATE)
-                        val editor = sharedPreferences.edit()
-                        editor.putString("authId", uid)
-                        editor.apply()
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val currentUser = FirebaseAuth.getInstance().currentUser
+                            if (currentUser != null) {
+                                // Save authId to SharedPreferences
+                                val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+                                sharedPreferences.edit().putString("authId", currentUser.uid).apply()
 
-                        proceedToNextActivity(uid)
-                    } else {
-                        Toast.makeText(this, "Sign in failed: Incorrect Email or Password", Toast.LENGTH_SHORT).show()
+                                // Proceed to HomeActivity
+                                val intent = Intent(this, HomeActivity::class.java)
+                                startActivity(intent)
+                                finish()  // Close SignInActivity so user cannot go back to sign in
+                            }
+                        } else {
+                            Toast.makeText(this, "Authentication Failed", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
             }
         }
 
@@ -68,15 +85,16 @@ class SignInActivity : AppCompatActivity() {
         return email.isNotEmpty() && password.isNotEmpty()
     }
 
-    private fun proceedToNextActivity(uid: String?) {
-        if (uid != null) {
+    private fun proceedToHomeActivity(authId: String) {
+        Log.d("SignInActivity", "Proceeding to HomeActivity with authId: $authId")
+        if (authId.isNotEmpty()) {
             val intent = Intent(this, HomeActivity::class.java).apply {
-                putExtra("authId", uid)
+                putExtra("authId", authId)
             }
             startActivity(intent)
             finish()
         } else {
-            Toast.makeText(this, "Failed to retrieve user ID", Toast.LENGTH_SHORT).show()
+            Log.e("SignInActivity", "Invalid authId, unable to proceed.")
         }
     }
 
@@ -90,25 +108,6 @@ class SignInActivity : AppCompatActivity() {
 
     private fun signInWithGoogle() {
         val signInIntent = signInServices.getGoogleSignInIntent()
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            signInServices.handleGoogleSignInResult(task) { success, uid ->
-                if (success) {
-                    val sharedPreferences =
-                        getSharedPreferences("com.example.dietica", MODE_PRIVATE)
-                    val editor = sharedPreferences.edit()
-                    editor.putString("authId", uid)
-                    editor.apply()
-                    proceedToNextActivity(uid)
-                } else {
-                    Toast.makeText(this, "Google sign-in failed. Please try again.", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+        googleSignInLauncher.launch(signInIntent)
     }
 }

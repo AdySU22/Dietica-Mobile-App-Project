@@ -60,6 +60,7 @@
         </FrameLayout>
 
         <TextView
+            android:id="@+id/guestUserTextView"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:text="Guest User"

@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
@@ -104,9 +105,14 @@ class HomeActivity : AppCompatActivity() {
         }
 
         profileButton.setOnClickListener {
+            val authId = FirebaseAuth.getInstance().currentUser?.uid
+            Log.d("HomeActivity", "Auth ID: $authId")  // Check the value of authId
             val intent = Intent(this, ProfilePageActivity::class.java)
             if (authId != null) {
                 intent.putExtra("authId", authId)
+                Log.d("HomeActivity", "Passing Auth ID: $authId")  // Log the passed authId
+            } else {
+                Log.d("HomeActivity", "User not authenticated")
             }
             startActivity(intent)
         }

@@ -15,10 +15,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:fillViewport="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/white">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/big_wrapper"
@@ -28,70 +29,70 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/home_background"/>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout2"
-                    android:layout_width="20dp"
-                    android:layout_height="160dp"
-                    android:background="@drawable/curved_background"
-                    android:backgroundTint="#37C9EE"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout2"
+                        android:layout_width="20dp"
+                        android:layout_height="140dp"
+                        android:background="@drawable/curved_background"
+                        android:backgroundTint="#37C9EE"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:background="@drawable/curved_background"
-                    android:rotation="6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout3"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="@drawable/curved_background"
+                            android:rotation="6"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
-                <Button
-                    android:id="@+id/profileButton"
-                    android:layout_width="54dp"
-                    android:layout_height="54dp"
-                    android:background="@drawable/profile_picture"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="44dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                            <Button
+                                android:id="@+id/profileButton"
+                                android:layout_width="54dp"
+                                android:layout_height="54dp"
+                                android:background="@drawable/profile_picture"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="34dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
 
-                <TextView
-                    android:id="@+id/welcome_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="18dp"
-                    android:text="Welcome back!"
-                    android:fontFamily="@font/inter_bold"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@+id/profileButton"
-                    app:layout_constraintTop_toTopOf="@+id/profileButton"/>
+                            <TextView
+                                android:id="@+id/welcome_message"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="28dp"
+                                android:layout_marginTop="18dp"
+                                android:text="Welcome back!"
+                                android:fontFamily="@font/inter_bold"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp"
+                                app:layout_constraintStart_toEndOf="@+id/profileButton"
+                                app:layout_constraintTop_toTopOf="@+id/profileButton"/>
 
-                <ImageView
-                    android:id="@+id/btnNotification"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="-44dp"
-                    android:layout_marginStart="320dp"
-                    android:src="@drawable/notifications"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                            <ImageView
+                                android:id="@+id/btnNotification"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginTop="-44dp"
+                                android:layout_marginStart="320dp"
+                                android:src="@drawable/notifications"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
                 android:layout_width="390dp"
-                android:layout_height="246dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="10dp">
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/big_wrapper">
 
                 <TextView
                     android:id="@+id/today_label"
@@ -332,14 +333,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/setTargetBox"
-                android:layout_width="310dp"
+                android:layout_width="350dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
                 <TextView
                     android:id="@+id/setTargetText"
@@ -367,9 +367,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/setTargetText"/>
 
                 <ImageView
-                    android:id="@+id/dumbell"
+                    android:id="@+id/dumbellIcon"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
+                    android:layout_marginBottom="14dp"
                     android:alpha="0.4"
                     android:rotation="335"
                     android:translationX="0dp"
@@ -401,20 +402,19 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ConstraintLayout6"
-                android:layout_width="match_parent"
+                android:id="@+id/exerciseAndWeightLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:context=".MainActivity">
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setTargetBox">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout7"
-                    android:layout_width="140dp"
+                    android:id="@+id/exerciseLayout"
+                    android:layout_width="160dp"
                     android:layout_height="100dp"
-                    android:background="@drawable/rounded_background"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="50dp">
+                    android:background="@drawable/rounded_background">
 
                     <TextView
                         android:id="@+id/exerciseText"
@@ -427,7 +427,7 @@
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="16sp"
                         android:layout_marginTop="10dp"/>
 
                     <ImageView
@@ -444,7 +444,7 @@
                         android:id="@+id/exercisePlus"
                         android:layout_width="17dp"
                         android:layout_height="17dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="20dp"
                         android:layout_marginBottom="20dp"
                         android:src="@drawable/plus_icon"
                         android:tint="@color/black"
@@ -453,15 +453,18 @@
                         app:layout_constraintEnd_toEndOf="parent"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <Space
+                    android:id="@+id/spaceInBetween"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/exerciseLayout"/>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout8"
-                    android:layout_width="140dp"
+                    android:id="@+id/weightLayout"
+                    android:layout_width="160dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="20dp"
                     android:background="@drawable/rounded_background"
-                    app:layout_constraintStart_toEndOf="@id/constraintLayout7"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintStart_toEndOf="@id/spaceInBetween">
 
                     <TextView
                         android:id="@+id/weightText"
@@ -484,14 +487,14 @@
                         android:src="@drawable/weight_image"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="-34dp"
+                        android:layout_marginStart="-30dp"
                         android:layout_marginTop="-12dp"/>
 
                     <ImageView
                         android:id="@+id/weightPlus"
                         android:layout_width="17dp"
                         android:layout_height="17dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="20dp"
                         android:layout_marginTop="78dp"
                         android:layout_marginBottom="20dp"
                         android:src="@drawable/plus_icon"
@@ -504,12 +507,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout9"
-                android:layout_width="310dp"
+                android:id="@+id/waterIntakeLayout"
+                android:layout_width="350dp"
                 android:layout_height="100dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_background"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="50dp">
+                app:layout_constraintTop_toBottomOf="@+id/exerciseAndWeightLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
                     android:id="@+id/waterCount"
@@ -525,21 +530,20 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"/>
 
-                <Button
-                    android:id="@+id/addWaterButton"
+                <EditText
+                    android:id="@+id/addWaterText"
                     android:layout_width="wrap_content"
-                    android:layout_height="21dp"
-                    android:text="+   250ml"
+                    android:layout_height="wrap_content"
+                    android:hint="____________ ml"
                     android:fontFamily="@font/inter_medium"
-                    android:textAllCaps="false"
-                    android:textSize="10sp"
+                    android:textSize="14sp"
                     android:textColor="@color/black"
-                    android:background="@drawable/button_background_rounded"
-                    android:gravity="start|center_vertical"
+                    android:textColorHint="@color/black"
                     android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
                     app:layout_constraintStart_toStartOf="@id/waterCount"
                     app:layout_constraintTop_toBottomOf="@id/waterCount"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="6dp" />
 
                 <ImageView
                     android:id="@+id/waterGlassIcon"
@@ -553,13 +557,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout11"
-                android:layout_width="310dp"
+                android:id="@+id/bodyCompositionLayout"
+                android:layout_width="350dp"
                 android:layout_height="100dp"
                 android:background="@drawable/rounded_background"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginStart="50dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/waterIntakeLayout"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:id="@+id/bodyCompositionText"
@@ -602,20 +607,13 @@
                     android:layout_marginEnd="16dp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/calorieButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/home_icon"
-                android:layout_marginStart="150dp"/>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/navbarContainer"
                 android:layout_width="match_parent"
                 android:layout_height="68dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="80dp"
                 android:background="@drawable/rounded_navbar"
-                app:layout_constraintTop_toBottomOf="@id/constraintLayout11"
+                app:layout_constraintTop_toBottomOf="@id/bodyCompositionLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -740,13 +738,10 @@
                             android:textSize="12sp"
                             android:layout_gravity="center"/>
                     </FrameLayout>
-
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

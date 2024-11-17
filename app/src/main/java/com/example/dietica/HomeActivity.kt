@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var exerciseFrameLayout: FrameLayout
     private lateinit var reportLinearLayout: LinearLayout
     private lateinit var toDoFrameLayout: FrameLayout
-    private lateinit var addWaterButton: Button
+    private lateinit var addWaterText: EditText
     private lateinit var functions: FirebaseFunctions
     private lateinit var sharedPreferences: SharedPreferences
     private var totalWaterIntake = 0 // Store total water intake in ml
@@ -46,8 +46,6 @@ class HomeActivity : AppCompatActivity() {
 
         window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
 
         // Initialize Firebase Functions
@@ -73,13 +71,13 @@ class HomeActivity : AppCompatActivity() {
         exerciseFrameLayout = findViewById(R.id.exerciseFrameLayout)
         reportLinearLayout = findViewById(R.id.reportLinearLayout)
         toDoFrameLayout = findViewById(R.id.toDoFrameLayout)
-        addWaterButton = findViewById(R.id.addWaterButton)
+        addWaterText = findViewById(R.id.addWaterText)
 
         // Load saved water intake amount
         totalWaterIntake = sharedPreferences.getInt("totalWaterIntake", 0)
         updateWaterCount(totalWaterIntake)
 
-        addWaterButton.setOnClickListener {
+        addWaterText.setOnClickListener {
             val input = EditText(this)
             input.hint = "Enter amount in ml"
 
@@ -92,7 +90,8 @@ class HomeActivity : AppCompatActivity() {
                     if (amount != null && amount > 0) {
                         logWaterIntake(amount)
                     } else {
-                        Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
                 .setNegativeButton("Cancel", null)
@@ -168,7 +167,8 @@ class HomeActivity : AppCompatActivity() {
         if (lastResetTimestamp != getCurrentDayTimestamp(currentDate)) {
             totalWaterIntake = 0
             sharedPreferences.edit().putInt("totalWaterIntake", totalWaterIntake).apply()
-            sharedPreferences.edit().putLong("lastResetTimestamp", getCurrentDayTimestamp(currentDate)).apply()
+            sharedPreferences.edit()
+                .putLong("lastResetTimestamp", getCurrentDayTimestamp(currentDate)).apply()
         }
     }
 

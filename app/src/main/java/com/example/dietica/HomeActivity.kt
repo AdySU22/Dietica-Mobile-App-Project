@@ -22,6 +22,7 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import java.util.Calendar
+import java.util.TimeZone
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var waterCountTextView: TextView
@@ -191,8 +192,12 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initTodayFoodSummary() {
         val authId = sharedPreferences.getString("authId", null)
+        val iataTimeZone = TimeZone.getDefault().id
         if (authId != null) {
-            val data = mapOf("authId" to authId)
+            val data = mapOf(
+                "authId" to authId,
+                "iataTimeZone" to iataTimeZone
+            )
 
             // Call the Cloud Function to get today's food summary
             functions.getHttpsCallable("homeFoodTodaySummary")

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.SignUpServices
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.tasks.Task
+import org.w3c.dom.Text
 
 class SignUpActivity : BaseActivity() {
 
@@ -29,6 +30,8 @@ class SignUpActivity : BaseActivity() {
         val btnRegister: Button = findViewById(R.id.btnRegister)
         val loginAccountText: TextView = findViewById(R.id.loginAccountText)
         val emailEditText: EditText = findViewById(R.id.emailInput)
+        val termsAndConditionText: TextView = findViewById(R.id.termsAndConditionText)
+        val privacyPolicyText: TextView = findViewById(R.id.privacyPolicyText)
         val googleSignInButton: ImageView = findViewById(R.id.googleSignInButton)
 
         googleSignInButton.setOnClickListener {
@@ -55,6 +58,14 @@ class SignUpActivity : BaseActivity() {
 
         loginAccountText.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
+        }
+
+        termsAndConditionText.setOnClickListener {
+            startActivity(Intent(this, TermsAndConditionsActivity::class.java))
+        }
+
+        privacyPolicyText.setOnClickListener {
+            startActivity(Intent(this, PrivacyPolicyActivity::class.java))
         }
     }
 

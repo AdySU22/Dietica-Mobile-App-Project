@@ -96,9 +96,9 @@
                 app:layout_constraintTop_toBottomOf="@id/emailInput"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="90dp"
-                android:layout_marginStart="82dp"
-                android:layout_marginEnd="82dp"/>
+                android:layout_marginTop="60dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginEnd="100dp"/>
 
             <TextView
                 android:id="@+id/loginAccountText"
@@ -117,7 +117,62 @@
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnRegister" />
+                app:layout_constraintTop_toBottomOf="@id/btnRegister"/>
+
+            <CheckBox
+                android:id="@+id/termsCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to our "
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/alef_regular"
+                android:buttonTint="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="-100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/loginAccountText"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/termsAndConditionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terms and Conditions"
+                android:textSize="12sp"
+                android:fontFamily="@font/alef_regular"
+                android:textColor="@color/blue_sapphire"
+                app:layout_constraintStart_toEndOf="@id/termsCheckBox"
+                app:layout_constraintTop_toBottomOf="@id/loginAccountText"
+                app:layout_constraintBottom_toBottomOf="@id/termsCheckBox"
+                android:layout_marginTop="20dp"/>
+
+            <CheckBox
+                android:id="@+id/privacyPolicyCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I agree to our "
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/alef_regular"
+                android:buttonTint="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="-100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/termsCheckBox"/>
+
+            <TextView
+                android:id="@+id/privacyPolicyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy"
+                android:textSize="12sp"
+                android:fontFamily="@font/alef_regular"
+                android:textColor="@color/blue_sapphire"
+                android:layout_marginTop="7dp"
+                app:layout_constraintStart_toEndOf="@id/privacyPolicyCheckBox"
+                app:layout_constraintTop_toBottomOf="@id/termsAndConditionText"
+                app:layout_constraintBottom_toBottomOf="@id/privacyPolicyCheckBox"/>
 
             <View
                 android:id="@+id/orLineLeft"
@@ -128,7 +183,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/orText"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                android:layout_marginTop="170dp"
+                android:layout_marginTop="200dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="8dp"/>
 
@@ -143,7 +198,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btnRegister"
                 app:layout_constraintStart_toEndOf="@id/orLineLeft"
                 app:layout_constraintEnd_toStartOf="@id/orLineRight"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="190dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"/>
 
@@ -155,7 +210,7 @@
                 app:layout_constraintTop_toBottomOf="@id/btnRegister"
                 app:layout_constraintStart_toEndOf="@id/orText"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="170dp"
+                android:layout_marginTop="200dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="32dp"/>
 

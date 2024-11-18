@@ -8,4 +8,251 @@
     tools:context=".TermsAndConditionsActivity"
     android:background="@color/white">
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="330dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Terms and Conditions"
+        android:textColor="@color/black"
+        android:fontFamily="@font/quicksand_bold"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <TextView
+            android:id="@+id/effectiveDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Effective Date: 01-01-2025"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:fontFamily="@font/quicksand_bold"/>
+
+        <TextView
+            android:id="@+id/termsAndConditionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/termsAndConditionText"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/quicksand_bold"
+            app:layout_constraintTop_toBottomOf="@id/effectiveDateText"
+            android:layout_marginTop="10dp"/>
+
+        <View
+            android:id="@+id/startBlackLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/termsAndConditionText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"/>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/startBlackLine"
+            android:layout_marginTop="30dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/termsAndConditionText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Acceptance of Terms"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText2"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText1"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Description of the Service"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText2"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText4"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText3"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. User Eligibility"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText4"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText6"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText5"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. Health Disclaimer"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText6"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText8"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText7"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5. Account Registration"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText8"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText6"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText9"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6. Use of AI-Generated Suggestions"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText10"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText12"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText11"
+                    android:layout_marginTop="10dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <View
+            android:id="@+id/endBlackLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/scrollView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/endText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="By using Dietica, you acknowledge that you have read, understood, and agreed to these Terms and Conditions."
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/quicksand_bold"
+            app:layout_constraintTop_toBottomOf="@id/endBlackLine"
+            android:layout_marginTop="10dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,16 +11,13 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.functions.FirebaseFunctions
-import org.json.JSONObject
 
 class SignInServices(
     private val activity: Activity,
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance(),
-    private val functions: FirebaseFunctions = FirebaseFunctions.getInstance()
+    private val auth: FirebaseAuth
 ) {
 
-    private lateinit var googleSignInClient: GoogleSignInClient
+    lateinit var googleSignInClient: GoogleSignInClient
 
     fun initializeGoogleSignInClient(webClientId: String) {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -32,44 +29,30 @@ class SignInServices(
 
     fun getGoogleSignInIntent(): Intent = googleSignInClient.signInIntent
 
-    fun signInWithEmailAndPassword(email: String, password: String, onResult: (Boolean, String?) -> Unit) {
-        val data = JSONObject().apply {
-            put("email", email)
-            put("password", password)
-        }
-
-        functions.getHttpsCallable("signin").call(data).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val result = task.result?.data as HashMap<*, *>
-                val message = result["message"].toString()
-                val uid = result["uid"].toString()
-                val idToken = result["idToken"].toString()
-                onResult(true, uid)
-            } else {
-                Log.e("SignInServices", "Error signing in", task.exception)
-                onResult(false, null)
-            }
-        }
-    }
-
     fun handleGoogleSignInResult(task: Task<GoogleSignInAccount>, onResult: (Boolean, String?) -> Unit) {
         try {
             val account = task.getResult(ApiException::class.java)
-            firebaseAuthWithGoogle(account, onResult)
+            if (account != null) {
+                firebaseAuthWithGoogle(account, onResult)
+            } else {
+                Log.w("SignInServices", "Google Sign-In account is null.")
+                onResult(false, null)
+            }
         } catch (e: ApiException) {
-            Log.w("SignInServices", "Google sign-in failed", e)
+            Log.e("SignInServices", "Google Sign-In failed with exception: ${e.statusCode}", e)
             onResult(false, null)
         }
     }
 
-    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?, onResult: (Boolean, String?) -> Unit) {
-        val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
+    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount, onResult: (Boolean, String?) -> Unit) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(activity) { task ->
             if (task.isSuccessful) {
                 val user = auth.currentUser
+                Log.d("SignInServices", "Firebase authentication successful. User ID: ${user?.uid}")
                 onResult(true, user?.uid)
             } else {
-                Log.w("SignInServices", "Firebase authentication with Google failed", task.exception)
+                Log.e("SignInServices", "Firebase authentication failed.", task.exception)
                 onResult(false, null)
             }
         }

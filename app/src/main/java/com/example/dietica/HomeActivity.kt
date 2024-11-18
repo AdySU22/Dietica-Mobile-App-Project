@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -55,6 +56,9 @@ class HomeActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
         val authId = sharedPreferences.getString("authId", null)
         Log.d("HomeActivity", authId ?: "Token is null")
+
+        // Get today food summaries
+        initTodayFoodSummary()
 
         // Check if the water intake needs to be reset
         resetWaterIntakeIfNewDay()
@@ -184,6 +188,63 @@ class HomeActivity : AppCompatActivity() {
                         or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 )
     }
+
+    private fun initTodayFoodSummary() {
+        val authId = sharedPreferences.getString("authId", null)
+        if (authId != null) {
+            val data = mapOf("authId" to authId)
+
+            // Call the Cloud Function to get today's food summary
+            functions.getHttpsCallable("homeFoodTodaySummary")
+                .call(data)
+                .addOnSuccessListener { result ->
+                    // Extract data from the result
+                    val summary = result.data as? Map<String, Any>
+
+                    // Extract and display the summary values
+                    if (summary != null) {
+                        val totalCalories = (summary["totalCalories"] as? Number)?.toInt() ?: 0
+                        val totalCarbs = (summary["totalCarbs"] as? Number)?.toInt() ?: 0
+                        val totalFat = (summary["totalFat"] as? Number)?.toInt() ?: 0
+                        val totalProtein = (summary["totalProtein"] as? Number)?.toInt() ?: 0
+                        val totalSugar = (summary["totalSugar"] as? Number)?.toInt() ?: 0
+                        val totalSodium = (summary["totalSodium"] as? Number)?.toInt() ?: 0
+                        val totalCholesterol = (summary["totalCholesterol"] as? Number)?.toInt() ?: 0
+                        val totalFiber = (summary["totalFiber"] as? Number)?.toInt() ?: 0
+
+                        // Define max values for each nutrient
+                        val maxCarbs = 250  // Maximum carbs in grams
+                        val maxFat = 100    // Maximum fat in grams
+                        val maxProtein = 120 // Maximum protein in grams
+
+                        // Update the text UI with the retrieved summary
+                        findViewById<TextView>(R.id.today_total).text = "$totalCalories"
+                        findViewById<TextView>(R.id.progressBarValue1).text = "$totalCarbs/$maxCarbs" + "g"
+                        findViewById<TextView>(R.id.progressBarValue2).text = "$totalFat/$maxFat" + "g"
+                        findViewById<TextView>(R.id.progressBarValue3).text = "$totalProtein/$maxProtein" + "g"
+                        // findViewById<TextView>(R.id.sugarTextView).text = "$totalSugar g"
+                        // findViewById<TextView>(R.id.sodiumTextView).text = "$totalSodium mg"
+                        // findViewById<TextView>(R.id.cholesterolTextView).text = "$totalCholesterol mg"
+                        // findViewById<TextView>(R.id.fiberTextView).text = "$totalFiber g"
+
+                        // Calculate progress percentages
+                        val carbsProgress = ((totalCarbs.toFloat() / maxCarbs) * 100).toInt()
+                        val fatProgress = ((totalFat.toFloat() / maxFat) * 100).toInt()
+                        val proteinProgress = ((totalProtein.toFloat() / maxProtein) * 100).toInt()
+
+                        // Update the progress bars
+                        findViewById<ProgressBar>(R.id.progressBar1).progress = carbsProgress
+                        findViewById<ProgressBar>(R.id.progressBar2).progress = fatProgress
+                        findViewById<ProgressBar>(R.id.progressBar3).progress = proteinProgress
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    // Handle any errors that occur during the call
+                    Log.e("FoodSummary", "Error fetching today's food summary", exception)
+                }
+        }
+    }
+
 
     private fun resetWaterIntakeIfNewDay() {
         // Get the current date

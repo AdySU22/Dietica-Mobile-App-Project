@@ -136,7 +136,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         buttonBodyComposition.setOnClickListener {
-            val intent = Intent(this, WeightTargetActivity::class.java)
+            val intent = Intent(this, HealthReportActivity::class.java)
             startActivity(intent)
         }
 

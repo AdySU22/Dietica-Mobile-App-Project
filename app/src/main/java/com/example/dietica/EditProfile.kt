@@ -316,7 +316,7 @@ class EditProfile : AppCompatActivity() {
     }
 
     private fun showGenderPicker(genderText: TextView) {
-        val genders = arrayOf("Male", "Female", "Other")
+        val genders = arrayOf("Male", "Female")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Select Gender")
         builder.setItems(genders) { _, which ->

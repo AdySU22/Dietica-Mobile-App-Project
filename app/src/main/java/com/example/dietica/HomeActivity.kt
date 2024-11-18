@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
@@ -32,6 +33,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var buttonBodyComposition: Button
     private lateinit var homeLinearLayout: LinearLayout
     private lateinit var exerciseFrameLayout: FrameLayout
+    private lateinit var calorieInputLayout: ConstraintLayout
     private lateinit var reportLinearLayout: LinearLayout
     private lateinit var toDoFrameLayout: FrameLayout
     private lateinit var addWaterText: EditText
@@ -68,6 +70,7 @@ class HomeActivity : AppCompatActivity() {
         buttonBodyComposition = findViewById(R.id.buttonBodyComposition)
         homeLinearLayout = findViewById(R.id.homeLinearLayout)
         exerciseFrameLayout = findViewById(R.id.exerciseFrameLayout)
+        calorieInputLayout = findViewById(R.id.calorieInputLayout)
         reportLinearLayout = findViewById(R.id.reportLinearLayout)
         toDoFrameLayout = findViewById(R.id.toDoFrameLayout)
         addWaterText = findViewById(R.id.addWaterText)
@@ -121,7 +124,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         btnGo.setOnClickListener {
-            val intent = Intent(this, WeightTargetActivity::class.java)
+            val intent = Intent(this, HealthReportActivity::class.java)
             startActivity(intent)
         }
 
@@ -136,7 +139,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         buttonBodyComposition.setOnClickListener {
-            val intent = Intent(this, HealthReportActivity::class.java)
+            val intent = Intent(this, WeightTargetActivity::class.java)
             startActivity(intent)
         }
 
@@ -148,6 +151,11 @@ class HomeActivity : AppCompatActivity() {
 
         exerciseFrameLayout.setOnClickListener {
             val intent = Intent(this, ExerciseActivity::class.java)
+            startActivity(intent)
+        }
+
+        calorieInputLayout.setOnClickListener {
+            val intent = Intent(this, InputMealActivity::class.java)
             startActivity(intent)
         }
 

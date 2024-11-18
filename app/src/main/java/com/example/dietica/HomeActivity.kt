@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var btnGo: Button
     private lateinit var exercisePlus: ImageView
     private lateinit var weightPlus: ImageView
-    private lateinit var buttonBodyComposition: Button
+    /*private lateinit var buttonBodyComposition: Button*/
     private lateinit var homeLinearLayout: LinearLayout
     private lateinit var exerciseFrameLayout: FrameLayout
     private lateinit var calorieInputLayout: ConstraintLayout
@@ -67,7 +67,7 @@ class HomeActivity : AppCompatActivity() {
         btnGo = findViewById(R.id.btnGo)
         exercisePlus = findViewById(R.id.exercisePlus)
         weightPlus = findViewById(R.id.weightPlus)
-        buttonBodyComposition = findViewById(R.id.buttonBodyComposition)
+       /* buttonBodyComposition = findViewById(R.id.buttonBodyComposition)*/
         homeLinearLayout = findViewById(R.id.homeLinearLayout)
         exerciseFrameLayout = findViewById(R.id.exerciseFrameLayout)
         calorieInputLayout = findViewById(R.id.calorieInputLayout)
@@ -138,10 +138,10 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        buttonBodyComposition.setOnClickListener {
-            val intent = Intent(this, WeightTargetActivity::class.java)
+        /*buttonBodyComposition.setOnClickListener {
+            val intent = Intent(this, HealthReportActivity::class.java)
             startActivity(intent)
-        }
+        }*/
 
         homeLinearLayout.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)

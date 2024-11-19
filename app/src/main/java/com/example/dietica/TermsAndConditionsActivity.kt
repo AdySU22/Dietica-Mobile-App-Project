@@ -2,13 +2,10 @@ package com.example.dietica
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
-class TermsAndConditionsActivity : AppCompatActivity() {
+class TermsAndConditionsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

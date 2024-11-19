@@ -421,6 +421,102 @@
                     app:layout_constraintTop_toBottomOf="@id/termsAndConditionText27"
                     android:layout_marginTop="10dp"/>
 
+                <TextView
+                    android:id="@+id/termsAndConditionText29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15. Termination"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText28"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText30"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText29"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16. Change to Terms"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText30"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText32"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText31"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17. Governing Law"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText32"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText34"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText33"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18. Contact Information"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText34"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText36"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText35"
+                    android:layout_marginTop="10dp"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
@@ -438,7 +534,7 @@
             android:id="@+id/endText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="By using Dietica, you acknowledge that you have read, understood, and agreed to these Terms and Conditions."
+            android:text="By using Dietica, you acknowledge that you have read, understood, and agreed to this Privacy Policy."
             android:textColor="@color/black"
             android:textSize="12sp"
             android:gravity="center_vertical"

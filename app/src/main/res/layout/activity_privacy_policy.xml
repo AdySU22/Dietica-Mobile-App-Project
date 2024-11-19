@@ -173,7 +173,7 @@
                     android:id="@+id/privacyPolicyText8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/termsAndConditionText8"
+                    android:text="@string/privacyPolicyText8"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:gravity="center_vertical"
@@ -185,7 +185,7 @@
                     android:id="@+id/privacyPolicyText9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5. Account Registration"
+                    android:text="5. Your Privacy Rights"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:gravity="center_vertical"
@@ -197,7 +197,7 @@
                     android:id="@+id/privacyPolicyText10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/termsAndConditionText6"
+                    android:text="@string/privacyPolicyText10"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:gravity="center_vertical"
@@ -209,7 +209,7 @@
                     android:id="@+id/privacyPolicyText11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6. Use of AI-Generated Suggestions"
+                    android:text="6. Data Retention"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:gravity="center_vertical"
@@ -221,12 +221,108 @@
                     android:id="@+id/privacyPolicyText12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/termsAndConditionText12"
+                    android:text="@string/privacyPolicyText12"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:gravity="center_vertical"
                     android:fontFamily="@font/quicksand_bold"
                     app:layout_constraintTop_toBottomOf="@id/privacyPolicyText11"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Children’s Privacy"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText12"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/privacyPolicyText14"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText13"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8. Third-Party Links"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText14"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/privacyPolicyText16"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText15"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. Changes to This Privacy Policy"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText16"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/privacyPolicyText19"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText17"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Contact Us"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText19"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/privacyPolicyText21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/privacyPolicyText21"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/privacyPolicyText20"
                     android:layout_marginTop="10dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

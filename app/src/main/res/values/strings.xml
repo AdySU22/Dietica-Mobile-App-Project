@@ -39,6 +39,9 @@
     <string name="termsAndConditionText18">All content provided by Dietica, including but not limited to text, images, and software, is the property of Dietica or its licensors and is protected by copyright, trademark, and other intellectual property laws. You may not copy, distribute, or reproduce any part of the App without express permission.</string>
     <string name="termsAndConditionText20">License: Dietica grants you a limited, non-exclusive, non-transferable license to use the App solely for personal, non-commercial purposes. Restrictions: You may not modify, reverse-engineer, or attempt to extract the source code of the App.</string>
     <string name="termsAndConditionText22">Dietica may contain links to third-party websites, products, or services. These links are provided for convenience, and Dietica does not endorse or assume responsibility for any third-party content or practices.</string>
+    <string name="termsAndConditionText24">Dietica is provided on an as-is and as-available basis. Dietica makes no warranties, expressed or implied, regarding the App’s performance, reliability, or accuracy. We do not guarantee that the App will be error-free, secure, or free from interruptions.</string>
+    <string name="termsAndConditionText26">To the maximum extent permitted by law, Dietica and its affiliates, employees, and partners shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, revenue, or health outcomes.</string>
+    <string name="termsAndConditionText28">You agree to indemnify and hold harmless Dietica, its affiliates, employees, and partners from any claims, liabilities, damages, and expenses (including legal fees) arising from your use of the App or violation of these Terms.</string>
 
 
 </resources>

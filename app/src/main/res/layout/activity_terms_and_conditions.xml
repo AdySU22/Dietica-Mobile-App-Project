@@ -349,6 +349,78 @@
                     app:layout_constraintTop_toBottomOf="@id/termsAndConditionText21"
                     android:layout_marginTop="10dp"/>
 
+                <TextView
+                    android:id="@+id/termsAndConditionText23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. Disclaimer of Warranties"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText22"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText24"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText23"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13. Limitation of Liability"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText24"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText26"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText25"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14. Indemnification"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText26"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText28"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText27"
+                    android:layout_marginTop="10dp"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

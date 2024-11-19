@@ -229,6 +229,126 @@
                     app:layout_constraintTop_toBottomOf="@id/termsAndConditionText11"
                     android:layout_marginTop="10dp"/>
 
+                <TextView
+                    android:id="@+id/termsAndConditionText13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Privacy Policy"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText12"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText14"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText13"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8. User Conduct"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText14"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText16"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText15"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. Intellectual Property Rights"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText16"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText18"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText17"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. License Grant and Restrictions"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText18"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText20"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText19"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. Third-Party Links and Services"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText20"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/termsAndConditionText22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/termsAndConditionText22"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/quicksand_bold"
+                    app:layout_constraintTop_toBottomOf="@id/termsAndConditionText21"
+                    android:layout_marginTop="10dp"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

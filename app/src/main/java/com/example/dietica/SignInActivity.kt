@@ -15,12 +15,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class SignInActivity : BaseActivity() {
 
-    private lateinit var signInServices: SignInServices
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+    private lateinit var signInServices: SignInServices
 
     companion object {
         private const val TAG = "SignInActivity"
@@ -34,6 +37,7 @@ class SignInActivity : BaseActivity() {
             handleGoogleSignInResult(task) { success, uid ->
                 if (success && uid != null) {
                     Log.d(TAG, "Google Sign-In successful. UID: $uid")
+                    saveUserToDatabase(uid)
                     proceedToHomeActivity(uid)
                 } else {
                     Log.e(TAG, "Google Sign-In failed.")
@@ -53,11 +57,18 @@ class SignInActivity : BaseActivity() {
 
         Log.d(TAG, "SignInActivity created. Initializing services...")
 
+        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+
+        // Initialize Firebase Realtime Database
+        database = FirebaseDatabase.getInstance().reference
+
         signInServices = SignInServices(this, auth)
         signInServices.initializeGoogleSignInClient(getString(R.string.default_web_client_id))
-        googleSignInClient = signInServices.googleSignInClient
-        Log.d(TAG, "Google Sign-In client initialized with Web Client ID: ${getString(R.string.default_web_client_id)}")
+
+        // Initialize Google Sign-In Client
+        googleSignInClient = GoogleSignIn.getClient(this, SignInServices.getGoogleSignInOptions(this))
+
 
         val btnLogin: Button = findViewById(R.id.btnLogin)
         val forgotPasswordText: TextView = findViewById(R.id.forgotPasswordText)
@@ -71,14 +82,12 @@ class SignInActivity : BaseActivity() {
             val password = passwordField.text.toString().trim()
             Log.d(TAG, "Attempting email/password sign-in. Email: $email")
             if (isValidInput(email, password)) {
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            val currentUser = FirebaseAuth.getInstance().currentUser
+                            val currentUser = auth.currentUser
                             if (currentUser != null) {
                                 Log.d(TAG, "Email/password sign-in successful. UID: ${currentUser.uid}")
-                                val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
-                                sharedPreferences.edit().putString("authId", currentUser.uid).apply()
                                 proceedToHomeActivity(currentUser.uid)
                             }
                         } else {
@@ -105,6 +114,12 @@ class SignInActivity : BaseActivity() {
         googleSignInButton.setOnClickListener {
             Log.d(TAG, "Launching Google Sign-In.")
             signInWithGoogle()
+        }
+
+        googleSignInButton.setOnClickListener {
+            Log.d(TAG, "Launching Google Sign-In.")
+            val signInIntent = signInServices.getGoogleSignInIntent()
+            googleSignInLauncher.launch(signInIntent)
         }
     }
 
@@ -136,24 +151,27 @@ class SignInActivity : BaseActivity() {
                 onResult(true, user?.uid)
             } else {
                 Log.e(TAG, "Firebase authentication failed", task.exception)
-                if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                    Log.e(TAG, "ID Token is invalid or expired.")
-                    googleSignInClient.signOut().addOnCompleteListener {
-                        onResult(false, null)
-                    }
-                } else {
-                    onResult(false, null)
-                }
+                onResult(false, null)
             }
         }
     }
 
-
+    private fun saveUserToDatabase(uid: String) {
+        val user = mapOf(
+            "uid" to uid,
+            "email" to auth.currentUser?.email
+        )
+        database.child("users").child(uid).setValue(user)
+            .addOnSuccessListener {
+                Log.d(TAG, "User data saved successfully.")
+            }
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "Failed to save user data: ${exception.message}")
+            }
+    }
 
     private fun isValidInput(email: String, password: String): Boolean {
-        val isValid = email.isNotEmpty() && password.isNotEmpty()
-        Log.d(TAG, "Input validation result: $isValid")
-        return isValid
+        return email.isNotEmpty() && password.isNotEmpty()
     }
 
     private fun proceedToHomeActivity(authId: String) {
@@ -178,7 +196,7 @@ class SignInActivity : BaseActivity() {
     }
 
     private fun signInWithGoogle() {
-        val signInIntent = signInServices.getGoogleSignInIntent()
+        val signInIntent = googleSignInClient.signInIntent
         googleSignInLauncher.launch(signInIntent)
     }
 }

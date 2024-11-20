@@ -3,6 +3,7 @@ package com.example.dietica
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ class AIChatBot : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_aichat_bot)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerViewChat)

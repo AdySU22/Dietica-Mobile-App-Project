@@ -197,7 +197,7 @@
                     android:id="@+id/termsAndConditionText10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/termsAndConditionText6"
+                    android:text="@string/termsAndConditionText10"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:gravity="center_vertical"

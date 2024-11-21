@@ -55,6 +55,7 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
     implementation("com.tbuonomo:dotsindicator:5.0")
+    implementation("io.noties.markwon:core:4.6.2")
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)
     testImplementation(libs.junit)

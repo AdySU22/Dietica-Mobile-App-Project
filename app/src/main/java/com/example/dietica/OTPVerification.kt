@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.*
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dietica.services.LoadingUtils
 import com.example.dietica.services.OTPSignUpServices
 
 class OTPVerification : AppCompatActivity() {
@@ -20,6 +22,8 @@ class OTPVerification : AppCompatActivity() {
     private lateinit var otpInput4: EditText
     private lateinit var btnVerify: Button
     private lateinit var email: String
+
+    private lateinit var progressOverlay: View
 
     private val otpService = OTPSignUpServices()
 
@@ -35,6 +39,9 @@ class OTPVerification : AppCompatActivity() {
         btnVerify = findViewById(R.id.btnConfirm)
 
         email = intent.getStringExtra("email") ?: ""
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         setupOTPInputs()
 
@@ -84,6 +91,8 @@ class OTPVerification : AppCompatActivity() {
             return
         }
 
+        // Start loading overlay
+        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
         otpService.verifyOtp(email, otp) { isValid, errorMessage ->
             if (isValid) {
                 Toast.makeText(this, "OTP verified successfully", Toast.LENGTH_SHORT).show()
@@ -97,6 +106,8 @@ class OTPVerification : AppCompatActivity() {
                     Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
                 } ?: Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show()
             }
+            // Hide loading overlay
+            LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
         }
     }
 }

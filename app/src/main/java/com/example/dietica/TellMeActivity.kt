@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
 
 class TellMeActivity : AppCompatActivity() {
@@ -20,6 +21,8 @@ class TellMeActivity : AppCompatActivity() {
     private lateinit var activityLevelSpinner: Spinner
     private lateinit var btnLetsGetStarted: Button
     private lateinit var firebaseFunctions: FirebaseFunctions
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,9 @@ class TellMeActivity : AppCompatActivity() {
 
         // Initialize Firebase Functions
         firebaseFunctions = FirebaseFunctions.getInstance()
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         // Set up Adapters for Spinners
         setupSpinnerAdapter(genderSpinner, R.array.gender_options)
@@ -98,6 +104,9 @@ class TellMeActivity : AppCompatActivity() {
 
             Log.d("TellMeActivity", "Data to be sent to Firebase: $data")
 
+            // Start loading overlay
+            LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
             // Call the Firebase function
             firebaseFunctions
                 .getHttpsCallable("setProfileV2")
@@ -110,6 +119,8 @@ class TellMeActivity : AppCompatActivity() {
                         Log.e("TellMeActivity", "Firebase function call failed", task.exception)
                         Toast.makeText(this, "Failed to save data", Toast.LENGTH_SHORT).show()
                     }
+                    // Hide loading overlay
+                    LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
                 }
         }
     }

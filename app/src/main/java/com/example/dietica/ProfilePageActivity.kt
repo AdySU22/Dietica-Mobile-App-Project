@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -39,6 +40,15 @@ class ProfilePageActivity : AppCompatActivity() {
         } else {
             // If no user is logged in, show "Guest User"
             guestUserTextView.text = "Guest User"
+        }
+
+        btnBack.setOnClickListener{
+            val intent = Intent(this, HomeActivity::class.java)
+            val authId = FirebaseAuth.getInstance().currentUser?.uid
+            if (authId != null) {
+                intent.putExtra("authId", authId)
+            }
+            startActivity(intent)
         }
 
         editProfileButton.setOnClickListener {
@@ -73,33 +83,36 @@ class ProfilePageActivity : AppCompatActivity() {
 
     // Function to fetch user details from Firestore
     private fun fetchUserDetails(authId: String) {
-        Log.d("ProfilePage", "Fetching details for user ID: $authId")  // Log the authId to verify it's correct
         val db = FirebaseFirestore.getInstance()
+        val profileImageView: ImageView = findViewById(R.id.profileImage)
 
         db.collection("UserV2")
             .document(authId)
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val firstName = document.getString("firstName")
-                    val lastName = document.getString("lastName")
+                    val profileImageUrl = document.getString("profileImageUrl")
+                    val firstName = document.getString("firstName") ?: "Guest"
+                    val lastName = document.getString("lastName") ?: ""
 
-                    Log.d("ProfilePage", "First Name: $firstName, Last Name: $lastName")  // Log for verification
+                    guestUserTextView.text = "$firstName $lastName"
 
-                    if (firstName != null && lastName != null) {
-                        val fullName = "$firstName $lastName"
-                        guestUserTextView.text = fullName
-                    } else {
-                        guestUserTextView.text = "Guest User"
+                    // Load profile image using Glide
+                    profileImageUrl?.let {
+                        Glide.with(this)
+                            .load(it)
+                            .placeholder(R.drawable.profile_picture) // Optional placeholder
+                            .circleCrop() // Makes the image circular
+                            .into(profileImageView)
                     }
                 } else {
-                    guestUserTextView.text = "Guest User" // If document doesn't exist
-                    Log.d("ProfilePage", "Document does not exist for user ID: $authId")
+                    guestUserTextView.text = "Guest User"
+                    Log.d("ProfilePage", "Document does not exist.")
                 }
             }
             .addOnFailureListener { exception ->
-                Log.e("ProfilePage", "Error getting user details: ", exception)
-                guestUserTextView.text = "Guest User" // If fetch fails, show "Guest User"
+                Log.e("ProfilePage", "Error fetching user details", exception)
+                guestUserTextView.text = "Guest User"
             }
     }
 }

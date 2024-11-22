@@ -1,6 +1,5 @@
 package com.example.dietica
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -29,6 +28,15 @@ class UpdatePasswordActivity : BaseActivity() {
             val password = passwordEditText.text.toString()
             val confirmPassword = confirmPasswordEditText.text.toString()
 
+            if (!isPasswordValid(password)) {
+                Toast.makeText(
+                    this,
+                    "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
             if (password != confirmPassword) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -44,5 +52,10 @@ class UpdatePasswordActivity : BaseActivity() {
             // Use the service class to handle password update
             updatePasswordServices.updatePassword(this, email, password)
         }
+    }
+
+    private fun isPasswordValid(password: String): Boolean {
+        val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}$")
+        return regex.matches(password)
     }
 }

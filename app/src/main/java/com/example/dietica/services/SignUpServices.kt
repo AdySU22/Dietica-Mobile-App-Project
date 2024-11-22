@@ -39,6 +39,10 @@ class SignUpServices(private val context: Context) {
         }
     }
 
+    fun getGoogleSignInClient(): GoogleSignInClient {
+        return googleSignInClient
+    }
+
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount, onComplete: (FirebaseUser?) -> Unit) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener { task ->

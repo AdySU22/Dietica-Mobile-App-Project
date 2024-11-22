@@ -10,6 +10,7 @@ import android.util.Patterns
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -29,6 +30,7 @@ class SignUpActivity : BaseActivity() {
 
         signUpServices = SignUpServices(this)
 
+        val btnGoogleSignIn: ImageView = findViewById(R.id.googleSignInButton)
         val btnRegister: Button = findViewById(R.id.btnRegister)
         val loginAccountText: TextView = findViewById(R.id.loginAccountText)
         val emailEditText: EditText = findViewById(R.id.emailInput)
@@ -36,6 +38,10 @@ class SignUpActivity : BaseActivity() {
         val privacyPolicyCheckbox: CheckBox = findViewById(R.id.privacyPolicyCheckBox)
         val termsAndConditionText: TextView = findViewById(R.id.termsAndConditionText)
         val privacyPolicyText: TextView = findViewById(R.id.privacyPolicyText)
+
+        btnGoogleSignIn.setOnClickListener {
+            signInWithGoogle()
+        }
 
         btnRegister.setOnClickListener {
             val email = emailEditText.text.toString().trim()
@@ -94,6 +100,11 @@ class SignUpActivity : BaseActivity() {
             val networkInfo = connectivityManager.activeNetworkInfo
             return networkInfo != null && networkInfo.isConnected
         }
+    }
+
+    private fun signInWithGoogle() {
+        val signInIntent = signUpServices.getGoogleSignInClient().signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

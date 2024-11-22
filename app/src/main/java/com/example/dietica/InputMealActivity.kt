@@ -12,12 +12,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class InputMealActivity : AppCompatActivity() {
     private lateinit var functions: FirebaseFunctions
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +45,9 @@ class InputMealActivity : AppCompatActivity() {
             functions.useEmulator("10.0.2.2", 5001)
             Log.d("FirebaseEmulator", "Using Firebase Emulator for Functions")
         }
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         val btnBack: Button = findViewById(R.id.btnBack)
         val btnManualInput: Button = findViewById(R.id.btnManualInput)
@@ -70,6 +76,8 @@ class InputMealActivity : AppCompatActivity() {
                     "page" to 0,
                     "limit" to 3
                 )
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
                 val result = functions.getHttpsCallable("getAllFood")
                     .call(data)
                     .await()
@@ -78,6 +86,9 @@ class InputMealActivity : AppCompatActivity() {
                 showHistoryFood(emptyList<Any>())
                 Log.e("initHistory", "Error fetching history: ${e.message}", e)
                 Toast.makeText(this@InputMealActivity, "Failed to load history", Toast.LENGTH_SHORT).show()
+            } finally {
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
         }
     }
@@ -165,6 +176,8 @@ class InputMealActivity : AppCompatActivity() {
 
                 lifecycleScope.launch {
                     try {
+                        // Start loading overlay
+                        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
                         val result = functions.getHttpsCallable("fatsecretSearch")
                             .call(data)
                             .await()
@@ -172,6 +185,9 @@ class InputMealActivity : AppCompatActivity() {
                     } catch (e: Exception) {
                         Log.e("showSearchFood", "Error fetching data: ${e.message}", e)
                         Toast.makeText(this@InputMealActivity, "Failed to fetch data. Please try again.", Toast.LENGTH_LONG).show()
+                    } finally {
+                        // Hide loading overlay
+                        LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
                     }
                 }
                 return@setOnEditorActionListener true

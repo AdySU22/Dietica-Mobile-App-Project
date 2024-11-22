@@ -11,7 +11,7 @@ class UpdatePasswordServices {
     private val mFunctions = FirebaseFunctions.getInstance()
 
     // Function to handle password update
-    fun updatePassword(context: Context, email: String, password: String) {
+    fun updatePassword(context: Context, email: String, password: String, onResult: () -> Unit) {
         val data = hashMapOf("email" to email, "password" to password, "confirmPassword" to password)
 
         mFunctions
@@ -26,6 +26,9 @@ class UpdatePasswordServices {
             .addOnFailureListener { e ->
                 // On failure, show an error message
                 Toast.makeText(context, "Failed to update password: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+            .addOnCompleteListener {
+                onResult()
             }
     }
 }

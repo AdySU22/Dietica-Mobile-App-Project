@@ -29,8 +29,6 @@ class SignUpServices(private val context: Context) {
         googleSignInClient = GoogleSignIn.getClient(context, gso)
     }
 
-    fun getGoogleSignInIntent(): Intent = googleSignInClient.signInIntent
-
     fun handleSignInResult(task: Task<GoogleSignInAccount>, onComplete: (FirebaseUser?) -> Unit) {
         try {
             val account = task.getResult(ApiException::class.java)

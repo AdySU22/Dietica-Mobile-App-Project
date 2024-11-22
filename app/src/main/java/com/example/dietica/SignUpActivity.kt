@@ -1,19 +1,21 @@
 package com.example.dietica
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
-import android.view.View
+import android.util.Patterns
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.SignUpServices
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.tasks.Task
-import org.w3c.dom.Text
+
 
 class SignUpActivity : BaseActivity() {
 
@@ -30,29 +32,42 @@ class SignUpActivity : BaseActivity() {
         val btnRegister: Button = findViewById(R.id.btnRegister)
         val loginAccountText: TextView = findViewById(R.id.loginAccountText)
         val emailEditText: EditText = findViewById(R.id.emailInput)
+        val termsAndConditionCheckbox: CheckBox = findViewById(R.id.termsCheckBox)
+        val privacyPolicyCheckbox: CheckBox = findViewById(R.id.privacyPolicyCheckBox)
         val termsAndConditionText: TextView = findViewById(R.id.termsAndConditionText)
         val privacyPolicyText: TextView = findViewById(R.id.privacyPolicyText)
-        val googleSignInButton: ImageView = findViewById(R.id.googleSignInButton)
-
-        googleSignInButton.setOnClickListener {
-            startActivityForResult(signUpServices.getGoogleSignInIntent(), RC_SIGN_IN)
-        }
 
         btnRegister.setOnClickListener {
-            val email = emailEditText.text.toString()
-            if (email.isNotEmpty()) {
-                signUpServices.requestOtp(email) { message ->
-                    message?.let {
-                        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, OTPVerification::class.java)
-                        intent.putExtra("email", email)
-                        startActivity(intent)
-                    } ?: run {
-                        Toast.makeText(this, "Failed to request OTP", Toast.LENGTH_SHORT).show()
+            val email = emailEditText.text.toString().trim()
+
+            when {
+                email.isEmpty() -> {
+                    Toast.makeText(this, "Please enter an email", Toast.LENGTH_SHORT).show()
+                }
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                    Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
+                }
+                !termsAndConditionCheckbox.isChecked -> {
+                    Toast.makeText(this, "You must agree to the Terms and Conditions", Toast.LENGTH_SHORT).show()
+                }
+                !privacyPolicyCheckbox.isChecked -> {
+                    Toast.makeText(this, "You must agree to the Privacy Policy", Toast.LENGTH_SHORT).show()
+                }
+                !isConnectedToInternet() -> {
+                    Toast.makeText(this, "No internet connection. Please check your connection.", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    signUpServices.requestOtp(email) { message ->
+                        message?.let {
+                            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, OTPVerification::class.java)
+                            intent.putExtra("email", email)
+                            startActivity(intent)
+                        } ?: run {
+                            Toast.makeText(this, "Failed to request OTP", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-            } else {
-                Toast.makeText(this, "Please enter an email", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -66,6 +81,18 @@ class SignUpActivity : BaseActivity() {
 
         privacyPolicyText.setOnClickListener {
             startActivity(Intent(this, PrivacyPolicyActivity::class.java))
+        }
+    }
+
+    private fun isConnectedToInternet(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            val networkInfo = connectivityManager.activeNetworkInfo
+            return networkInfo != null && networkInfo.isConnected
         }
     }
 
@@ -90,3 +117,5 @@ class SignUpActivity : BaseActivity() {
         }
     }
 }
+
+

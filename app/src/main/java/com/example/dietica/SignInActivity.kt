@@ -3,7 +3,9 @@ package com.example.dietica
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import com.example.dietica.services.SignInServices
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
@@ -15,8 +17,15 @@ class SignInActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_sign_in)
 
+        val forgotPasswordText: TextView = findViewById(R.id.forgotPasswordText)
+        forgotPasswordText.setOnClickListener {
+            val forgotPasswordIntent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(forgotPasswordIntent)
+        }
+        
         val auth = FirebaseAuth.getInstance()
         signInServices = SignInServices(this, auth)
 

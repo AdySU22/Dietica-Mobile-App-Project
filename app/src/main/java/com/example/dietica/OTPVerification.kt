@@ -6,9 +6,7 @@ import android.text.*
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import com.example.dietica.services.LoadingUtils
 import com.example.dietica.services.OTPSignUpServices

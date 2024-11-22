@@ -19,7 +19,7 @@ class OpeningPageActivity : BaseActivity() {
 
         // Set an onClickListener to the button to navigate to the next activity
         getStartedButton.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, TermsAndConditionsActivity::class.java)
             startActivity(intent)
         }
     }

@@ -8,11 +8,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.OTPResetPasswordServices
 import com.google.firebase.functions.FirebaseFunctionsException
 
-class ResetPasswordActivity : AppCompatActivity() {
+class ResetPasswordActivity : BaseActivity() {
 
     private lateinit var otpInput1: EditText
     private lateinit var otpInput2: EditText
@@ -25,6 +26,7 @@ class ResetPasswordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_reset_password)
 
         otpInput1 = findViewById(R.id.et_otp_1)

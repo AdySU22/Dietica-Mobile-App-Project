@@ -9,7 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.UpdatePasswordServices
 
-class UpdatePasswordActivity : AppCompatActivity() {
+class UpdatePasswordActivity : BaseActivity() {
 
     private lateinit var passwordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText

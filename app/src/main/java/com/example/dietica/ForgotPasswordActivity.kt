@@ -9,7 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.ForgotPasswordServices
 
-class ForgotPasswordActivity : AppCompatActivity() {
+class ForgotPasswordActivity : BaseActivity() {
 
     private lateinit var emailEditText: EditText
     private lateinit var btnGetCode: Button

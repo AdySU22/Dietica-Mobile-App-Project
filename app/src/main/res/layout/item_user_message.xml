@@ -10,17 +10,17 @@
     <TextView
         android:id="@+id/textViewUserMessage"
         android:layout_width="250dp"
-        android:layout_height="64dp"
-        android:text="I need to lose weight!"
-        android:fontFamily="@font/inter_medium"
-        android:textSize="12sp"
-        android:background="@drawable/bg_user_message"
-        android:padding="18dp"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_user_message"
+        android:fontFamily="@font/inter_medium"
+        android:padding="18dp"
+        android:text="I need to lose weight!"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

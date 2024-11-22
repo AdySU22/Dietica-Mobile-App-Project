@@ -64,7 +64,7 @@ class TodoActivity : AppCompatActivity() {
         }
 
         btnGo.setOnClickListener {
-            val intent = Intent(this, AIChatBot::class.java)
+            val intent = Intent(this, AiChatBotAlt::class.java)
             startActivity(intent)
         }
 

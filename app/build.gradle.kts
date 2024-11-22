@@ -52,6 +52,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.11.0")
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.storage.ktx)
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
     implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
     implementation("com.tbuonomo:dotsindicator:5.0")

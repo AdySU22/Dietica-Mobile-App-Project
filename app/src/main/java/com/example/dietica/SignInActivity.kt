@@ -160,6 +160,14 @@ class SignInActivity : BaseActivity() {
     private fun proceedToHomeActivity(authId: String) {
         Log.d(TAG, "Proceeding to HomeActivity with authId: $authId")
         if (authId.isNotEmpty()) {
+            // Store authId to SharedPreferences
+            val sharedPreferences =
+                getSharedPreferences("com.example.dietica", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("authId", authId)
+            editor.apply()
+
+            // Send authId through intent
             val intent = Intent(this, HomeActivity::class.java).apply {
                 putExtra("authId", authId)
             }

@@ -9,444 +9,459 @@
     tools:context=".TodoActivity"
     android:background="@color/white">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/topConstraintLayout"
+  <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="310dp"
-      android:background="@drawable/todo_gradient">
+      android:layout_height="match_parent"
+      android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="34dp"
-        android:layout_height="44dp"
-        android:contentDescription="Back Button"
-        android:src="@drawable/back_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"/>
-
-    <TextView
-        android:id="@+id/headerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To Do"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/inter_semi_bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="110dp"/>
-
-    <TextView
-        android:id="@+id/subHeaderText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="We help you know your next steps!"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/inter_medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerText"
-        android:layout_marginTop="8dp"/>
-
-    <LinearLayout
-        android:id="@+id/dateLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/subHeaderText">
+        android:layout_height="match_parent">
 
-      <!-- Date 1 -->
-      <LinearLayout
-          android:layout_width="80dp"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:gravity="center"
-          android:background="@drawable/rounded_date_background"
-          android:padding="10dp">
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/topConstraintLayout"
+          android:layout_width="match_parent"
+          android:layout_height="310dp"
+          android:background="@drawable/todo_gradient">
 
-        <TextView
-            android:id="@+id/date1_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="29"
-            android:textSize="26sp"
-            android:textColor="#13548A"
-            android:fontFamily="@font/inter_medium"/>
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="34dp"
+            android:layout_height="44dp"
+            android:contentDescription="Back Button"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"/>
 
         <TextView
-            android:id="@+id/date1_month"
+            android:id="@+id/headerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oct"
-            android:textSize="14sp"
-            android:textColor="#13548A"
-            android:fontFamily="@font/inter_semi_bold"/>
-      </LinearLayout>
-
-      <Space
-          android:layout_width="26dp"
-          android:layout_height="wrap_content"/>
-
-      <!-- Date 2 (Middle) -->
-      <LinearLayout
-          android:layout_width="100dp"
-          android:layout_height="90dp"
-          android:orientation="vertical"
-          android:gravity="center"
-          android:background="@drawable/rounded_date_background"
-          android:padding="12dp">
+            android:text="To Do"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_semi_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="110dp"/>
 
         <TextView
-            android:id="@+id/date2_day"
+            android:id="@+id/subHeaderText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30"
-            android:textSize="32sp"
-            android:textColor="#13548A"
-            android:fontFamily="@font/inter_medium"/>
-
-        <TextView
-            android:id="@+id/date2_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Oct"
+            android:text="We help you know your next steps!"
             android:textSize="16sp"
-            android:textColor="#13548A"
-            android:fontFamily="@font/inter_semi_bold"/>
-      </LinearLayout>
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headerText"
+            android:layout_marginTop="8dp"/>
 
-      <Space
-          android:layout_width="26dp"
-          android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:id="@+id/dateLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/subHeaderText">
 
-      <!-- Date 3 -->
-      <LinearLayout
-          android:layout_width="80dp"
+          <!-- Date 1 -->
+          <LinearLayout
+              android:layout_width="80dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:background="@drawable/rounded_date_background"
+              android:padding="10dp">
+
+            <TextView
+                android:id="@+id/date1_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="29"
+                android:textSize="26sp"
+                android:textColor="#13548A"
+                android:fontFamily="@font/inter_medium"/>
+
+            <TextView
+                android:id="@+id/date1_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oct"
+                android:textSize="14sp"
+                android:textColor="#13548A"
+                android:fontFamily="@font/inter_semi_bold"/>
+          </LinearLayout>
+
+          <Space
+              android:layout_width="26dp"
+              android:layout_height="wrap_content"/>
+
+          <!-- Date 2 (Middle) -->
+          <LinearLayout
+              android:layout_width="100dp"
+              android:layout_height="90dp"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:background="@drawable/rounded_date_background"
+              android:padding="12dp">
+
+            <TextView
+                android:id="@+id/date2_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textSize="32sp"
+                android:textColor="#13548A"
+                android:fontFamily="@font/inter_medium"/>
+
+            <TextView
+                android:id="@+id/date2_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oct"
+                android:textSize="16sp"
+                android:textColor="#13548A"
+                android:fontFamily="@font/inter_semi_bold"/>
+          </LinearLayout>
+
+          <Space
+              android:layout_width="26dp"
+              android:layout_height="wrap_content"/>
+
+          <!-- Date 3 -->
+          <LinearLayout
+              android:layout_width="80dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:background="@drawable/rounded_date_background"
+              android:padding="10dp">
+
+            <TextView
+                android:id="@+id/date3_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="31"
+                android:textSize="26sp"
+                android:textColor="#13548A"
+                android:fontFamily="@font/inter_medium"/>
+
+            <TextView
+                android:id="@+id/date3_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oct"
+                android:textSize="14sp"
+                android:textColor="#13548A"
+                android:fontFamily="@font/inter_semi_bold"/>
+          </LinearLayout>
+        </LinearLayout>
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/toDoLayout"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:gravity="center"
-          android:background="@drawable/rounded_date_background"
-          android:padding="10dp">
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/topConstraintLayout">
 
         <TextView
-            android:id="@+id/date3_day"
+            android:id="@+id/toDoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="31"
-            android:textSize="26sp"
-            android:textColor="#13548A"
-            android:fontFamily="@font/inter_medium"/>
+            android:text="To-do"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/inter_semi_bold"
+            android:layout_marginEnd="240dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/date3_month"
+        <FrameLayout
+            android:id="@+id/exerciseFrameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oct"
-            android:textSize="14sp"
-            android:textColor="#13548A"
-            android:fontFamily="@font/inter_semi_bold"/>
-      </LinearLayout>
-    </LinearLayout>
+            android:background="@drawable/edit_profile_rounded_edge_container"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toDoText">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+          <androidx.constraintlayout.widget.ConstraintLayout
+              android:layout_width="308dp"
+              android:layout_height="wrap_content">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/toDoLayout"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/topConstraintLayout">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstraintLayout4"
+                android:layout_width="70dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_background_input_meal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/toDoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To-do"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:fontFamily="@font/inter_semi_bold"
-        android:layout_marginEnd="240dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+              <ImageView
+                  android:id="@+id/imageView17"
+                  android:layout_width="60dp"
+                  android:layout_height="60dp"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:srcCompat="@drawable/daily_meditation_image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/exerciseFrameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_profile_rounded_edge_container"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoText">
+            <TextView
+                android:id="@+id/foodTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="13dp"
+                android:text="Daily Meditation"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/foodDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="none"
+                android:paddingBottom="12dp"
+                android:text="30 minutes a day"
+                android:textColor="#242424"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/foodTitle" />
+          </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_profile_rounded_edge_container"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exerciseFrameLayout">
+
+          <androidx.constraintlayout.widget.ConstraintLayout
+              android:layout_width="308dp"
+              android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstraintLayout2"
+                android:layout_width="70dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_background_input_meal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+              <ImageView
+                  android:id="@+id/imageView13"
+                  android:layout_width="60dp"
+                  android:layout_height="60dp"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:srcCompat="@drawable/walking_steps_image" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/exerciseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="13dp"
+                android:text="Walking Steps"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ConstraintLayout2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/exerciseDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:paddingBottom="12dp"
+                android:text="6000 steps a day"
+                android:textColor="#242424"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ConstraintLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/exerciseTitle" />
+          </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_profile_rounded_edge_container"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+          <androidx.constraintlayout.widget.ConstraintLayout
+              android:layout_width="308dp"
+              android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ConstraintLayout3"
+                android:layout_width="70dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_background_input_meal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+              <ImageView
+                  android:id="@+id/imageView15"
+                  android:layout_width="60dp"
+                  android:layout_height="60dp"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:srcCompat="@drawable/physical_exercise_image" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/waterTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="13dp"
+                android:text="Physical Exercise"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ConstraintLayout3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/waterDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:paddingBottom="12dp"
+                android:text="60 minutes a day"
+                android:textColor="#242424"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ConstraintLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/waterTitle" />
+
+          </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
 
       <androidx.constraintlayout.widget.ConstraintLayout
-          android:layout_width="308dp"
-          android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstraintLayout4"
-            android:layout_width="70dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background_input_meal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-          <ImageView
-              android:id="@+id/imageView17"
-              android:layout_width="60dp"
-              android:layout_height="60dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/daily_meditation_image" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+          android:id="@+id/setTargetBox"
+          android:layout_width="310dp"
+          android:layout_height="100dp"
+          android:layout_marginTop="80dp"
+          android:layout_marginBottom="80dp"
+          android:background="@drawable/rounded_background"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/toDoLayout"
+          app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/foodTitle"
+            android:id="@+id/readyToCommitText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="13dp"
-            android:text="Daily Meditation"
+            android:layout_marginTop="15dp"
+            android:text="Ready to commit?"
             android:textColor="#000000"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
+            android:textSize="18sp"
+            android:fontFamily="@font/inter_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/foodDescription"
-            android:layout_width="0dp"
+            android:id="@+id/reachGoal"
+            android:layout_width="154dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
-            android:ellipsize="none"
-            android:paddingBottom="12dp"
-            android:text="30 minutes a day"
-            android:textColor="#242424"
+            android:text="Have an AI set up a to-do list! Don’t worry these are just suggestions!"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="#000000"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout4"
-            app:layout_constraintTop_toBottomOf="@+id/foodTitle" />
-      </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_profile_rounded_edge_container"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseFrameLayout">
-
-      <androidx.constraintlayout.widget.ConstraintLayout
-          android:layout_width="308dp"
-          android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstraintLayout2"
-            android:layout_width="70dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background_input_meal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/readyToCommitText" />
 
-          <ImageView
-              android:id="@+id/imageView13"
-              android:layout_width="60dp"
-              android:layout_height="60dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/walking_steps_image" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/exerciseTitle"
+        <ImageView
+            android:id="@+id/aiIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="13dp"
-            android:text="Walking Steps"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/exerciseDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
-            android:paddingBottom="12dp"
-            android:text="6000 steps a day"
-            android:textColor="#242424"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/exerciseTitle" />
-      </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_profile_rounded_edge_container"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
-
-      <androidx.constraintlayout.widget.ConstraintLayout
-          android:layout_width="308dp"
-          android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstraintLayout3"
-            android:layout_width="70dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_background_input_meal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="-30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:srcCompat="@drawable/ai_icon" />
 
-          <ImageView
-              android:id="@+id/imageView15"
-              android:layout_width="60dp"
-              android:layout_height="60dp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              app:srcCompat="@drawable/physical_exercise_image" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/waterTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="13dp"
-            android:text="Physical Exercise"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/waterDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
-            android:paddingBottom="12dp"
-            android:text="60 minutes a day"
-            android:textColor="#242424"
+        <Button
+            android:id="@+id/btnGo"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_background_rounded_2"
+            android:fontFamily="@font/inter_medium"
+            android:text="Go"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ConstraintLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/waterTitle" />
-
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/reachGoal"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
       </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+      <!-- Progress bar overlay; shown while login is in progress -->
+      <include layout="@layout/include_progress_overlay"/>
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:id="@+id/setTargetBox"
-      android:layout_width="310dp"
-      android:layout_height="100dp"
-      android:layout_marginTop="80dp"
-      android:background="@drawable/rounded_background"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/toDoLayout">
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </ScrollView>
 
-    <TextView
-        android:id="@+id/readyToCommitText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Ready to commit?"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:fontFamily="@font/inter_bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/reachGoal"
-        android:layout_width="154dp"
-        android:layout_height="wrap_content"
-        android:text="Have an AI set up a to-do list! Don’t worry these are just suggestions!"
-        android:fontFamily="@font/inter_medium"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/readyToCommitText" />
-
-    <ImageView
-        android:id="@+id/aiIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="-30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ai_icon" />
-
-    <Button
-        android:id="@+id/btnGo"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/button_background_rounded_2"
-        android:fontFamily="@font/inter_medium"
-        android:text="Go"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/reachGoal"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-  </androidx.constraintlayout.widget.ConstraintLayout>
-
-  <!-- Progress bar overlay; shown while login is in progress -->
-  <include layout="@layout/include_progress_overlay"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

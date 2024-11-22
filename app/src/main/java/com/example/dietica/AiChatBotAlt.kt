@@ -8,16 +8,13 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.functions.FirebaseFunctions
 import io.noties.markwon.Markwon
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class AiChatBotAlt : AppCompatActivity() {
+class AiChatBotAlt : BaseActivity() {
 
     private lateinit var functions: FirebaseFunctions
 
@@ -25,11 +22,6 @@ class AiChatBotAlt : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_ai_chat_bot_alt)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         functions = FirebaseFunctions.getInstance()
 

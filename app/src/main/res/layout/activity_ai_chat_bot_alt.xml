@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AiChatBotAlt">
+    tools:context=".AiChatBotAlt"
+    android:background="@color/baby_blue">
 
     <ScrollView
         android:id="@+id/chat_scroll"

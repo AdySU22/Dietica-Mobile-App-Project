@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.*
 import android.util.Log
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dietica.services.LoadingUtils
 import com.example.dietica.services.OTPResetPasswordServices
 import com.google.firebase.functions.FirebaseFunctionsException
 
@@ -23,6 +25,8 @@ class ResetPasswordActivity : BaseActivity() {
     private lateinit var email: String
 
     private val otpService = OTPResetPasswordServices()
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,9 @@ class ResetPasswordActivity : BaseActivity() {
         email = intent.getStringExtra("email") ?: ""
 
         setupOTPInputs()
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         btnVerify.setOnClickListener { verifyOTP() }
     }
@@ -85,6 +92,9 @@ class ResetPasswordActivity : BaseActivity() {
             return
         }
 
+        // Start loading overlay
+        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
         otpService.verifyOtp(email, otp)
             .addOnSuccessListener { result ->
                 val isValid = result["valid"] as? Boolean ?: false
@@ -113,6 +123,10 @@ class ResetPasswordActivity : BaseActivity() {
                     else -> "Unknown error occurred"
                 }
                 Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+            .addOnCompleteListener {
+                // Stop loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0.4f, 200)
             }
     }
 }

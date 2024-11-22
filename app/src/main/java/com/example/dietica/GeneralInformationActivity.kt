@@ -3,11 +3,13 @@ package com.example.dietica
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.GeneralInformationServices
+import com.example.dietica.services.LoadingUtils
 import com.google.firebase.auth.FirebaseAuth
 
 class GeneralInformationActivity : BaseActivity() {
@@ -19,11 +21,16 @@ class GeneralInformationActivity : BaseActivity() {
     private lateinit var btnNext: Button
     private lateinit var email: String
 
+    private lateinit var progressOverlay: View
+
     private val generalInfoService = GeneralInformationServices()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_information)
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         email = intent.getStringExtra("email") ?: ""
         if (email.isEmpty()) {
@@ -58,6 +65,9 @@ class GeneralInformationActivity : BaseActivity() {
         }
 
         btnNext.isEnabled = false
+
+        // Start loading overlay
+        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
 
         // Register the user with Firebase Auth
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
@@ -94,6 +104,9 @@ class GeneralInformationActivity : BaseActivity() {
                     // Registration failed, handle the error
                     Toast.makeText(this, "Registration Failed: ${authTask.exception?.message}", Toast.LENGTH_LONG).show()
                 }
+
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
 
                 btnNext.isEnabled = true
             }

@@ -3,9 +3,11 @@ package com.example.dietica
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.dietica.services.LoadingUtils
 import com.example.dietica.services.SignInServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,6 +25,9 @@ class SignInActivity : BaseActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var signInServices: SignInServices
+
+    private lateinit var progressOverlay: View
+
     companion object {
         private const val TAG = "SignInActivity"
     }
@@ -57,6 +62,10 @@ class SignInActivity : BaseActivity() {
         auth = FirebaseAuth.getInstance()
         // Initialize Firebase Realtime Database
         database = FirebaseDatabase.getInstance().reference
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
+
         signInServices = SignInServices(this, auth)
         signInServices.initializeGoogleSignInClient(getString(R.string.default_web_client_id))
         // Initialize Google Sign-In Client
@@ -72,6 +81,8 @@ class SignInActivity : BaseActivity() {
             val password = passwordField.text.toString().trim()
             Log.d(TAG, "Attempting email/password sign-in. Email: $email")
             if (isValidInput(email, password)) {
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
@@ -84,6 +95,8 @@ class SignInActivity : BaseActivity() {
                             Log.e(TAG, "Email/password sign-in failed.", task.exception)
                             Toast.makeText(this, "Authentication Failed", Toast.LENGTH_SHORT).show()
                         }
+                        // Hide loading overlay
+                        LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
                     }
             } else {
                 Log.w(TAG, "Invalid email or password input.")

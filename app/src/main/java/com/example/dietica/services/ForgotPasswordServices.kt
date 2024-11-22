@@ -11,7 +11,7 @@ class ForgotPasswordServices {
     private val mFunctions = FirebaseFunctions.getInstance()
 
     // Function to handle sending OTP request
-    fun sendOtpRequest(context: Context, email: String) {
+    fun sendOtpRequest(context: Context, email: String, onResult: () -> Unit) {
         val data = hashMapOf("email" to email)
 
         mFunctions
@@ -28,6 +28,9 @@ class ForgotPasswordServices {
             .addOnFailureListener { e ->
                 // On failure, show an error message
                 Toast.makeText(context, "Failed to send OTP: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+            .addOnCompleteListener {
+                onResult()
             }
     }
 }

@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -17,6 +18,8 @@ import java.util.Locale
 
 class TodoActivity : AppCompatActivity() {
     private lateinit var functions: FirebaseFunctions
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,9 @@ class TodoActivity : AppCompatActivity() {
             functions.useEmulator("10.0.2.2", 5001)
             Log.d("FirebaseEmulator", "Using Firebase Emulator for Functions")
         }
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         val btnBack: ImageView = findViewById(R.id.btnBack)
         val date1Day: TextView = findViewById(R.id.date1_day)
@@ -89,6 +95,9 @@ class TodoActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
                 val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
                 val authId = sharedPreferences.getString("authId", null)
                 val data = mapOf("authId" to authId)
@@ -96,6 +105,9 @@ class TodoActivity : AppCompatActivity() {
                     .getHttpsCallable("getTodoV2")
                     .call(data)
                     .await()
+
+                // Stop loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
 
                 val resultData = result.data as? Map<*, *> ?: return@launch
 

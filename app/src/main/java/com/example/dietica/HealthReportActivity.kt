@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.dietica.services.LoadingUtils
 import com.github.mikephil.charting.charts.*
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.components.*
@@ -24,6 +25,8 @@ import kotlin.math.ceil
 
 class HealthReportActivity : AppCompatActivity() {
     private lateinit var functions: FirebaseFunctions
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +49,9 @@ class HealthReportActivity : AppCompatActivity() {
             functions.useEmulator("10.0.2.2", 5001)
             Log.d("FirebaseEmulator", "Using Firebase Emulator for Functions")
         }
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         // Back Button Action
         val backButton: Button = findViewById(R.id.backButton)
@@ -278,6 +284,9 @@ class HealthReportActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
                 // Get the default time zone and shared preferences
                 val iataTimeZone = TimeZone.getDefault().id
                 val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
@@ -293,6 +302,9 @@ class HealthReportActivity : AppCompatActivity() {
                 val result = functions.getHttpsCallable("getReport")
                     .call(data)
                     .await()
+
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
 
                 // Parse the result using Gson
                 val gson = Gson()

@@ -12,7 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.OTPSignUpServices
 
-class OTPVerification : AppCompatActivity() {
+class OTPVerification : BaseActivity() {
 
     private lateinit var otpInput1: EditText
     private lateinit var otpInput2: EditText

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dietica.services.GeneralInformationServices
 import com.google.firebase.auth.FirebaseAuth
 
-class GeneralInformationActivity : AppCompatActivity() {
+class GeneralInformationActivity : BaseActivity() {
 
     private lateinit var firstNameInput: EditText
     private lateinit var lastNameInput: EditText

@@ -1,26 +1,32 @@
 package com.example.dietica
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EditProfile : AppCompatActivity() {
 
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var storage: FirebaseStorage
     private var authId: String? = null
-    private var selectedActivityLevel: String = "Sedentary" // Default activity level
+    private var selectedImageUri: Uri? = null
+    private var selectedActivityLevel: String = "Sedentary"
 
     companion object {
         const val PICK_IMAGE_REQUEST = 1
@@ -30,20 +36,30 @@ class EditProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
-        // Initialize Firestore
+        // Initialize Firestore and Firebase Storage
         firestore = FirebaseFirestore.getInstance()
+        storage = FirebaseStorage.getInstance()
 
-        // Check for authentication
+
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
             Toast.makeText(this, "User not authenticated.", Toast.LENGTH_LONG).show()
             finish()
             return
         }
-        authId = user.uid // Set the authId from the FirebaseAuth instance
+        authId = user.uid
 
-        // Find views
+        val authId = intent.getStringExtra("authId")
+        if (authId == null) {
+            Toast.makeText(this, "No user ID provided. Returning to profile page.", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+        Log.d("EditProfile", "Received authId: $authId")
+
+        // Views
         val btnEditProfilePicture: FrameLayout = findViewById(R.id.btnEditProfilePicture)
+        val profileImageView: ImageView = findViewById(R.id.profileImage)
         val guestUserText: TextView = findViewById(R.id.guestUserText)
         val genderText: TextView = findViewById(R.id.genderText)
         val heightText: TextView = findViewById(R.id.heightText)
@@ -52,7 +68,7 @@ class EditProfile : AppCompatActivity() {
         val btnCancel: Button = findViewById(R.id.btnCancel)
         val btnSave: Button = findViewById(R.id.btnSave)
 
-        // Activity level views
+        // Activity Level Views
         val icon1: ImageView = findViewById(R.id.icon1)
         val icon2: ImageView = findViewById(R.id.icon2)
         val icon3: ImageView = findViewById(R.id.icon3)
@@ -61,7 +77,7 @@ class EditProfile : AppCompatActivity() {
         val subheaderText: TextView = findViewById(R.id.subheaderText)
         val textContainer: View = findViewById(R.id.textContainer)
 
-        // Click listener for activity icons
+        // Activity Level Selection
         val iconClickListener = View.OnClickListener { view ->
             textContainer.visibility = View.VISIBLE
             when (view.id) {
@@ -72,7 +88,7 @@ class EditProfile : AppCompatActivity() {
                 }
                 R.id.icon2 -> {
                     headerText.text = "Light Activity"
-                    subheaderText.text = "Typical daily activity with 30–60 minutes of exercise. E.g., walking 5km."
+                    subheaderText.text = "Typical daily activity with 30–60 minutes of exercise."
                     selectedActivityLevel = "Light Activity"
                 }
                 R.id.icon3 -> {
@@ -87,21 +103,13 @@ class EditProfile : AppCompatActivity() {
                 }
             }
         }
-
-        // Assign click listeners to activity icons
         icon1.setOnClickListener(iconClickListener)
         icon2.setOnClickListener(iconClickListener)
         icon3.setOnClickListener(iconClickListener)
         icon4.setOnClickListener(iconClickListener)
 
-        // Other existing listeners and functions
-        btnEditProfilePicture.setOnClickListener {
-            openImageChooser()
-        }
-
-        // Fetch and display the user's profile data from Firestore
-        fetchProfileData()
-
+        // Set up button actions
+        btnEditProfilePicture.setOnClickListener { openImageChooser() }
         guestUserText.setOnClickListener { showNameEditDialog(guestUserText) }
         genderText.setOnClickListener { showGenderPicker(genderText) }
         heightText.setOnClickListener { showNumberPicker(heightText, "Select Height", 100, 250) }
@@ -111,54 +119,59 @@ class EditProfile : AppCompatActivity() {
         btnSave.setOnClickListener {
             saveProfileData(guestUserText, genderText, heightText, weightText, birthDateText)
         }
-
         btnCancel.setOnClickListener {
             val intent = Intent(this, ProfilePageActivity::class.java)
             startActivity(intent)
         }
+
+        fetchProfileData(profileImageView)
     }
 
-    private fun fetchProfileData() {
+    private fun fetchProfileData(profileImageView: ImageView) {
         if (authId.isNullOrEmpty()) {
             Toast.makeText(this, "User not authenticated.", Toast.LENGTH_LONG).show()
             finish()
             return
         }
 
-        Log.d("ProfileFetch", "Fetching profile for user with ID: $authId")
+        firestore.collection("UserV2").document(authId!!)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val profileImageUrl = document.getString("profileImageUrl")
+                    val firstName = document.getString("firstName") ?: "Guest"
+                    val lastName = document.getString("lastName") ?: ""
+                    val gender = document.getString("gender") ?: "Not Specified"
+                    val height = document.getDouble("height") ?: 0.0
+                    val weight = document.getDouble("weight") ?: 0.0
+                    val birthDateTimestamp = document.getTimestamp("birthdate")
+                    val activityLevel = document.getString("activityLevels") ?: "Sedentary"
 
-        val functions = FirebaseFunctions.getInstance()
+                    // Load profile image
+                    profileImageUrl?.let {
+                        Glide.with(this)
+                            .load(it)
+                            .placeholder(R.drawable.profile_picture) // Optional placeholder
+                            .circleCrop() // Ensures circular cropping
+                            .into(profileImageView)
+                    }
 
-        functions
-            .getHttpsCallable("getProfileV2")
-            .call(mapOf("authId" to authId))
-            .addOnSuccessListener { result ->
-                val data = result.data as? Map<*, *> ?: return@addOnSuccessListener
-                Log.d("ProfileFetch", "Profile data: $data")
+                    // Set fetched data
+                    findViewById<TextView>(R.id.guestUserText).text = "$firstName $lastName"
+                    findViewById<TextView>(R.id.genderText).text = gender
+                    findViewById<TextView>(R.id.heightText).text = "$height cm"
+                    findViewById<TextView>(R.id.weightText).text = "$weight kg"
+                    birthDateTimestamp?.toDate()?.let { date ->
+                        val sdf = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+                        findViewById<TextView>(R.id.birtDateText).text = sdf.format(date)
+                    }
 
-                val firstName = data["firstName"]?.toString() ?: "Guest"
-                val lastName = data["lastName"]?.toString() ?: "Not Specified"
-
-                // Get the birthdate from Firestore (it should be a Timestamp object)
-                val birthdateField = data["birthdate"] as? Timestamp
-                if (birthdateField != null) {
-                    val birthDate = birthdateField.toDate()  // Convert Timestamp to Date object
-                    val sdf = SimpleDateFormat("d/M/yyyy", Locale.getDefault())  // Format the date
-                    val birthDateStr = sdf.format(birthDate)
-                    findViewById<TextView>(R.id.birtDateText).text = birthDateStr  // Display the formatted date
+                    // Set activity level
+                    setActivityLevel(activityLevel)
                 }
-
-                // Update UI with the fetched profile data
-                findViewById<TextView>(R.id.guestUserText).text = "$firstName $lastName"
-                findViewById<TextView>(R.id.genderText).text = data["gender"]?.toString() ?: "Not Specified"
-                findViewById<TextView>(R.id.heightText).text = "${data["height"]} cm"
-                findViewById<TextView>(R.id.weightText).text = "${data["weight"]} kg"
-
-                // Set activity level
-                setActivityLevel(data["activityLevels"]?.toString() ?: "Sedentary")
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Failed to fetch profile data: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            .addOnFailureListener {
+                Toast.makeText(this, "Failed to fetch profile data.", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -167,18 +180,11 @@ class EditProfile : AppCompatActivity() {
         val icon2: ImageView = findViewById(R.id.icon2)
         val icon3: ImageView = findViewById(R.id.icon3)
         val icon4: ImageView = findViewById(R.id.icon4)
-
         val headerText: TextView = findViewById(R.id.headerText)
         val subheaderText: TextView = findViewById(R.id.subheaderText)
         val textContainer: View = findViewById(R.id.textContainer)
 
         // Default all icons to unselected state
-        icon1.setImageResource(R.drawable.icon_sedentary)
-        icon2.setImageResource(R.drawable.icon_light)
-        icon3.setImageResource(R.drawable.icon_moderate)
-        icon4.setImageResource(R.drawable.icon_active)
-
-        // Reset the border or background if needed (optional)
         icon1.setBackgroundResource(R.drawable.circular_activity_level_border)
         icon2.setBackgroundResource(R.drawable.circular_activity_level_border)
         icon3.setBackgroundResource(R.drawable.circular_activity_level_border)
@@ -190,11 +196,11 @@ class EditProfile : AppCompatActivity() {
                 headerText.text = "Sedentary"
                 subheaderText.text = "Typical daily activities. Measures basal metabolic rate."
                 icon1.setBackgroundResource(R.drawable.circular_activity_level_border_selected)
-                selectedActivityLevel = "Sedentary"  // Update the selected activity level
+                selectedActivityLevel = "Sedentary"
             }
             "Light Activity" -> {
                 headerText.text = "Light Activity"
-                subheaderText.text = "Typical daily activity with 30–60 minutes of exercise. E.g., walking 5km."
+                subheaderText.text = "Typical daily activity with 30–60 minutes of exercise."
                 icon2.setBackgroundResource(R.drawable.circular_activity_level_border_selected)
                 selectedActivityLevel = "Light Activity"
             }
@@ -220,6 +226,7 @@ class EditProfile : AppCompatActivity() {
         textContainer.visibility = View.VISIBLE
     }
 
+
     private fun saveProfileData(
         nameTextView: TextView,
         genderTextView: TextView,
@@ -228,100 +235,103 @@ class EditProfile : AppCompatActivity() {
         birthDateTextView: TextView
     ) {
         val name = nameTextView.text.toString().trim()
+        val gender = genderTextView.text.toString().trim()
         val heightStr = heightTextView.text.toString().trim()
         val weightStr = weightTextView.text.toString().trim()
-        val gender = genderTextView.text.toString().trim()
-        val birthDate = birthDateTextView.text.toString().trim()
+        val birthDateStr = birthDateTextView.text.toString().trim()
 
-        // Check for empty fields
-        if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || gender.isEmpty() || birthDate.isEmpty()) {
+        if (name.isEmpty() || heightStr.isEmpty() || weightStr.isEmpty() || gender.isEmpty() || birthDateStr.isEmpty()) {
             Toast.makeText(this, "Please fill out all fields.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val height = parseHeightOrWeight(heightStr, "height")
-        val weight = parseHeightOrWeight(weightStr, "weight")
+        val height = heightStr.replace(" cm", "").toFloatOrNull()
+        val weight = weightStr.replace(" kg", "").toFloatOrNull()
+        val birthDateTimestamp = SimpleDateFormat("d/M/yyyy", Locale.getDefault()).parse(birthDateStr)?.let { Timestamp(it) }
 
-        if (height == null || weight == null) {
-            Toast.makeText(this, "Invalid height or weight value.", Toast.LENGTH_SHORT).show()
+        if (height == null || weight == null || birthDateTimestamp == null) {
+            Toast.makeText(this, "Invalid height, weight, or birthdate.", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Parse the birthdate into a Timestamp object
-        val birthDateTimestamp = parseBirthdate(birthDate)
-
-        // Split the name into first and last names
-        val nameParts = name.split(" ")
-        val firstName = nameParts.getOrNull(0) ?: "FirstName"
-        val lastName = if (nameParts.size > 1) nameParts[1] else "LastName"
-
-        // Prepare data to save in Firestore
-        val updates = hashMapOf<String, Any>(
-            "firstName" to firstName,
-            "lastName" to lastName,
+        val updates = hashMapOf(
+            "firstName" to name.split(" ").first(),
+            "lastName" to name.split(" ").getOrElse(1) { "" },
             "gender" to gender,
             "height" to height,
             "weight" to weight,
-            "birthdate" to birthDateTimestamp,  // Save the Timestamp object
-            "activityLevels" to selectedActivityLevel,
-            "illnesses" to "test"
+            "birthdate" to birthDateTimestamp,
+            "activityLevels" to selectedActivityLevel
         )
 
-        Log.d("ProfileSave", "Updating profile with data: $updates")
+        selectedImageUri?.let { uri ->
+            uploadProfileImage(uri) { imageUrl ->
+                updates["profileImageUrl"] = imageUrl
+                updateFirestoreProfile(updates)
+            }
+        } ?: updateFirestoreProfile(updates)
+    }
 
+    private fun uploadProfileImage(uri: Uri, onComplete: (String) -> Unit) {
+        val storageRef = storage.reference.child("profile_images/$authId.jpg")
+        storageRef.putFile(uri)
+            .addOnSuccessListener { taskSnapshot ->
+                // Get the download URL
+                storageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+                    onComplete(downloadUrl.toString())
+                    Log.d("EditProfile", "Image uploaded successfully: $downloadUrl")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to upload image: ${exception.localizedMessage}", Toast.LENGTH_SHORT).show()
+                Log.e("EditProfile", "Image upload failed", exception)
+            }
+    }
+
+    private fun updateFirestoreProfile(updates: Map<String, Any>) {
         firestore.collection("UserV2").document(authId!!)
-            .set(updates, SetOptions.merge())  // Merge to avoid overwriting entire document
+            .set(updates, SetOptions.merge())
             .addOnSuccessListener {
-                Log.d("ProfileSave", "Profile updated successfully!")
-                Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Profile updated successfully.", Toast.LENGTH_SHORT).show()
             }
-            .addOnFailureListener { e ->
-                Log.e("ProfileSave", "Failed to update profile: ${e.localizedMessage}")
-                Toast.makeText(this, "Failed to update profile: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            .addOnFailureListener {
+                Toast.makeText(this, "Failed to update profile.", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun parseBirthdate(birthDateStr: String): Timestamp {
-        val sdf = SimpleDateFormat("d/M/yyyy", Locale.getDefault())  // Use the same format you display
-        val date = sdf.parse(birthDateStr) ?: Date()  // Default to current date if parsing fails
-        return Timestamp(date)
+    private fun openImageChooser() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
-    // Helper method to parse height and weight
-    private fun parseHeightOrWeight(value: String, type: String): Float? {
-        // Strip out any non-numeric characters (e.g., cm, kg, etc.)
-        val cleanValue = value.replace("[^0-9.]".toRegex(), "")
-
-        // Try to convert the cleaned string to a Float
-        return try {
-            cleanValue.toFloat()
-        } catch (e: NumberFormatException) {
-            // If conversion fails, return null
-            null
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+            selectedImageUri = data.data
+            val profileImageView: ShapeableImageView = findViewById(R.id.profileImage)
+            profileImageView.setImageURI(selectedImageUri) // Show selected image temporarily
         }
     }
 
-    private fun showNameEditDialog(guestUserText: TextView) {
+
+    private fun showNameEditDialog(nameTextView: TextView) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Edit Name")
         val input = EditText(this)
-        input.setText(guestUserText.text.toString())
+        input.setText(nameTextView.text.toString())
         builder.setView(input)
 
-        builder.setPositiveButton("Save") { _, _ ->
-            guestUserText.text = input.text.toString()
-        }
+        builder.setPositiveButton("Save") { _, _ -> nameTextView.text = input.text.toString() }
         builder.setNegativeButton("Cancel", null)
         builder.show()
     }
 
     private fun showGenderPicker(genderText: TextView) {
-        val genders = arrayOf("Male", "Female")
+        val genders = arrayOf("Male", "Female", "Other")
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Select Gender")
-        builder.setItems(genders) { _, which ->
-            genderText.text = genders[which]
-        }
+        builder.setItems(genders) { _, which -> genderText.text = genders[which] }
         builder.show()
     }
 
@@ -330,7 +340,6 @@ class EditProfile : AppCompatActivity() {
         val numberPicker = NumberPicker(this)
         numberPicker.minValue = min
         numberPicker.maxValue = max
-        numberPicker.value = min
         builder.setTitle(title)
         builder.setView(numberPicker)
         builder.setPositiveButton("OK") { _, _ ->
@@ -354,11 +363,5 @@ class EditProfile : AppCompatActivity() {
             year, month, day
         )
         datePickerDialog.show()
-    }
-
-    private fun openImageChooser() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 }

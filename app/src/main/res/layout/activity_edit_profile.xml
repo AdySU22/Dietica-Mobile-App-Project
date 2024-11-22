@@ -21,13 +21,20 @@
             android:layout_height="match_parent"
             android:background="@drawable/circular_border"/>
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profileImage"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile_picture"/>
+            android:src="@drawable/profile_picture"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:shapeAppearanceOverlay="@style/CircularImageViewShape"
+
+
+            />
 
         <FrameLayout
             android:id="@+id/btnEditProfilePicture"

@@ -295,9 +295,6 @@ class HealthReportActivity : BaseActivity() {
                     .call(data)
                     .await()
 
-                // Hide loading overlay
-                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
-
                 // Parse the result using Gson
                 val gson = Gson()
                 val json = gson.toJson(result.data)
@@ -318,6 +315,9 @@ class HealthReportActivity : BaseActivity() {
                 // Handle exceptions here
                 Log.e("getReportError", "Error fetching report data: ${e.message}")
                 Toast.makeText(this@HealthReportActivity, "Failed to get report", Toast.LENGTH_SHORT).show()
+            } finally {
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
         }
     }

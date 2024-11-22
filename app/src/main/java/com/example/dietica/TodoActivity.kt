@@ -100,9 +100,6 @@ class TodoActivity : BaseActivity() {
                     .call(data)
                     .await()
 
-                // Stop loading overlay
-                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
-
                 val resultData = result.data as? Map<*, *> ?: return@launch
 
                 foodTitle.text = resultData["foodTitle"]?.toString() ?: ""
@@ -121,6 +118,9 @@ class TodoActivity : BaseActivity() {
                 exerciseDescription.text = "Failed to get recommendation"
                 waterTitle.text = "Water"
                 waterDescription.text = "Failed to get recommendation"
+            } finally {
+                // Stop loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
         }
     }

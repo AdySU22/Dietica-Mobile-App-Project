@@ -123,8 +123,6 @@ class EditProfile : BaseActivity() {
 
         btnSave.setOnClickListener {
             saveProfileData(guestUserText, genderText, heightText, weightText, birthDateText)
-            val intent = Intent(this, ProfilePageActivity::class.java)
-            startActivity(intent)
         }
         btnCancel.setOnClickListener {
             val intent = Intent(this, ProfilePageActivity::class.java)
@@ -278,6 +276,9 @@ class EditProfile : BaseActivity() {
             "activityLevels" to selectedActivityLevel
         )
 
+        // Start loading overlay
+        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
         selectedImageUri?.let { uri ->
             uploadProfileImage(uri) { imageUrl ->
                 updates["profileImageUrl"] = imageUrl
@@ -310,6 +311,14 @@ class EditProfile : BaseActivity() {
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to update profile.", Toast.LENGTH_SHORT).show()
+            }
+            .addOnCompleteListener {
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
+
+                // Move to Profile page
+                val intent = Intent(this, ProfilePageActivity::class.java)
+                startActivity(intent)
             }
     }
 

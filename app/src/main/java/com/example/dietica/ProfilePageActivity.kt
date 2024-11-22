@@ -16,7 +16,7 @@ import com.example.dietica.services.LoadingUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ProfilePageActivity : AppCompatActivity() {
+class ProfilePageActivity : BaseActivity() {
 
     private lateinit var guestUserTextView: TextView
 

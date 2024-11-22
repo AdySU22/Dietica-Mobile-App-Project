@@ -21,7 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EditProfile : AppCompatActivity() {
+class EditProfile : BaseActivity() {
 
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storage: FirebaseStorage

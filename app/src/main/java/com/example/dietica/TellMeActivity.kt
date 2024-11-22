@@ -11,7 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
 
-class TellMeActivity : AppCompatActivity() {
+class TellMeActivity : BaseActivity() {
 
     private lateinit var ageInput: EditText
     private lateinit var heightInput: EditText

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -118,61 +119,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnRegister"/>
-
-            <CheckBox
-                android:id="@+id/termsCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I agree to our "
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/alef_regular"
-                android:buttonTint="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="-100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/loginAccountText"
-                android:layout_marginTop="20dp"/>
-
-            <TextView
-                android:id="@+id/termsAndConditionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Terms and Conditions"
-                android:textSize="12sp"
-                android:fontFamily="@font/alef_regular"
-                android:textColor="@color/blue_sapphire"
-                app:layout_constraintStart_toEndOf="@id/termsCheckBox"
-                app:layout_constraintTop_toBottomOf="@id/loginAccountText"
-                app:layout_constraintBottom_toBottomOf="@id/termsCheckBox"
-                android:layout_marginTop="20dp"/>
-
-            <CheckBox
-                android:id="@+id/privacyPolicyCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I agree to our "
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/alef_regular"
-                android:buttonTint="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="-100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/termsCheckBox"/>
-
-            <TextView
-                android:id="@+id/privacyPolicyText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Privacy Policy"
-                android:textSize="12sp"
-                android:fontFamily="@font/alef_regular"
-                android:textColor="@color/blue_sapphire"
-                android:layout_marginTop="7dp"
-                app:layout_constraintStart_toEndOf="@id/privacyPolicyCheckBox"
-                app:layout_constraintTop_toBottomOf="@id/termsAndConditionText"
-                app:layout_constraintBottom_toBottomOf="@id/privacyPolicyCheckBox"/>
 
             <View
                 android:id="@+id/orLineLeft"

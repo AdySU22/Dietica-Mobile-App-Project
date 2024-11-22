@@ -34,10 +34,6 @@ class SignUpActivity : BaseActivity() {
         val btnRegister: Button = findViewById(R.id.btnRegister)
         val loginAccountText: TextView = findViewById(R.id.loginAccountText)
         val emailEditText: EditText = findViewById(R.id.emailInput)
-        val termsAndConditionCheckbox: CheckBox = findViewById(R.id.termsCheckBox)
-        val privacyPolicyCheckbox: CheckBox = findViewById(R.id.privacyPolicyCheckBox)
-        val termsAndConditionText: TextView = findViewById(R.id.termsAndConditionText)
-        val privacyPolicyText: TextView = findViewById(R.id.privacyPolicyText)
 
         btnGoogleSignIn.setOnClickListener {
             signInWithGoogle()
@@ -52,12 +48,6 @@ class SignUpActivity : BaseActivity() {
                 }
                 !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
                     Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
-                }
-                !termsAndConditionCheckbox.isChecked -> {
-                    Toast.makeText(this, "You must agree to the Terms and Conditions", Toast.LENGTH_SHORT).show()
-                }
-                !privacyPolicyCheckbox.isChecked -> {
-                    Toast.makeText(this, "You must agree to the Privacy Policy", Toast.LENGTH_SHORT).show()
                 }
                 !isConnectedToInternet() -> {
                     Toast.makeText(this, "No internet connection. Please check your connection.", Toast.LENGTH_SHORT).show()
@@ -79,14 +69,6 @@ class SignUpActivity : BaseActivity() {
 
         loginAccountText.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
-        }
-
-        termsAndConditionText.setOnClickListener {
-            startActivity(Intent(this, TermsAndConditionsActivity::class.java))
-        }
-
-        privacyPolicyText.setOnClickListener {
-            startActivity(Intent(this, PrivacyPolicyActivity::class.java))
         }
     }
 

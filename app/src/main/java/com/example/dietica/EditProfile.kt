@@ -118,6 +118,8 @@ class EditProfile : AppCompatActivity() {
 
         btnSave.setOnClickListener {
             saveProfileData(guestUserText, genderText, heightText, weightText, birthDateText)
+            val intent = Intent(this, ProfilePageActivity::class.java)
+            startActivity(intent)
         }
         btnCancel.setOnClickListener {
             val intent = Intent(this, ProfilePageActivity::class.java)

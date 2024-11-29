@@ -17,12 +17,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager2.widget.ViewPager2
 import com.example.dietica.services.LoadingUtils
 import com.google.android.gms.common.util.AndroidUtilsLight
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import java.util.Calendar
 import java.util.TimeZone
 
@@ -48,10 +50,20 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var progressOverlay: View
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+
+        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        val dotsIndicator = findViewById<DotsIndicator>(R.id.dotsIndicator)
+
+        val progressValues = listOf(30,60,90)
+        val adapter = SliderAdapter(progressValues)
+        viewPager.adapter = adapter
+
+        dotsIndicator.attachTo(viewPager)
 
         applyImmersiveMode()
 

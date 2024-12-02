@@ -1,5 +1,6 @@
 package com.example.dietica
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -35,10 +36,16 @@ class WeightTargetActivity : BaseActivity() {
 
         // Retrieve UI elements
         val leftArrow2: ImageView = findViewById(R.id.leftArrow2)
+        val btnCancel: Button = findViewById(R.id.btnCancel)
         val saveButton: Button = findViewById(R.id.btnSave)
         val currentWeightInput: EditText = findViewById(R.id.currentWeightInput)
         val targetWeightInput: EditText = findViewById(R.id.targetWeightInput)
         val durationInput: EditText = findViewById(R.id.targetDurationInput)
+
+        btnCancel.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
 
         // Handle back navigation
         leftArrow2.setOnClickListener {

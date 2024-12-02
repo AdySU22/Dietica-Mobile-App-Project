@@ -18,7 +18,7 @@ class TreadmillActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val leftArrow2: ImageView = findViewById(R.id.leftArrow2)
+        val leftArrow2: ImageView = findViewById(R.id.leftArrow)
 
         leftArrow2.setOnClickListener {
             val intent = Intent(this, ExerciseActivity::class.java)

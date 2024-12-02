@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.dietica.services.LoadingUtils
-import com.google.android.gms.common.util.AndroidUtilsLight
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
@@ -153,7 +152,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         exercisePlus.setOnClickListener {
-            val intent = Intent(this, ExerciseActivity::class.java)
+            val intent = Intent(this, MyExerciseActivity::class.java)
             startActivity(intent)
         }
 
@@ -174,7 +173,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         exerciseFrameLayout.setOnClickListener {
-            val intent = Intent(this, ExerciseActivity::class.java)
+            val intent = Intent(this, MyExerciseActivity::class.java)
             startActivity(intent)
         }
 

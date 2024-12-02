@@ -21,7 +21,7 @@ class TreadmillActivity : AppCompatActivity() {
         val leftArrow2: ImageView = findViewById(R.id.leftArrow)
 
         leftArrow2.setOnClickListener {
-            val intent = Intent(this, ExerciseActivity::class.java)
+            val intent = Intent(this, MyExerciseActivity::class.java)
             startActivity(intent)
         }
     }

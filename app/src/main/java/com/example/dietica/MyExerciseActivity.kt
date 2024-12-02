@@ -14,6 +14,7 @@ class MyExerciseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_exercise)
 
         val leftArrow: ImageView = findViewById(R.id.leftArrow)
+        val btnGo: Button = findViewById(R.id.btnGo)
         val btnPlus: ImageView = findViewById(R.id.btnPlus)
 
         leftArrow.setOnClickListener {
@@ -21,9 +22,14 @@ class MyExerciseActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*btnPlus.setOnClickListener {
-            val intent = Intent(this, ::class.java)
+        btnGo.setOnClickListener {
+            val intent = Intent(this, WeightTargetActivity::class.java)
             startActivity(intent)
-        }*/
+        }
+
+        btnPlus.setOnClickListener {
+            val intent = Intent(this, ExerciseActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

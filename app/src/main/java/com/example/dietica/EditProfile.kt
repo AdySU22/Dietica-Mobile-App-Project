@@ -102,7 +102,7 @@ class EditProfile : BaseActivity() {
                     selectedActivityLevel = "Active"
                 }
                 R.id.icon4 -> {
-                    headerText.text = "Very Active"
+                    headerText.text = "Heavy Active"
                     subheaderText.text = "Typical daily activity with at least 60 minutes of heavy exercise."
                     selectedActivityLevel = "Very Active"
                 }
@@ -118,7 +118,7 @@ class EditProfile : BaseActivity() {
         guestUserText.setOnClickListener { showNameEditDialog(guestUserText) }
         genderText.setOnClickListener { showGenderPicker(genderText) }
         heightText.setOnClickListener { showNumberPicker(heightText, "Select Height", 100, 250) }
-        weightText.setOnClickListener { showNumberPicker(weightText, "Select Weight", 30, 150) }
+        weightText.setOnClickListener { showNumberPicker(weightText, "Select Weight", 20, 200) }
         birthDateText.setOnClickListener { showDatePicker(birthDateText) }
 
         btnSave.setOnClickListener {
@@ -361,16 +361,32 @@ class EditProfile : BaseActivity() {
     private fun showNumberPicker(textView: TextView, title: String, min: Int, max: Int) {
         val builder = AlertDialog.Builder(this)
         val numberPicker = NumberPicker(this)
-        numberPicker.minValue = min
-        numberPicker.maxValue = max
+
+        // Create an array of numbers in reverse order
+        val numbers = (min..max).toList().reversed().toTypedArray()
+
+        // Set the displayed values
+        numberPicker.minValue = 0
+        numberPicker.maxValue = numbers.size - 1
+        numberPicker.displayedValues = numbers.map { it.toString() }.toTypedArray()
+
+        // Set the initial value to match the current value in the TextView, or default to the starting value
+        val currentValue = textView.text.toString().replace(" cm", "").replace(" kg", "").toIntOrNull() ?: min
+        val initialIndex = numbers.indexOf(currentValue)
+        numberPicker.value = if (initialIndex != -1) initialIndex else numbers.size - 1 // Default to min if not found
+
         builder.setTitle(title)
         builder.setView(numberPicker)
+
         builder.setPositiveButton("OK") { _, _ ->
-            textView.text = "${numberPicker.value} ${if (title.contains("Height")) "cm" else "kg"}"
+            // Get the actual value from the reversed array
+            val selectedValue = numbers[numberPicker.value]
+            textView.text = "$selectedValue ${if (title.contains("Height")) "cm" else "kg"}"
         }
         builder.setNegativeButton("Cancel", null)
         builder.show()
     }
+
 
     private fun showDatePicker(birthDateText: TextView) {
         val calendar = Calendar.getInstance()

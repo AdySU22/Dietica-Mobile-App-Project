@@ -13,7 +13,7 @@ class SliderAdapter(private val progressValues: List<Int>) : RecyclerView.Adapte
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SliderViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.slider_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_slider, parent, false)
         return SliderViewHolder(view)
     }
 

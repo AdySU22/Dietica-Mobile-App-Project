@@ -148,7 +148,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         btnGo.setOnClickListener {
-            val intent = Intent(this, HealthReportActivity::class.java)
+            val intent = Intent(this, WeightTargetActivity::class.java)
             startActivity(intent)
         }
 

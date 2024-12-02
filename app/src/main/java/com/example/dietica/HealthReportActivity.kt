@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.dietica.services.LoadingUtils
 import com.github.mikephil.charting.charts.*
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.components.*
@@ -22,21 +23,15 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.ceil
 
-class HealthReportActivity : AppCompatActivity() {
+class HealthReportActivity : BaseActivity() {
     private lateinit var functions: FirebaseFunctions
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_health_report)
-
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                )
 
         functions = FirebaseFunctions.getInstance()
 
@@ -46,6 +41,9 @@ class HealthReportActivity : AppCompatActivity() {
             functions.useEmulator("10.0.2.2", 5001)
             Log.d("FirebaseEmulator", "Using Firebase Emulator for Functions")
         }
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         // Back Button Action
         val backButton: Button = findViewById(R.id.backButton)
@@ -278,6 +276,9 @@ class HealthReportActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
                 // Get the default time zone and shared preferences
                 val iataTimeZone = TimeZone.getDefault().id
                 val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
@@ -314,6 +315,9 @@ class HealthReportActivity : AppCompatActivity() {
                 // Handle exceptions here
                 Log.e("getReportError", "Error fetching report data: ${e.message}")
                 Toast.makeText(this@HealthReportActivity, "Failed to get report", Toast.LENGTH_SHORT).show()
+            } finally {
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
         }
     }

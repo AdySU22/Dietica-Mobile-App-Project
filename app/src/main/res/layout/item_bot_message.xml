@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,15 +11,16 @@
     <TextView
         android:id="@+id/textViewBotMessage"
         android:layout_width="250dp"
-        android:layout_height="64dp"
-        android:text="Hi! How may I help you?"
-        android:fontFamily="@font/inter_medium"
-        android:textSize="12sp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
         android:background="@drawable/bg_bot_message"
+        android:fontFamily="@font/inter_medium"
         android:padding="18dp"
+        android:text="Hi! How may I help you?"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="100dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

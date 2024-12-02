@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.dietica.services.LoadingUtils
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -20,13 +21,15 @@ import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EditProfile : AppCompatActivity() {
+class EditProfile : BaseActivity() {
 
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storage: FirebaseStorage
     private var authId: String? = null
     private var selectedImageUri: Uri? = null
     private var selectedActivityLevel: String = "Sedentary"
+
+    private lateinit var progressOverlay: View
 
     companion object {
         const val PICK_IMAGE_REQUEST = 1
@@ -40,6 +43,8 @@ class EditProfile : AppCompatActivity() {
         firestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
@@ -118,8 +123,6 @@ class EditProfile : AppCompatActivity() {
 
         btnSave.setOnClickListener {
             saveProfileData(guestUserText, genderText, heightText, weightText, birthDateText)
-            val intent = Intent(this, ProfilePageActivity::class.java)
-            startActivity(intent)
         }
         btnCancel.setOnClickListener {
             val intent = Intent(this, ProfilePageActivity::class.java)
@@ -135,6 +138,9 @@ class EditProfile : AppCompatActivity() {
             finish()
             return
         }
+
+        // Start loading overlay
+        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
 
         firestore.collection("UserV2").document(authId!!)
             .get()
@@ -174,6 +180,10 @@ class EditProfile : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to fetch profile data.", Toast.LENGTH_SHORT).show()
+            }
+            .addOnCompleteListener {
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
     }
 
@@ -266,6 +276,9 @@ class EditProfile : AppCompatActivity() {
             "activityLevels" to selectedActivityLevel
         )
 
+        // Start loading overlay
+        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
         selectedImageUri?.let { uri ->
             uploadProfileImage(uri) { imageUrl ->
                 updates["profileImageUrl"] = imageUrl
@@ -298,6 +311,14 @@ class EditProfile : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to update profile.", Toast.LENGTH_SHORT).show()
+            }
+            .addOnCompleteListener {
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
+
+                // Move to Profile page
+                val intent = Intent(this, ProfilePageActivity::class.java)
+                startActivity(intent)
             }
     }
 

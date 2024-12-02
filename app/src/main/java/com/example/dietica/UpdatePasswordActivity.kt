@@ -1,11 +1,13 @@
 package com.example.dietica
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dietica.services.LoadingUtils
 import com.example.dietica.services.UpdatePasswordServices
 
 class UpdatePasswordActivity : BaseActivity() {
@@ -15,6 +17,8 @@ class UpdatePasswordActivity : BaseActivity() {
     private lateinit var btnUpdatePassword: Button
     private val updatePasswordServices = UpdatePasswordServices()  // Create instance of the service class
 
+    private lateinit var progressOverlay: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +27,9 @@ class UpdatePasswordActivity : BaseActivity() {
         passwordEditText = findViewById(R.id.newPasswordInput)
         confirmPasswordEditText = findViewById(R.id.newRePasswordInput)
         btnUpdatePassword = findViewById(R.id.btnUpdatePassword)
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         btnUpdatePassword.setOnClickListener {
             val password = passwordEditText.text.toString()
@@ -49,8 +56,14 @@ class UpdatePasswordActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
+            // Start loading overlay
+            LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
             // Use the service class to handle password update
-            updatePasswordServices.updatePassword(this, email, password)
+            updatePasswordServices.updatePassword(this, email, password, {
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
+            })
         }
     }
 

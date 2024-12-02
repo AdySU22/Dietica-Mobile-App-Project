@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.HttpsCallableResult
 import kotlinx.coroutines.launch
@@ -14,6 +15,8 @@ import kotlinx.coroutines.tasks.await
 
 class ManuallyInputMeal : AppCompatActivity() {
     private lateinit var functions: FirebaseFunctions
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,9 @@ class ManuallyInputMeal : AppCompatActivity() {
             functions.useEmulator("10.0.2.2", 5001)
             Log.d("FirebaseEmulator", "Using Firebase Emulator for Functions")
         }
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         initFatsecretData()
         initFoodData()
@@ -115,6 +121,9 @@ class ManuallyInputMeal : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
         val authId = sharedPreferences.getString("authId", null)
 
+        // Start loading overlay
+        LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
         val data = mapOf(
             "authId" to authId,
             "food" to mapOf(
@@ -133,10 +142,12 @@ class ManuallyInputMeal : AppCompatActivity() {
                 "fiber" to inputFiber
             )
         )
-
         val result = functions.getHttpsCallable("createFood")
             .call(data)
             .await()
+
+        // Hide loading overlay
+        LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
         return result
     }
 
@@ -148,11 +159,17 @@ class ManuallyInputMeal : AppCompatActivity() {
         // Use the foodId to fetch more details or perform other actions
         if (foodId != null) {
             lifecycleScope.launch {
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
                 val data = mapOf("foodId" to foodId)
                 val result = functions.getHttpsCallable("fatsecretGet")
                     .call(data)
                     .await()
                 populateFatsecretData(result.data)
+
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
         }
     }
@@ -218,6 +235,9 @@ class ManuallyInputMeal : AppCompatActivity() {
         // Use the foodId to fetch more details or perform other actions
         if (foodId != null) {
             lifecycleScope.launch {
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
                 val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
                 val authId = sharedPreferences.getString("authId", null)
                 val data = mapOf(
@@ -228,6 +248,9 @@ class ManuallyInputMeal : AppCompatActivity() {
                     .call(data)
                     .await()
                 populateFoodData(result.data)
+
+                // Hide loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
         }
     }

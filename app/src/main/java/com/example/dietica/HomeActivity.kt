@@ -5,22 +5,26 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.FrameLayout
-import android.widget.TextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager2.widget.ViewPager2
+import com.example.dietica.services.LoadingUtils
+import com.google.android.gms.common.util.AndroidUtilsLight
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import java.util.Calendar
 import java.util.TimeZone
 
@@ -44,15 +48,30 @@ class HomeActivity : AppCompatActivity() {
     private var totalWaterIntake = 0 // Store total water intake in ml
     private val dailyWaterGoal = 2000 // Daily water goal in ml
 
+    private lateinit var progressOverlay: View
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
 
+        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        val dotsIndicator = findViewById<DotsIndicator>(R.id.dotsIndicator)
+
+        val progressValues = listOf(30,60,90)
+        val adapter = SliderAdapter(progressValues)
+        viewPager.adapter = adapter
+
+        dotsIndicator.attachTo(viewPager)
+
         applyImmersiveMode()
 
         // Initialize Firebase Functions
         functions = Firebase.functions
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
         val authId = sharedPreferences.getString("authId", null)
@@ -199,6 +218,8 @@ class HomeActivity : AppCompatActivity() {
                 "iataTimeZone" to iataTimeZone
             )
 
+            // Start loading overlay
+            LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
             // Call the Cloud Function to get today's food summary
             functions.getHttpsCallable("homeFoodTodaySummary")
                 .call(data)
@@ -246,6 +267,10 @@ class HomeActivity : AppCompatActivity() {
                 .addOnFailureListener { exception ->
                     // Handle any errors that occur during the call
                     Log.e("FoodSummary", "Error fetching today's food summary", exception)
+                }
+                .addOnCompleteListener {
+                    // Hide loading overlay
+                    LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
                 }
         }
     }

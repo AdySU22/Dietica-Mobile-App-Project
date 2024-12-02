@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -15,20 +17,15 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class TodoActivity : AppCompatActivity() {
+class TodoActivity : BaseActivity() {
     private lateinit var functions: FirebaseFunctions
+
+    private lateinit var progressOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_todo)
-
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                )
 
         functions = FirebaseFunctions.getInstance()
 
@@ -38,6 +35,9 @@ class TodoActivity : AppCompatActivity() {
             functions.useEmulator("10.0.2.2", 5001)
             Log.d("FirebaseEmulator", "Using Firebase Emulator for Functions")
         }
+
+        // Initialize loading
+        progressOverlay = findViewById(R.id.progress_overlay)
 
         val btnBack: ImageView = findViewById(R.id.btnBack)
         val date1Day: TextView = findViewById(R.id.date1_day)
@@ -58,7 +58,7 @@ class TodoActivity : AppCompatActivity() {
         }
 
         btnGo.setOnClickListener {
-            val intent = Intent(this, AIChatBot::class.java)
+            val intent = Intent(this, AiChatBotAlt::class.java)
             startActivity(intent)
         }
 
@@ -89,6 +89,9 @@ class TodoActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
+                // Start loading overlay
+                LoadingUtils.animateView(progressOverlay, View.VISIBLE, 0.4f, 200)
+
                 val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
                 val authId = sharedPreferences.getString("authId", null)
                 val data = mapOf("authId" to authId)
@@ -115,6 +118,9 @@ class TodoActivity : AppCompatActivity() {
                 exerciseDescription.text = "Failed to get recommendation"
                 waterTitle.text = "Water"
                 waterDescription.text = "Failed to get recommendation"
+            } finally {
+                // Stop loading overlay
+                LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)
             }
         }
     }

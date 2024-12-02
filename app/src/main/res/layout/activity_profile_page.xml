@@ -113,12 +113,12 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/weeklySummaryButton"
+        android:id="@+id/reportButton"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:background="@drawable/edit_profile_button"
         android:fontFamily="@font/inter_medium"
-        android:text="Weekly Summary"
+        android:text="Report"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -137,9 +137,11 @@
         android:background="@drawable/rounded_logout_button"
         android:textColor="#13548A"
         android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toBottomOf="@id/weeklySummaryButton"
+        app:layout_constraintTop_toBottomOf="@id/reportButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="250dp"/>
 
+    <!-- Progress bar overlay; shown while login is in progress -->
+    <include layout="@layout/include_progress_overlay"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

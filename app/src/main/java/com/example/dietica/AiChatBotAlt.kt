@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.FirebaseFunctionsException
 import io.noties.markwon.Markwon
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -70,8 +71,27 @@ class AiChatBotAlt : BaseActivity() {
     private suspend fun getBotResponse(userMessage: String): String {
         val authId = getSharedPreferences("com.example.dietica", MODE_PRIVATE).getString("authId", null)
         val data = mapOf("authId" to authId, "message" to userMessage)
-        val result = functions.getHttpsCallable("sendChatbot").call(data).await()
-        return result.data.toString()
+        return try {
+            val result = functions.getHttpsCallable("sendChatbot").call(data).await()
+            result.data.toString()
+        } catch (e: FirebaseFunctionsException) {
+            when (e.code) {
+                FirebaseFunctionsException.Code.FAILED_PRECONDITION -> {
+                    // Handle the specific "failed-precondition" error
+                    Log.e("ChatbotError", "Failed precondition: ${e.message}")
+                    "Sorry, but we cannot provide recommendation due to missing information. ${e.message}."
+                }
+                else -> {
+                    // Handle other errors
+                    Log.e("ChatbotError", "Unexpected error: ${e.message}")
+                    "An error occurred. Please try again later."
+                }
+            }
+        } catch (e: Exception) {
+            // Handle generic exceptions
+            Log.e("ChatbotError", "General error: ${e.message}")
+            "An error occurred. Please try again later."
+        }
     }
 
     private fun initChatbot() {

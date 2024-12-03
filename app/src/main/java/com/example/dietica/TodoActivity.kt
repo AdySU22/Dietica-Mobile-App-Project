@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.FirebaseFunctionsException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
@@ -108,10 +109,31 @@ class TodoActivity : BaseActivity() {
                 exerciseDescription.text = resultData["exerciseDescription"]?.toString() ?: ""
                 waterTitle.text = resultData["waterTitle"]?.toString() ?: ""
                 waterDescription.text = resultData["waterDescription"]?.toString() ?: ""
-            } catch (e: Exception) {
-                Log.e("TodoActivity", "Error fetching data", e)
-                Toast.makeText(this@TodoActivity, "Failed to get Todo List", Toast.LENGTH_SHORT).show()
+            } catch (e: FirebaseFunctionsException) {
+                when (e.code) {
+                    FirebaseFunctionsException.Code.FAILED_PRECONDITION -> {
+                        Log.e("TodoActivity", "Failed precondition: ${e.message}", e)
+                        Toast.makeText(this@TodoActivity, "${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Log.e("TodoActivity", "Unexpected Firebase Functions error: ${e.message}", e)
+                        Toast.makeText(this@TodoActivity, "Failed to get Todo List. Please try again later.", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
+                // Update UI for error state
+                foodTitle.text = "Food"
+                foodDescription.text = "Failed to get recommendation"
+                exerciseTitle.text = "Exercise"
+                exerciseDescription.text = "Failed to get recommendation"
+                waterTitle.text = "Water"
+                waterDescription.text = "Failed to get recommendation"
+            } catch (e: Exception) {
+                // Handle generic exceptions
+                Log.e("TodoActivity", "Error fetching data", e)
+                Toast.makeText(this@TodoActivity, "Failed to get Todo List. Please try again later.", Toast.LENGTH_SHORT).show()
+
+                // Update UI for error state
                 foodTitle.text = "Food"
                 foodDescription.text = "Failed to get recommendation"
                 exerciseTitle.text = "Exercise"

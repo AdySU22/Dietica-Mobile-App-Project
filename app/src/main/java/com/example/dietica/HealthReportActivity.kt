@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.FirebaseFunctionsException
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -311,10 +312,33 @@ class HealthReportActivity : BaseActivity() {
                 setupBarChartData(barChart, resultData.dailyExerciseMinutes)
                 setupLineChartData(lineChart, resultData.dailyIntakes)
 
+            } catch (e: FirebaseFunctionsException) {
+                when (e.code) {
+                    FirebaseFunctionsException.Code.FAILED_PRECONDITION -> {
+                        Log.e("getReportError", "Failed precondition: ${e.message}", e)
+                        Toast.makeText(
+                            this@HealthReportActivity,
+                            "Failed to generate report. ${e.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    else -> {
+                        Log.e("getReportError", "Unexpected Firebase Functions error: ${e.message}", e)
+                        Toast.makeText(
+                            this@HealthReportActivity,
+                            "Failed to generate report. Please try again later.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             } catch (e: Exception) {
-                // Handle exceptions here
-                Log.e("getReportError", "Error fetching report data: ${e.message}")
-                Toast.makeText(this@HealthReportActivity, "Failed to get report", Toast.LENGTH_SHORT).show()
+                // Handle generic exceptions
+                Log.e("getReportError", "Error fetching report data: ${e.message}", e)
+                Toast.makeText(
+                    this@HealthReportActivity,
+                    "Failed to generate report. Please try again later.",
+                    Toast.LENGTH_SHORT
+                ).show()
             } finally {
                 // Hide loading overlay
                 LoadingUtils.animateView(progressOverlay, View.GONE, 0f, 200)

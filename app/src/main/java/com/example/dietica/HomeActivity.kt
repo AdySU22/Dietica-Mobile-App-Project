@@ -59,7 +59,12 @@ class HomeActivity : BaseActivity() {
         val dotsIndicator = findViewById<DotsIndicator>(R.id.dotsIndicator)
 
         val progressValues = listOf(30,60,90)
-        val adapter = SliderAdapter(progressValues)
+        val layoutTypes = listOf(
+            SliderAdapter.LAYOUT_TYPE_1,
+            SliderAdapter.LAYOUT_TYPE_2,
+            SliderAdapter.LAYOUT_TYPE_3
+        )
+        val adapter = SliderAdapter(progressValues, layoutTypes)
         viewPager.adapter = adapter
 
         dotsIndicator.attachTo(viewPager)

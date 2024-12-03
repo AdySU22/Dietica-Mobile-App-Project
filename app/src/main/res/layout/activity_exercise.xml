@@ -103,12 +103,13 @@
         android:id="@+id/hoursEditText"
         android:layout_width="60dp"
         android:layout_height="38dp"
-        android:background="@drawable/edit_profile_rounded_edge_container"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="300dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/edit_profile_rounded_edge_container"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/durationText"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/durationText" />
 
     <TextView
         android:id="@+id/hoursText"
@@ -127,11 +128,12 @@
         android:id="@+id/minutesEditText"
         android:layout_width="60dp"
         android:layout_height="38dp"
-        android:background="@drawable/edit_profile_rounded_edge_container"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_profile_rounded_edge_container"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@id/hoursText"
-        app:layout_constraintTop_toBottomOf="@id/durationText"/>
+        app:layout_constraintTop_toBottomOf="@id/durationText" />
 
     <TextView
         android:id="@+id/minutesText"
@@ -150,11 +152,12 @@
         android:id="@+id/secondsEditText"
         android:layout_width="60dp"
         android:layout_height="38dp"
-        android:background="@drawable/edit_profile_rounded_edge_container"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_profile_rounded_edge_container"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@id/minutesText"
-        app:layout_constraintTop_toBottomOf="@id/durationText"/>
+        app:layout_constraintTop_toBottomOf="@id/durationText" />
 
     <TextView
         android:id="@+id/secondsText"

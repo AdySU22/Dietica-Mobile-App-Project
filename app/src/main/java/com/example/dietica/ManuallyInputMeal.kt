@@ -13,7 +13,7 @@ import com.google.firebase.functions.HttpsCallableResult
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-class ManuallyInputMeal : AppCompatActivity() {
+class ManuallyInputMeal : BaseActivity() {
     private lateinit var functions: FirebaseFunctions
 
     private lateinit var progressOverlay: View
@@ -22,14 +22,6 @@ class ManuallyInputMeal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_manually_input_meal)
-
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                )
 
         functions = FirebaseFunctions.getInstance()
 

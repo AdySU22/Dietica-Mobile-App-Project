@@ -27,7 +27,7 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import java.util.Calendar
 import java.util.TimeZone
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity() {
     private lateinit var waterCountTextView: TextView
     private lateinit var inputMealTextView: TextView
     private lateinit var profileButton: Button
@@ -63,8 +63,6 @@ class HomeActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         dotsIndicator.attachTo(viewPager)
-
-        applyImmersiveMode()
 
         // Initialize Firebase Functions
         functions = Firebase.functions
@@ -191,21 +189,6 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, TodoActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        applyImmersiveMode()
-    }
-
-    private fun applyImmersiveMode() {
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                )
     }
 
     private fun initTodayFoodSummary() {

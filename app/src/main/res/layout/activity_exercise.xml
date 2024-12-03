@@ -81,6 +81,10 @@
         android:layout_marginEnd="160dp"
         android:background="@drawable/edit_profile_rounded_edge_container"
         android:textColor="#000000"
+        android:textSize="12sp"
+        android:paddingStart="10dp"
+        android:fontFamily="@font/inter_light"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/exerciseNameText" />
@@ -107,6 +111,9 @@
         android:layout_marginEnd="300dp"
         android:background="@drawable/edit_profile_rounded_edge_container"
         android:textColor="#000000"
+        android:gravity="center"
+        android:fontFamily="@font/inter_light"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/durationText" />
@@ -132,6 +139,9 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/edit_profile_rounded_edge_container"
         android:textColor="#000000"
+        android:gravity="center"
+        android:fontFamily="@font/inter_light"
+        android:inputType="number"
         app:layout_constraintStart_toEndOf="@id/hoursText"
         app:layout_constraintTop_toBottomOf="@id/durationText" />
 
@@ -156,6 +166,9 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/edit_profile_rounded_edge_container"
         android:textColor="#000000"
+        android:gravity="center"
+        android:fontFamily="@font/inter_light"
+        android:inputType="number"
         app:layout_constraintStart_toEndOf="@id/minutesText"
         app:layout_constraintTop_toBottomOf="@id/durationText" />
 

@@ -124,10 +124,10 @@
                     android:layout_marginTop="36dp"/>
             </FrameLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bmiProgressBarContainer"
                 android:layout_width="match_parent"
-                android:layout_height="136dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -139,63 +139,139 @@
                     android:id="@+id/bmiText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="BMI"
+                    android:text="Your BMI"
                     android:fontFamily="@font/inter_semi_bold"
                     android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-                <LinearLayout
-                    android:id="@+id/differentWeightText"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/bmiNumberText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp">
+                    android:text="12.91"
+                    android:fontFamily="@font/inter_semi_bold"
+                    android:textSize="40dp"
+                    android:textColor="#005FFA"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bmiText"/>
+
+                <TextView
+                    android:id="@+id/bmiCategoryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Normal"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bmiNumberText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Updated On Thu, 4 July 2021"
+                    android:textColor="@color/green_line_chart"
+                    android:textSize="12dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bmiCategoryText"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/statisticsContainer1"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp">
+
+                <!-- Weight Container -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/weightContainer"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:elevation="4dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="50dp">
 
                     <TextView
-                        android:id="@+id/underWeightText"
+                        android:id="@+id/weightText1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="Underweight"
-                        android:fontFamily="@font/inter_semi_bold"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Your Weight"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/weightText2"
+                        android:layout_marginBottom="4dp"/>
 
                     <TextView
-                        android:id="@+id/averageWeightText"
+                        android:id="@+id/weightText2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="28dp"
-                        android:text="Average"
-                        android:fontFamily="@font/inter_semi_bold"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="62 kg"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/weightText1"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Height Container -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/heightContainer"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:elevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/overWeightText"
+                        android:id="@+id/heightText1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="88dp"
-                        android:text="Overweight"
-                        android:fontFamily="@font/inter_semi_bold"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Your Height"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
-                </LinearLayout>
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/heightText2"
+                        android:layout_marginBottom="4dp"/>
 
-                <ProgressBar
-                    android:id="@+id/bmiProgressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="16dp"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progress="70"
-                    android:progressDrawable="@drawable/progress_bar_composition" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/heightText2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="160 cm"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/heightText1"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/statisticsContainer2"

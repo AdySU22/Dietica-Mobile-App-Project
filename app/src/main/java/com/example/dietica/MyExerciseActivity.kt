@@ -21,6 +21,11 @@ class MyExerciseActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_exercise)
 
+        val btnBack = findViewById<ImageView>(R.id.leftArrow)
+        btnBack.setOnClickListener {
+            finish()
+        }
+
         val btnPlus = findViewById<ImageView>(R.id.btnPlus)
         btnPlus.setOnClickListener {
             // Navigate to a new activity to add exercise data

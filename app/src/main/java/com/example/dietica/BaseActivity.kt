@@ -26,6 +26,7 @@ open class BaseActivity : AppCompatActivity() {
                         or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 )
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
     }
 
     private fun handleKeyboardVisibility() {

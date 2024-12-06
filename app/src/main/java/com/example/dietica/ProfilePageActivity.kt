@@ -34,9 +34,9 @@ class ProfilePageActivity : BaseActivity() {
         progressOverlay = findViewById(R.id.progress_overlay)
 
         val btnBack: ImageView = findViewById(R.id.btnBack)
-        val editProfileButton: LinearLayout = findViewById(R.id.editProfileButton)
+        val editProfileBtn: LinearLayout = findViewById(R.id.editProfileBtn)
         val logoutButton: Button = findViewById(R.id.logoutButton)
-        val reportButton: Button = findViewById(R.id.reportButton)
+        val reportBtn: Button = findViewById(R.id.reportBtn)
 
         val authId = FirebaseAuth.getInstance().currentUser?.uid
         Log.d("ProfilePage", "Auth ID: $authId")
@@ -59,7 +59,7 @@ class ProfilePageActivity : BaseActivity() {
             startActivity(intent)
         }
 
-        editProfileButton.setOnClickListener {
+        editProfileBtn.setOnClickListener {
             val intent = Intent(this, EditProfile::class.java)
             val authId = FirebaseAuth.getInstance().currentUser?.uid
             if (authId != null) {
@@ -68,7 +68,7 @@ class ProfilePageActivity : BaseActivity() {
             startActivity(intent)
         }
 
-        reportButton.setOnClickListener {
+        reportBtn.setOnClickListener {
             val intent = Intent(this, HealthReportActivity::class.java)
             startActivity(intent)
         }

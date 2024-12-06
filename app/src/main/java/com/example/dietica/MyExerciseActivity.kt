@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
-class MyExerciseActivity : AppCompatActivity() {
+class MyExerciseActivity : BaseActivity() {
 
     private lateinit var exerciseContainer: LinearLayout
     private val db = FirebaseFirestore.getInstance()

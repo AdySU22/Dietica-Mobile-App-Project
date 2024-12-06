@@ -36,7 +36,7 @@ class ProfilePageActivity : BaseActivity() {
         val btnBack: ImageView = findViewById(R.id.btnBack)
         val editProfileBtn: LinearLayout = findViewById(R.id.editProfileBtn)
         val logoutButton: Button = findViewById(R.id.logoutButton)
-        val reportBtn: Button = findViewById(R.id.reportBtn)
+        val reportBtn: LinearLayout = findViewById(R.id.reportBtn)
 
         val authId = FirebaseAuth.getInstance().currentUser?.uid
         Log.d("ProfilePage", "Auth ID: $authId")

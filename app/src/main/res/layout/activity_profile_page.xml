@@ -76,7 +76,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/editProfileButton"
+        android:id="@+id/editProfileBtn"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -112,20 +112,42 @@
             android:layout_marginTop="2dp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/reportButton"
+    <LinearLayout
+        android:id="@+id/reportBtn"
         android:layout_width="350dp"
         android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:background="@drawable/edit_profile_button"
-        android:fontFamily="@font/inter_medium"
-        android:text="Report"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/editProfileBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfileButton"
-        android:layout_marginTop="30dp"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_newspaper_24"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="-20dp"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter_medium"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="126dp"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/logoutButton"
@@ -137,7 +159,7 @@
         android:background="@drawable/rounded_logout_button"
         android:textColor="#13548A"
         android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toBottomOf="@id/reportButton"
+        app:layout_constraintTop_toBottomOf="@id/reportBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="250dp"/>

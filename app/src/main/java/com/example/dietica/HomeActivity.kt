@@ -155,7 +155,14 @@ class HomeActivity : BaseActivity() {
         }
 
         exercisePlus.setOnClickListener {
+            val authId = FirebaseAuth.getInstance().currentUser?.uid
             val intent = Intent(this, MyExerciseActivity::class.java)
+            if (authId != null) {
+                intent.putExtra("authId", authId)
+                Log.d("HomeActivity", "Passing Auth ID: $authId")  // Log the passed authId
+            } else {
+                Log.d("HomeActivity", "User not authenticated")
+            }
             startActivity(intent)
         }
 

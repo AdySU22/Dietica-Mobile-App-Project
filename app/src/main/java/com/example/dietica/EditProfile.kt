@@ -15,6 +15,7 @@ import com.example.dietica.services.LoadingUtils
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
@@ -273,7 +274,8 @@ class EditProfile : BaseActivity() {
             "height" to height,
             "weight" to weight,
             "birthdate" to birthDateTimestamp,
-            "activityLevels" to selectedActivityLevel
+            "activityLevels" to selectedActivityLevel,
+            "updatedAt" to FieldValue.serverTimestamp()
         )
 
         // Start loading overlay

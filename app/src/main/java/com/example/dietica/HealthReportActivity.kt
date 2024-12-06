@@ -1,5 +1,6 @@
 package com.example.dietica
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.ceil
@@ -305,13 +307,46 @@ class HealthReportActivity : BaseActivity() {
                 averageWaterIntake.text = "${ceil(resultData.averageWater).toInt()} ml"
                 averageCalorieIntake.text = "${ceil(resultData.averageCalories).toInt()} cals"
 
-                // TODO Update the BMI
-                // data is at resultData.bmi
-
                 // Setup charts with the fetched data
                 setupBarChartData(barChart, resultData.dailyExerciseMinutes)
                 setupLineChartData(lineChart, resultData.dailyIntakes)
 
+                // Update Weight and Height
+                findViewById<TextView>(R.id.weightText2).text = String.format("%.1f kg", resultData.weight)
+                findViewById<TextView>(R.id.heightText2).text = String.format("%.1f cm", resultData.height)
+
+                // Update BMI
+                val bmiValue = (resultData.bmi as? Number)?.toDouble() ?: 0.0
+                findViewById<TextView>(R.id.bmiNumberText).text = String.format("%.2f", bmiValue)
+
+                // Update BMI Category
+                val bmiCategoryTextView = findViewById<TextView>(R.id.bmiCategoryText)
+                val bmiCategory = resultData.bmiCategory as? String ?: "Unknown"
+                bmiCategoryTextView.text = bmiCategory
+                // Set the color based on category
+                val categoryColor = when (bmiCategory) {
+                    "Underweight" -> Color.parseColor("#FFA07A") // Light Salmon
+                    "Normal" -> Color.BLACK
+                    "Overweight" -> Color.parseColor("#FFD700") // Gold
+                    "Obese" -> Color.parseColor("#FF4500") // Orange Red
+                    else -> Color.GRAY
+                }
+                bmiCategoryTextView.setTextColor(categoryColor)
+
+                // Update BMI last updated at
+                val bmiUpdatedAt = resultData.bmiUpdatedAt
+                if (bmiUpdatedAt is Map<*, *>) {
+                    val seconds = (bmiUpdatedAt["_seconds"] as? Number)?.toLong()
+                    if (seconds != null) {
+                        val formattedDate = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
+                            .format(Date(seconds * 1000))
+                        findViewById<TextView>(R.id.lastUpdatedText).text = "Last updated at $formattedDate"
+                    } else {
+                        Log.d("HomeActivity", "Failed to retrieve seconds from bmiUpdatedAt")
+                    }
+                } else {
+                    Log.d("HomeActivity", "bmiUpdatedAt is not a Map, value: $bmiUpdatedAt")
+                }
             } catch (e: FirebaseFunctionsException) {
                 when (e.code) {
                     FirebaseFunctionsException.Code.FAILED_PRECONDITION -> {
@@ -406,7 +441,11 @@ class HealthReportActivity : BaseActivity() {
     }
 
     data class ResultData(
+        val weight: Double,
+        val height: Double,
         val bmi: Double,
+        val bmiCategory: String,
+        val bmiUpdatedAt: Any,
         val averageWater: Double,
         val averageCalories: Double,
         val dailyIntakes: DailyIntakes,

@@ -2,6 +2,7 @@ package com.example.dietica
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -24,7 +25,10 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.TimeZone
 
 class HomeActivity : BaseActivity() {
@@ -273,6 +277,39 @@ class HomeActivity : BaseActivity() {
                         findViewById<ProgressBar>(R.id.progressBarSodium).progress = sodiumProgress
                         findViewById<ProgressBar>(R.id.progressBarCholesterol).progress = cholesterolProgress
                         findViewById<ProgressBar>(R.id.progressBarFiber).progress = fiberProgress
+
+                        // Update BMI
+                        val bmiValue = (summary["bmi"] as? Number)?.toDouble() ?: 0.0
+                        findViewById<TextView>(R.id.bmiNumberText).text = String.format("%.2f", bmiValue)
+
+                        // Update BMI Category
+                        val bmiCategoryTextView = findViewById<TextView>(R.id.bmiCategoryText)
+                        val bmiCategory = summary["bmiCategory"] as? String ?: "Unknown"
+                        bmiCategoryTextView.text = bmiCategory
+                        // Set the color based on category
+                        val categoryColor = when (bmiCategory) {
+                            "Underweight" -> Color.parseColor("#FFA07A") // Light Salmon
+                            "Normal" -> Color.BLACK
+                            "Overweight" -> Color.parseColor("#FFD700") // Gold
+                            "Obese" -> Color.parseColor("#FF4500") // Orange Red
+                            else -> Color.GRAY
+                        }
+                        bmiCategoryTextView.setTextColor(categoryColor)
+
+                        // Update BMI last updated at
+                        val bmiUpdatedAt = summary["bmiUpdatedAt"]
+                        if (bmiUpdatedAt is Map<*, *>) {
+                            val seconds = (bmiUpdatedAt["_seconds"] as? Number)?.toLong()
+                            if (seconds != null) {
+                                val formattedDate = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault())
+                                    .format(Date(seconds * 1000))
+                                findViewById<TextView>(R.id.lastUpdatedText).text = "Last updated at $formattedDate"
+                            } else {
+                                Log.d("HomeActivity", "Failed to retrieve seconds from bmiUpdatedAt")
+                            }
+                        } else {
+                            Log.d("HomeActivity", "bmiUpdatedAt is not a Map, value: $bmiUpdatedAt")
+                        }
                     }
                 }
                 .addOnFailureListener { exception ->

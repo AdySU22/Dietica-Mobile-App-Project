@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 
@@ -75,7 +76,8 @@ class ExerciseActivity : BaseActivity() {
             "authId" to authId,
             "name" to name,
             "duration" to duration,
-            "date" to date
+            "date" to date,
+            "createdAt" to FieldValue.serverTimestamp()
         )
 
         db.collection("ExerciseLogs")

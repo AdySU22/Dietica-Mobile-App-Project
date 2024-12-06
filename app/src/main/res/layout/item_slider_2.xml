@@ -27,7 +27,7 @@
                 android:layout_height="84dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar1"
+                    android:id="@+id/progressBarSugar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -37,7 +37,7 @@
                     android:progressDrawable="@drawable/circular_progress_bar_1"/>
 
                 <TextView
-                    android:id="@+id/progressBarValue1"
+                    android:id="@+id/progressBarSugarText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -74,7 +74,7 @@
                 android:layout_height="84dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar2"
+                    android:id="@+id/progressBarSodium"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -84,7 +84,7 @@
                     android:progressDrawable="@drawable/circular_progress_bar_2"/>
 
                 <TextView
-                    android:id="@+id/progressBarValue2"
+                    android:id="@+id/progressBarSodiumText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -121,7 +121,7 @@
                 android:layout_height="84dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar3"
+                    android:id="@+id/progressBarCholesterol"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -131,7 +131,7 @@
                     android:progressDrawable="@drawable/circular_progress_bar_3"/>
 
                 <TextView
-                    android:id="@+id/progressBarValue3"
+                    android:id="@+id/progressBarCholesterolText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -145,7 +145,7 @@
                 android:id="@+id/progressBarText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cholestrol"
+                android:text="Cholesterol"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:fontFamily="@font/inter_semi_bold"

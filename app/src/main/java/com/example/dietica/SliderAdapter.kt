@@ -5,7 +5,7 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
 class SliderAdapter(
-    private val progressValues: List<Int>,
+    private val progressValues: List<List<Int>>, // List of progress values for each item
     private val layoutTypes: List<Int> // List to specify the layout type for each item
 ) : RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
 
@@ -17,9 +17,35 @@ class SliderAdapter(
     }
 
     inner class SliderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val progressBar1: ProgressBar? = itemView.findViewById(R.id.progressBar1)
-        val progressBar2: ProgressBar? = itemView.findViewById(R.id.progressBar2)
-        val progressBar3: ProgressBar? = itemView.findViewById(R.id.progressBar3)
+
+        private var progressBars: List<ProgressBar> = emptyList()
+
+        fun bindViewHolder(viewType: Int) {
+            // Initialize progress bars based on layout type
+            progressBars = when (viewType) {
+                LAYOUT_TYPE_1 -> listOf(
+                    itemView.findViewById(R.id.progressBarCarbs),
+                    itemView.findViewById(R.id.progressBarFat),
+                    itemView.findViewById(R.id.progressBarProtein)
+                )
+                LAYOUT_TYPE_2 -> listOf(
+                    itemView.findViewById(R.id.progressBarSugar),
+                    itemView.findViewById(R.id.progressBarSodium),
+                    itemView.findViewById(R.id.progressBarCholesterol)
+                )
+                LAYOUT_TYPE_3 -> listOf(
+                    itemView.findViewById(R.id.progressBarFiber),
+                )
+                else -> throw IllegalArgumentException("Invalid layout type")
+            }
+        }
+
+        fun setProgressForBars(values: List<Int>) {
+            // Dynamically update progress for each progress bar
+            for (i in progressBars.indices) {
+                progressBars[i].progress = values.getOrElse(i) { 0 }
+            }
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -35,14 +61,12 @@ class SliderAdapter(
             else -> throw IllegalArgumentException("Invalid layout type")
         }
         val view = LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)
-        return SliderViewHolder(view)
+        return SliderViewHolder(view).apply { bindViewHolder(viewType) }
     }
 
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
-        // Bind data to the ProgressBar if it's present in the layout
-        holder.progressBar1?.progress = progressValues[position]
-        holder.progressBar2?.progress = progressValues[position]
-        holder.progressBar3?.progress = progressValues[position]
+        // Bind progress values to the progress bars
+        holder.setProgressForBars(progressValues[position])
     }
 
     override fun getItemCount(): Int {

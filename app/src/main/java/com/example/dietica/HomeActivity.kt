@@ -58,7 +58,11 @@ class HomeActivity : BaseActivity() {
         val viewPager = findViewById<ViewPager2>(R.id.viewPager)
         val dotsIndicator = findViewById<DotsIndicator>(R.id.dotsIndicator)
 
-        val progressValues = listOf(30,60,90)
+        val progressValues = listOf(
+            listOf(30, 31, 32),
+            listOf(60, 61, 62),
+            listOf(90, 91, 92)
+        )
         val layoutTypes = listOf(
             SliderAdapter.LAYOUT_TYPE_1,
             SliderAdapter.LAYOUT_TYPE_2,
@@ -66,6 +70,7 @@ class HomeActivity : BaseActivity() {
         )
         val adapter = SliderAdapter(progressValues, layoutTypes)
         viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 3 // Adjust the number as needed
 
         dotsIndicator.attachTo(viewPager)
 
@@ -236,26 +241,38 @@ class HomeActivity : BaseActivity() {
                         val maxCarbs = 250  // Maximum carbs in grams
                         val maxFat = 100    // Maximum fat in grams
                         val maxProtein = 120 // Maximum protein in grams
+                        val maxSugar = 100  // Maximum sugar in grams
+                        val maxSodium = 1000 // Maximum sodium in milligrams
+                        val maxCholesterol = 300 // Maximum cholesterol in milligrams
+                        val maxFiber = 50    // Maximum fiber in grams
 
                         // Update the text UI with the retrieved summary
                         findViewById<TextView>(R.id.today_total).text = "$totalCalories"
-                        findViewById<TextView>(R.id.progressBarValue1).text = "$totalCarbs/$maxCarbs" + "g"
-                        findViewById<TextView>(R.id.progressBarValue2).text = "$totalFat/$maxFat" + "g"
-                        findViewById<TextView>(R.id.progressBarValue3).text = "$totalProtein/$maxProtein" + "g"
-                        // findViewById<TextView>(R.id.sugarTextView).text = "$totalSugar g"
-                        // findViewById<TextView>(R.id.sodiumTextView).text = "$totalSodium mg"
-                        // findViewById<TextView>(R.id.cholesterolTextView).text = "$totalCholesterol mg"
-                        // findViewById<TextView>(R.id.fiberTextView).text = "$totalFiber g"
+                        findViewById<TextView>(R.id.progressBarCarbsText).text = "$totalCarbs/$maxCarbs" + "g"
+                        findViewById<TextView>(R.id.progressBarFatText).text = "$totalFat/$maxFat" + "g"
+                        findViewById<TextView>(R.id.progressBarProteinText).text = "$totalProtein/$maxProtein" + "g"
+                        findViewById<TextView>(R.id.progressBarSugarText).text = "$totalSugar g"
+                        findViewById<TextView>(R.id.progressBarSodiumText).text = "$totalSodium mg"
+                        findViewById<TextView>(R.id.progressBarCholesterolText).text = "$totalCholesterol mg"
+                        findViewById<TextView>(R.id.progressBarFiberText).text = "$totalFiber g"
 
                         // Calculate progress percentages
                         val carbsProgress = ((totalCarbs.toFloat() / maxCarbs) * 100).toInt()
                         val fatProgress = ((totalFat.toFloat() / maxFat) * 100).toInt()
                         val proteinProgress = ((totalProtein.toFloat() / maxProtein) * 100).toInt()
+                        val sugarProgress = ((totalSugar.toFloat() / maxSugar) * 100).toInt()
+                        val sodiumProgress = ((totalSodium.toFloat() / maxSodium) * 100).toInt()
+                        val cholesterolProgress = ((totalCholesterol.toFloat() / maxCholesterol) * 100).toInt()
+                        val fiberProgress = ((totalFiber.toFloat() / maxFiber) * 100).toInt()
 
                         // Update the progress bars
-                        findViewById<ProgressBar>(R.id.progressBar1).progress = carbsProgress
-                        findViewById<ProgressBar>(R.id.progressBar2).progress = fatProgress
-                        findViewById<ProgressBar>(R.id.progressBar3).progress = proteinProgress
+                        findViewById<ProgressBar>(R.id.progressBarCarbs).progress = carbsProgress
+                        findViewById<ProgressBar>(R.id.progressBarFat).progress = fatProgress
+                        findViewById<ProgressBar>(R.id.progressBarProtein).progress = proteinProgress
+                        findViewById<ProgressBar>(R.id.progressBarSugar).progress = sugarProgress
+                        findViewById<ProgressBar>(R.id.progressBarSodium).progress = sodiumProgress
+                        findViewById<ProgressBar>(R.id.progressBarCholesterol).progress = cholesterolProgress
+                        findViewById<ProgressBar>(R.id.progressBarFiber).progress = fiberProgress
                     }
                 }
                 .addOnFailureListener { exception ->

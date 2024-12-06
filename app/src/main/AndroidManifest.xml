@@ -20,9 +20,6 @@
             android:name=".ExerciseActivity"
             android:exported="false" />
         <activity
-            android:name=".MyExerciseActivity"
-            android:exported="false" />
-        <activity
             android:name=".AiChatBotAlt"
             android:exported="false" />
         <activity

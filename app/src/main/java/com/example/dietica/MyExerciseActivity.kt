@@ -3,9 +3,7 @@ package com.example.dietica
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.TimeUtils.formatDuration
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +22,12 @@ class MyExerciseActivity : BaseActivity() {
         val btnBack = findViewById<ImageView>(R.id.leftArrow)
         btnBack.setOnClickListener {
             finish()
+        }
+
+        val btnGo: Button = findViewById(R.id.btnGo)
+        btnGo.setOnClickListener {
+            val intent = Intent(this, WeightTargetActivity::class.java)
+            startActivity(intent)
         }
 
         val btnPlus = findViewById<ImageView>(R.id.btnPlus)

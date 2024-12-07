@@ -85,11 +85,14 @@
             android:id="@+id/btnGo"
             android:layout_width="60dp"
             android:layout_height="20dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/button_background_rounded_2"
             android:text="Go"
+            android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

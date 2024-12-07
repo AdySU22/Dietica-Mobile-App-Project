@@ -1,5 +1,6 @@
 package com.example.dietica
 
+import android.content.pm.ActivityInfo
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.*
@@ -11,6 +12,8 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         applyImmersiveMode()
         handleKeyboardVisibility()
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onResume() {

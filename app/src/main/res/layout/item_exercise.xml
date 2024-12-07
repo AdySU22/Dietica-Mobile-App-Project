@@ -35,7 +35,7 @@
         app:layout_constraintStart_toEndOf="@id/imageView13"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Exercise Details -->
+    <!-- Exercise Duration -->
     <TextView
         android:id="@+id/textView8"
         android:layout_width="0dp"
@@ -47,5 +47,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageView13"
         app:layout_constraintTop_toBottomOf="@id/textView7" />
+
+    <!-- Creation or Update Date -->
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Created on: 2024-12-07"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:layout_marginLeft="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageView13"
+        app:layout_constraintTop_toBottomOf="@id/textView8" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

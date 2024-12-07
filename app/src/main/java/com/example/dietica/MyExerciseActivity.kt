@@ -79,6 +79,7 @@ class MyExerciseActivity : BaseActivity() {
         for (document in querySnapshot.documents) {
             val name = document.getString("name") ?: "Exercise Name"
             val duration = document.getLong("duration") ?: 0L
+            val creationDate = document.getString("creationDate") ?: getCurrentDate()
 
             // Format duration as "X hours, Y minutes, Z seconds"
             val formattedDuration = formatDuration(duration)
@@ -89,6 +90,7 @@ class MyExerciseActivity : BaseActivity() {
             // Bind data
             exerciseView.findViewById<TextView>(R.id.textView7).text = name
             exerciseView.findViewById<TextView>(R.id.textView8).text = "Duration: $formattedDuration"
+            exerciseView.findViewById<TextView>(R.id.textView9).text = "Created on: $creationDate"
 
             // Add the exercise view to the container
             exerciseContainer.addView(exerciseView)

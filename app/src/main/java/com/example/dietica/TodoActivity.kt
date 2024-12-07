@@ -54,7 +54,7 @@ class TodoActivity : BaseActivity() {
         val btnGo: Button = findViewById(R.id.btnGo)
 
         btnBack.setOnClickListener {
-            val intent = Intent(this, WeightTargetActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 

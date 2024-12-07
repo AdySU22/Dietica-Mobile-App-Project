@@ -1,6 +1,7 @@
 package com.example.dietica
 
-import android.os.Bundle
+import android.content.Intent
+import android.os.*
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -86,6 +87,9 @@ class ManuallyInputMeal : BaseActivity() {
                 inputCholesterol, inputSodium, inputCarbohydrates,
                 inputProtein, inputSugar, inputFiber
             )
+
+            val intent = Intent(this, InputMealActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -10,12 +10,13 @@
 
     <!-- Scrollable Container -->
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,9 +28,9 @@
                 android:id="@+id/headerContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp">
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/backButton"
@@ -53,27 +54,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="40dp"
-                android:elevation="4dp"
-                android:background="@drawable/health_report_layout_background">
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/health_report_layout_background"
+                android:elevation="4dp">
 
                 <TextView
                     android:id="@+id/intakeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Intake History"
-                    android:fontFamily="@font/poppins_semi_bold"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="Intake History"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/lineChart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="36dp"/>
+                    android:layout_marginTop="36dp" />
             </FrameLayout>
 
             <TextView
@@ -82,106 +83,108 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="26dp"
+                android:fontFamily="@font/inter_medium"
                 android:text="Activity Level"
-                android:textSize="16sp"
                 android:textColor="#005EDD"
-                android:fontFamily="@font/inter_medium" />
+                android:textSize="16sp" />
 
             <FrameLayout
                 android:id="@+id/graphContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="20dp"
-                android:elevation="4dp"
-                android:background="@drawable/health_report_layout_background">
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/health_report_layout_background"
+                android:elevation="4dp">
 
                 <TextView
                     android:id="@+id/weeklyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weekly Average"
-                    android:fontFamily="@font/poppins_semi_bold"
-                    android:textColor="#005FFA"
-                    android:textSize="14sp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:text="Weekly Average"
+                    android:textColor="#005FFA"
+                    android:textSize="14sp" />
 
                 <Button
                     android:id="@+id/graphButton"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:background="@drawable/right_arrow"
-                    android:backgroundTint="#005FFA"
                     android:layout_marginStart="330dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/right_arrow"
+                    android:backgroundTint="#005FFA" />
 
                 <com.github.mikephil.charting.charts.BarChart
                     android:id="@+id/barChart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="36dp"/>
+                    android:layout_marginTop="36dp" />
             </FrameLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bmiProgressBarContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/health_report_layout_background"
                 android:elevation="4dp"
-                android:background="@drawable/health_report_layout_background">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/bmiText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your BMI"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/inter_semi_bold"
+                    android:text="Your BMI"
                     android:textColor="@color/black"
                     android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/bmiNumberText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12.91"
-                    android:fontFamily="@font/inter_semi_bold"
-                    android:textSize="40dp"
-                    android:textColor="#005FFA"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/inter_semi_bold"
+                    android:text="12.91"
+                    android:textColor="#005FFA"
+                    android:textSize="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bmiText"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bmiText" />
 
                 <TextView
                     android:id="@+id/bmiCategoryText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Normal"
-                    android:textSize="16dp"
-                    android:textColor="@color/black"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="Normal"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bmiNumberText"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bmiNumberText" />
 
                 <TextView
                     android:id="@+id/lastUpdatedText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="Last Updated On Thu, 4 July 2021"
                     android:textColor="@color/green_line_chart"
                     android:textSize="12dp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bmiCategoryText"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bmiCategoryText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -195,26 +198,26 @@
                     android:id="@+id/weightContainer"
                     android:layout_width="140dp"
                     android:layout_height="100dp"
-                    android:elevation="4dp"
-                    android:background="@drawable/health_report_layout_background"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="4dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:elevation="4dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="50dp">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/weightText1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:fontFamily="@font/inter_medium"
                         android:text="Your Weight"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/weightText2"
-                        android:layout_marginBottom="4dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/weightText2"
@@ -224,10 +227,10 @@
                         android:text="62 kg"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/weightText1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/weightText1" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- Height Container -->
@@ -248,15 +251,15 @@
                         android:id="@+id/heightText1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:fontFamily="@font/inter_medium"
                         android:text="Your Height"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/heightText2"
-                        android:layout_marginBottom="4dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/heightText2"
@@ -266,10 +269,10 @@
                         android:text="160 cm"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/heightText1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/heightText1" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -284,26 +287,26 @@
                     android:id="@+id/averageWaterIntakeContainer"
                     android:layout_width="140dp"
                     android:layout_height="100dp"
-                    android:elevation="4dp"
-                    android:background="@drawable/health_report_layout_background"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="4dp"
+                    android:background="@drawable/health_report_layout_background"
+                    android:elevation="4dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="50dp">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/averageWaterIntakeText1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:fontFamily="@font/inter_medium"
                         android:text="Avg. Water Intake"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/averageWaterIntakeText2"
-                        android:layout_marginBottom="4dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/averageWaterIntakeText2"
@@ -313,10 +316,10 @@
                         android:text="3,000ml"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/averageWaterIntakeText1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/averageWaterIntakeText1" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- Average Calorie Intake Container -->
@@ -337,15 +340,15 @@
                         android:id="@+id/averageCalorieIntakeText1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:fontFamily="@font/inter_medium"
                         android:text="Avg. Calorie Intake"
                         android:textColor="@color/black"
                         android:textSize="12sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/averageCalorieIntakeText2"
-                        android:layout_marginBottom="4dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/averageCalorieIntakeText2"
@@ -355,10 +358,10 @@
                         android:text="2,500cals"
                         android:textColor="@color/black"
                         android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/averageCalorieIntakeText1"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/averageCalorieIntakeText1" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -368,18 +371,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="10dp"
-                android:padding="16dp"
                 android:background="@drawable/download_button_background"
-                android:text="Download report.PDF"
-                android:textAllCaps="false"
-                android:textColor="#093B8D"
                 android:drawableEnd="@drawable/download_icon"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/poppins_semi_bold"
-                android:gravity="start|center_vertical" />
+                android:gravity="start|center_vertical"
+                android:padding="16dp"
+                android:text="Download report.PDF"
+                android:textAllCaps="false"
+                android:textColor="#093B8D" />
         </LinearLayout>
     </ScrollView>
 

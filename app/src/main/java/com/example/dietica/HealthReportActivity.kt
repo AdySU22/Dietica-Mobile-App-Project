@@ -1,30 +1,51 @@
 package com.example.dietica
 
+import android.annotation.SuppressLint
+import android.content.ContentValues
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.pdf.PdfDocument
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.ScrollView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.dietica.services.LoadingUtils
-import com.github.mikephil.charting.charts.*
-import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.components.*
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.FirebaseFunctionsException
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.io.File
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.ceil
+import kotlin.random.Random
+
 
 class HealthReportActivity : BaseActivity() {
     private lateinit var functions: FirebaseFunctions
@@ -67,6 +88,9 @@ class HealthReportActivity : BaseActivity() {
         setupLineChart(lineChart)
 
         setupData(barChart, lineChart)
+
+        // Initialize Download Report PDF button
+        initPdfButton()
     }
 
     private fun setupBarChart(barChart: BarChart) {
@@ -458,4 +482,123 @@ class HealthReportActivity : BaseActivity() {
         val dailyFat: List<Double>,
         val dailyProtein: List<Double>
     )
+
+    private fun initPdfButton() {
+        // Button to trigger screenshot
+        val screenshotButton: Button = findViewById(R.id.downloadReportButton)
+        screenshotButton.setOnClickListener {
+            // Capture the screenshot
+            val scrollView: ScrollView = findViewById(R.id.scrollView) // Replace with your ScrollView ID
+            val screenshot = getFullScrollViewScreenshot(scrollView)
+            if (screenshot != null) {
+                val fileName = generateFileName()
+                savePdfToDownloads(screenshot, fileName)
+                Toast.makeText(this, "PDF saved to Downloads!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Failed to generate PDF.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Generate file name
+    private fun generateFileName(): String {
+        // Get the current date in DD-MM-YYYY format
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", java.util.Locale.getDefault())
+        val currentDate = dateFormat.format(Date())
+
+        // Generate a random 4-digit ID
+        val randomId = Random.nextInt(1000, 9999)
+
+        // Combine into the desired format
+        return "Dietica Report $currentDate-$randomId.pdf"
+    }
+
+    // Method to capture the full ScrollView screenshot
+    private fun getFullScrollViewScreenshot(scrollView: ScrollView): Bitmap {
+        // Measure the full height of the ScrollView content
+        val height = scrollView.getChildAt(0).height
+        val width = scrollView.width
+
+        // Create a Bitmap to hold the content
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+
+        // Draw the content onto a Canvas backed by the Bitmap
+        val canvas = Canvas(bitmap)
+        scrollView.draw(canvas)
+
+        return bitmap
+    }
+
+    private fun savePdfToDownloads(bitmap: Bitmap, fileName: String) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+            // API 29+ (Scoped Storage)
+            savePdfUsingMediaStore(bitmap, fileName)
+        } else {
+            // API 28 and below
+            savePdfToLegacyDownloads(bitmap, fileName)
+        }
+    }
+
+    // Save PDF using MediaStore for API 29+
+    @SuppressLint("NewApi")
+    private fun savePdfUsingMediaStore(bitmap: Bitmap, fileName: String) {
+        try {
+            val pdfDocument = PdfDocument()
+            val pageInfo = PdfDocument.PageInfo.Builder(bitmap.width, bitmap.height, 1).create()
+            val page = pdfDocument.startPage(pageInfo)
+
+            val canvas = page.canvas
+            canvas.drawBitmap(bitmap, 0f, 0f, null)
+            pdfDocument.finishPage(page)
+
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+                put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
+                put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+            }
+
+            val uri = contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
+            if (uri != null) {
+                contentResolver.openOutputStream(uri).use { outputStream ->
+                    pdfDocument.writeTo(outputStream!!)
+                }
+                Toast.makeText(this, "PDF saved to Downloads folder", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Failed to save PDF", Toast.LENGTH_SHORT).show()
+            }
+
+            pdfDocument.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Save PDF directly to Downloads directory for API 28 and below
+    private fun savePdfToLegacyDownloads(bitmap: Bitmap, fileName: String) {
+        try {
+            val pdfDocument = PdfDocument()
+            val pageInfo = PdfDocument.PageInfo.Builder(bitmap.width, bitmap.height, 1).create()
+            val page = pdfDocument.startPage(pageInfo)
+
+            val canvas = page.canvas
+            canvas.drawBitmap(bitmap, 0f, 0f, null)
+            pdfDocument.finishPage(page)
+
+            // Use the Downloads directory
+            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            val file = File(downloadsDir, fileName)
+
+            FileOutputStream(file).use { fos ->
+                pdfDocument.writeTo(fos)
+            }
+
+            Toast.makeText(this, "PDF saved to: ${file.absolutePath}", Toast.LENGTH_LONG).show()
+
+            pdfDocument.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
 }

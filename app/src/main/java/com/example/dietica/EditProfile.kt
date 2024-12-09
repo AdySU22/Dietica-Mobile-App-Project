@@ -171,7 +171,7 @@ class EditProfile : BaseActivity() {
                     findViewById<TextView>(R.id.heightText).text = "$height cm"
                     findViewById<TextView>(R.id.weightText).text = "$weight kg"
                     birthDateTimestamp?.toDate()?.let { date ->
-                        val sdf = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+                        val sdf = SimpleDateFormat("d MMMM yyyy", Locale.getDefault())
                         findViewById<TextView>(R.id.birtDateText).text = sdf.format(date)
                     }
 
@@ -399,7 +399,14 @@ class EditProfile : BaseActivity() {
         val datePickerDialog = DatePickerDialog(
             this,
             { _, selectedYear, selectedMonth, selectedDay ->
-                birthDateText.text = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                // Format as "Date Month Year"
+                val formattedDate = String.format(
+                    "%02d %s %d",
+                    selectedDay,
+                    calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
+                    selectedYear
+                )
+                birthDateText.text = formattedDate
             },
             year, month, day
         )

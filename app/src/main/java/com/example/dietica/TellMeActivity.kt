@@ -1,19 +1,24 @@
 package com.example.dietica
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.dietica.services.LoadingUtils
 import com.google.firebase.functions.FirebaseFunctions
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class TellMeActivity : BaseActivity() {
 
-    private lateinit var ageInput: EditText
+    private lateinit var dobInput: TextView
     private lateinit var heightInput: EditText
     private lateinit var weightInput: EditText
     private lateinit var chronicIllnessInput: EditText
@@ -30,7 +35,7 @@ class TellMeActivity : BaseActivity() {
         setContentView(R.layout.activity_tell_me)
 
         // Initialize Views
-        ageInput = findViewById(R.id.ageInput)
+        dobInput = findViewById(R.id.dobInput)
         heightInput = findViewById(R.id.heightInput)
         weightInput = findViewById(R.id.weightInput)
         chronicIllnessInput = findViewById(R.id.chronicIllnessInput)
@@ -64,7 +69,7 @@ class TellMeActivity : BaseActivity() {
         validateInputs()
 
         // Add listeners to inputs for real-time validation
-        ageInput.addTextChangedListener { validateInputs() }
+        dobInput.addTextChangedListener { validateInputs() }
         heightInput.addTextChangedListener { validateInputs() }
         weightInput.addTextChangedListener { validateInputs() }
         chronicIllnessInput.addTextChangedListener { validateInputs() }
@@ -82,6 +87,11 @@ class TellMeActivity : BaseActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
+
+        // Override onClick listener
+        dobInput.setOnClickListener {
+            showDatePicker(dobInput)
+        }
     }
 
     private fun setupListeners(authId: String) {
@@ -90,6 +100,12 @@ class TellMeActivity : BaseActivity() {
             val email = intent.getStringExtra("email")
             val firstName = intent.getStringExtra("firstName")
             val lastName = intent.getStringExtra("lastName")
+            val birthdate = (dobInput.tag as? Date)?.let { date ->
+                // Convert Date to ISO string
+                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).apply {
+                    timeZone = TimeZone.getTimeZone("UTC")
+                }.format(date)
+            }
             val data = hashMapOf(
                 "authId" to authId,
                 "email" to email,
@@ -99,7 +115,8 @@ class TellMeActivity : BaseActivity() {
                 "height" to heightInput.text.toString().toDoubleOrNull(),
                 "gender" to genderSpinner.selectedItem.toString(),
                 "activityLevels" to activityLevelSpinner.selectedItem.toString(),
-                "illnesses" to chronicIllnessInput.text.toString().takeIf { it.isNotEmpty() }
+                "illnesses" to chronicIllnessInput.text.toString().takeIf { it.isNotEmpty() },
+                "birthdate" to birthdate
             )
 
             Log.d("TellMeActivity", "Data to be sent to Firebase: $data")
@@ -139,7 +156,7 @@ class TellMeActivity : BaseActivity() {
 
     // Validate inputs and enable button if valid
     private fun validateInputs() {
-        val ageNotEmpty = ageInput.text.isNotEmpty()
+        val ageNotEmpty = dobInput.text.isNotEmpty()
         val heightNotEmpty = heightInput.text.toString().toDoubleOrNull() != null
         val weightNotEmpty = weightInput.text.toString().toDoubleOrNull() != null
         val chronicIllnessNotEmpty = chronicIllnessInput.text.isNotEmpty()
@@ -151,6 +168,33 @@ class TellMeActivity : BaseActivity() {
                 chronicIllnessNotEmpty && genderSelected && activitySelected
 
         btnLetsGetStarted.isEnabled = isButtonEnabled
+    }
+
+    private fun showDatePicker(ageInput: TextView) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                // Format as "Date Month Year"
+                val formattedDate = String.format(
+                    "%02d %s %d",
+                    selectedDay,
+                    calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
+                    selectedYear
+                )
+                ageInput.text = formattedDate
+
+                // Save the selected date for ISO conversion
+                calendar.set(selectedYear, selectedMonth, selectedDay)
+                ageInput.tag = calendar.time // Use the tag to store the Date object
+            },
+            year, month, day
+        )
+        datePickerDialog.show()
     }
 }
 

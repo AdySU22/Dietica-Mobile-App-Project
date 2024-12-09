@@ -73,25 +73,25 @@
                 android:layout_marginEnd="36dp"/>
 
             <!-- Age Input -->
-            <EditText
-                android:id="@+id/ageInput"
+            <TextView
+                android:id="@+id/dobInput"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="64dp"
-                android:elevation="10dp"
                 android:background="@drawable/general_information_input_background"
-                android:hint="Age"
+                android:elevation="10dp"
                 android:fontFamily="@font/quicksand_regular"
+                android:hint="Date of Birth"
                 android:inputType="number"
                 android:padding="10dp"
                 android:textColor="@color/black"
-                android:textSize="12sp"
                 android:textColorHint="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/physicallyText"/>
+                app:layout_constraintTop_toBottomOf="@id/physicallyText" />
 
             <!-- Gender Spinner -->
             <Spinner
@@ -107,7 +107,7 @@
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ageInput"/>
+                app:layout_constraintTop_toBottomOf="@id/dobInput"/>
 
             <!-- Current Height Input -->
             <EditText

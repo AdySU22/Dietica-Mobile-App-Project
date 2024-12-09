@@ -102,17 +102,22 @@ class ManuallyInputMeal : BaseActivity() {
     private suspend fun createFood(): HttpsCallableResult {
         val inputFoodName = findViewById<EditText>(R.id.inputFoodName).text.toString()
         val inputServingType = findViewById<EditText>(R.id.inputServingType).text.toString()
-        val inputCalories = findViewById<EditText>(R.id.inputCalories).text.toString().toInt()
-        val inputFats = findViewById<EditText>(R.id.inputFats).text.toString().toInt()
-        val inputSaturatedFat = findViewById<EditText>(R.id.inputSaturatedFat).text.toString().toInt()
-        val inputUnsaturatedFat = findViewById<EditText>(R.id.inputUnsaturatedFat).text.toString().toInt()
-        val inputTransFat = findViewById<EditText>(R.id.inputTransFat).text.toString().toInt()
-        val inputCholesterol = findViewById<EditText>(R.id.inputCholesterol).text.toString().toInt()
-        val inputSodium = findViewById<EditText>(R.id.inputSodium).text.toString().toInt()
-        val inputCarbohydrates = findViewById<EditText>(R.id.inputCarbohydrates).text.toString().toInt()
-        val inputProtein = findViewById<EditText>(R.id.inputProtein).text.toString().toInt()
-        val inputSugar = findViewById<EditText>(R.id.inputSugar).text.toString().toInt()
-        val inputFiber = findViewById<EditText>(R.id.inputFiber).text.toString().toInt()
+
+        if (inputFoodName.isEmpty() || inputServingType.isEmpty()) {
+            throw Exception("Please fill in food name and serving")
+        }
+
+        val inputCalories = findViewById<EditText>(R.id.inputCalories).text.toString().ifEmpty { "0" }.toInt()
+        val inputFats = findViewById<EditText>(R.id.inputFats).text.toString().ifEmpty { "0" }.toInt()
+        val inputSaturatedFat = findViewById<EditText>(R.id.inputSaturatedFat).text.toString().ifEmpty { "0" }.toInt()
+        val inputUnsaturatedFat = findViewById<EditText>(R.id.inputUnsaturatedFat).text.toString().ifEmpty { "0" }.toInt()
+        val inputTransFat = findViewById<EditText>(R.id.inputTransFat).text.toString().ifEmpty { "0" }.toInt()
+        val inputCholesterol = findViewById<EditText>(R.id.inputCholesterol).text.toString().ifEmpty { "0" }.toInt()
+        val inputSodium = findViewById<EditText>(R.id.inputSodium).text.toString().ifEmpty { "0" }.toInt()
+        val inputCarbohydrates = findViewById<EditText>(R.id.inputCarbohydrates).text.toString().ifEmpty { "0" }.toInt()
+        val inputProtein = findViewById<EditText>(R.id.inputProtein).text.toString().ifEmpty { "0" }.toInt()
+        val inputSugar = findViewById<EditText>(R.id.inputSugar).text.toString().ifEmpty { "0" }.toInt()
+        val inputFiber = findViewById<EditText>(R.id.inputFiber).text.toString().ifEmpty { "0" }.toInt()
 
         val sharedPreferences = getSharedPreferences("com.example.dietica", MODE_PRIVATE)
         val authId = sharedPreferences.getString("authId", null)

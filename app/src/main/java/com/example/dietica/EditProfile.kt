@@ -170,9 +170,13 @@ class EditProfile : BaseActivity() {
                     findViewById<TextView>(R.id.genderText).text = gender
                     findViewById<TextView>(R.id.heightText).text = "$height cm"
                     findViewById<TextView>(R.id.weightText).text = "$weight kg"
+
+                    // Handle birthdate as Timestamp and format it
                     birthDateTimestamp?.toDate()?.let { date ->
                         val sdf = SimpleDateFormat("d MMMM yyyy", Locale.getDefault())
                         findViewById<TextView>(R.id.birtDateText).text = sdf.format(date)
+                    } ?: run {
+                        findViewById<TextView>(R.id.birtDateText).text = "Unknown" // Fallback if null
                     }
 
                     // Set activity level
@@ -260,7 +264,10 @@ class EditProfile : BaseActivity() {
 
         val height = heightStr.replace(" cm", "").toFloatOrNull()
         val weight = weightStr.replace(" kg", "").toFloatOrNull()
-        val birthDateTimestamp = SimpleDateFormat("d/M/yyyy", Locale.getDefault()).parse(birthDateStr)?.let { Timestamp(it) }
+
+        // Parse the date from "DD Month YYYY" format
+        val birthDate = SimpleDateFormat("d MMMM yyyy", Locale.getDefault()).parse(birthDateStr)
+        val birthDateTimestamp = birthDate?.let { Timestamp(it) }
 
         if (height == null || weight == null || birthDateTimestamp == null) {
             Toast.makeText(this, "Invalid height, weight, or birthdate.", Toast.LENGTH_SHORT).show()
@@ -273,7 +280,7 @@ class EditProfile : BaseActivity() {
             "gender" to gender,
             "height" to height,
             "weight" to weight,
-            "birthdate" to birthDateTimestamp,
+            "birthdate" to birthDateTimestamp, // Use Firestore Timestamp
             "activityLevels" to selectedActivityLevel,
             "updatedAt" to FieldValue.serverTimestamp()
         )
@@ -403,7 +410,8 @@ class EditProfile : BaseActivity() {
                 val formattedDate = String.format(
                     "%02d %s %d",
                     selectedDay,
-                    calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
+                    Calendar.getInstance().apply { set(Calendar.MONTH, selectedMonth) }
+                        .getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()),
                     selectedYear
                 )
                 birthDateText.text = formattedDate

@@ -490,8 +490,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/jujurGatauConstraintYgMana"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="30dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="100dp"
                 app:layout_constraintTop_toBottomOf="@id/contraintWrapperForScrollView"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -500,7 +501,8 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:elevation="1dp"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginBottom="40dp"
+                    app:layout_constraintTop_toBottomOf="@id/contraintWrapperForScrollView"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
@@ -519,9 +521,11 @@
                     android:id="@+id/gatauConstrainYgKeberapaIni"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/contraintWrapperForScrollView">
+                    app:layout_constraintTop_toBottomOf="@id/contraintWrapperForScrollView"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/navbarContainer"

@@ -116,26 +116,6 @@ class HomeActivity : BaseActivity() {
         updateWaterCount(totalWaterIntake)
 
         initWaterInput()
-//        addWaterText.setOnClickListener {
-//            val input = EditText(this)
-//            input.hint = "Enter amount in ml"
-//
-//            AlertDialog.Builder(this)
-//                .setTitle("Log Water Intake")
-//                .setMessage("Enter the amount of water (in ml):")
-//                .setView(input)
-//                .setPositiveButton("OK") { _, _ ->
-//                    val amount = input.text.toString().toIntOrNull()
-//                    if (amount != null && amount > 0) {
-//                        logWaterIntake(amount)
-//                    } else {
-//                        Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT)
-//                            .show()
-//                    }
-//                }
-//                .setNegativeButton("Cancel", null)
-//                .show()
-//        }
 
         inputMealTextView.setOnClickListener {
             val intent = Intent(this, InputMealActivity::class.java)

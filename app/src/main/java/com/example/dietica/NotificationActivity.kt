@@ -38,11 +38,11 @@ class NotificationActivity : BaseActivity() {
         // Remove vertical gravity and only keep horizontal gravity
         notificationLayout.gravity = Gravity.START
 
-        // List of titles and messages for each notification item
+        // List of titles, messages, and times for each notification item
         val notifications = listOf(
-            Pair("Don't forget to input your food!", "We need the data to help you!"),
-            Pair("Do your daily routine!", "Remember to log your exercise activities!"),
-            Pair("Hey, don't forget to drink water today!", "Your body is 70% water, so make sure to hydrate!")
+            NotificationItem("Don't forget to input your food!", "We need the data to help you!", "06:00"),
+            NotificationItem("Do your daily routine!", "Remember to log your exercise activities!", "12:00"),
+            NotificationItem("Hey, don't forget to drink water today!", "Your body is 70% water, so make sure to hydrate!", "19:00")
         )
 
         // Get the current UTC hour
@@ -69,13 +69,21 @@ class NotificationActivity : BaseActivity() {
             // Adjust the notificationTitle and notificationMessage
             val notificationTitle = notificationItem.findViewById<TextView>(R.id.notificationTitle)
             val notificationMessage = notificationItem.findViewById<TextView>(R.id.notificationMessage)
+            val notificationTime = notificationItem.findViewById<TextView>(R.id.notificationTime)
 
             // Set the title and message
-            notificationTitle.text = notification.first
-            notificationMessage.text = notification.second
+            notificationTitle.text = notification.title
+            notificationMessage.text = notification.message
+            notificationTime.text = notification.time
 
             // Add the notification item to the notificationLayout
             notificationLayout.addView(notificationItem)
         }
     }
+
+    data class NotificationItem(
+        val title: String,
+        val message: String,
+        val time: String
+    )
 }

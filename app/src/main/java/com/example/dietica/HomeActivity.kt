@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -16,7 +18,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.dietica.services.LoadingUtils
@@ -114,26 +115,27 @@ class HomeActivity : BaseActivity() {
         totalWaterIntake = sharedPreferences.getInt("totalWaterIntake", 0)
         updateWaterCount(totalWaterIntake)
 
-        addWaterText.setOnClickListener {
-            val input = EditText(this)
-            input.hint = "Enter amount in ml"
-
-            AlertDialog.Builder(this)
-                .setTitle("Log Water Intake")
-                .setMessage("Enter the amount of water (in ml):")
-                .setView(input)
-                .setPositiveButton("OK") { _, _ ->
-                    val amount = input.text.toString().toIntOrNull()
-                    if (amount != null && amount > 0) {
-                        logWaterIntake(amount)
-                    } else {
-                        Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
-                .setNegativeButton("Cancel", null)
-                .show()
-        }
+        initWaterInput()
+//        addWaterText.setOnClickListener {
+//            val input = EditText(this)
+//            input.hint = "Enter amount in ml"
+//
+//            AlertDialog.Builder(this)
+//                .setTitle("Log Water Intake")
+//                .setMessage("Enter the amount of water (in ml):")
+//                .setView(input)
+//                .setPositiveButton("OK") { _, _ ->
+//                    val amount = input.text.toString().toIntOrNull()
+//                    if (amount != null && amount > 0) {
+//                        logWaterIntake(amount)
+//                    } else {
+//                        Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT)
+//                            .show()
+//                    }
+//                }
+//                .setNegativeButton("Cancel", null)
+//                .show()
+//        }
 
         inputMealTextView.setOnClickListener {
             val intent = Intent(this, InputMealActivity::class.java)
@@ -348,10 +350,63 @@ class HomeActivity : BaseActivity() {
         return calendar.timeInMillis
     }
 
+    private fun initWaterInput() {
+        val addWater = findViewById<EditText>(R.id.addWaterText)
+
+        // Initial underscores
+        val placeholderText = "___________"
+
+        // Set the placeholder initially
+        addWater.setText(placeholderText)
+
+        // Monitor text changes
+        addWater.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                // Remove the placeholder if user starts typing
+                if (s?.toString() == placeholderText) {
+                    addWater.setText("")
+                }
+            }
+        })
+
+        // Monitor focus changes
+        addWater.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                // Remove placeholder when focused and empty
+                if (addWater.text.toString() == placeholderText) {
+                    addWater.setText("")
+                }
+            } else {
+                // Reapply placeholder if empty when losing focus
+                if (addWater.text.toString().isEmpty()) {
+                    addWater.setText(placeholderText)
+                }
+            }
+        }
+
+        val btnAddWater = findViewById<Button>(R.id.btnAddWater)
+        btnAddWater.setOnClickListener {
+            val amount = addWater.text.toString().toIntOrNull()
+            if (amount != null && amount > 0) {
+                logWaterIntake(amount)
+            } else {
+                Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun logWaterIntake(amount: Int) {
+        val btnAddWater = findViewById<Button>(R.id.btnAddWater)
         val authId = sharedPreferences.getString("authId", null)
 
         if (authId != null) {
+            btnAddWater.isEnabled = false
+            btnAddWater.alpha = 0.5f
+
             val data = hashMapOf(
                 "authId" to authId,
                 "amount" to amount
@@ -370,6 +425,9 @@ class HomeActivity : BaseActivity() {
 
                     // Save the updated totalWaterIntake to SharedPreferences
                     saveWaterIntake(totalWaterIntake)
+
+                    btnAddWater.isEnabled = true
+                    btnAddWater.alpha = 1.0f
                 }
                 .addOnFailureListener { e ->
                     Log.e("HomeActivity", "Failed to log water intake", e)

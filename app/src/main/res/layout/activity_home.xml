@@ -390,18 +390,44 @@
 
                             <EditText
                                 android:id="@+id/addWaterText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="100dp"
                                 android:layout_height="wrap_content"
-                                android:hint="____________ ml"
+                                android:layout_marginTop="6dp"
                                 android:fontFamily="@font/inter_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/black"
+                                android:hint="___________"
                                 android:paddingStart="12dp"
                                 android:paddingEnd="12dp"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="14sp"
                                 app:layout_constraintStart_toStartOf="@id/waterCount"
-                                app:layout_constraintTop_toBottomOf="@id/waterCount"
-                                android:layout_marginTop="6dp" />
+                                app:layout_constraintTop_toBottomOf="@id/waterCount" />
+
+                            <TextView
+                                android:id="@+id/waterMl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="16dp"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="ml"
+                                android:textColor="#000000"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/addWaterText" />
+
+                            <Button
+                                android:id="@+id/btnAddWater"
+                                android:layout_width="60dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:background="@drawable/button_background_rounded_2"
+                                android:fontFamily="@font/inter_medium"
+                                android:text="Add"
+                                android:textAllCaps="false"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/waterMl" />
 
                             <ImageView
                                 android:id="@+id/waterGlassIcon"

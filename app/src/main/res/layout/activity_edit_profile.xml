@@ -89,26 +89,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/guestUserText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/inter_medium"
                 android:text="Guest User"
                 android:textColor="@color/black"
                 android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nicknameText"/>
+                app:layout_constraintTop_toBottomOf="@id/nicknameText" />
 
             <View
                 android:layout_width="280dp"
                 android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="-8dp"
                 android:background="#AEDADB"
-                app:layout_constraintTop_toBottomOf="@id/guestUserText"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"/>
+                app:layout_constraintTop_toBottomOf="@id/guestUserText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -168,6 +171,7 @@
                 android:id="@+id/heightLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/genderLayout">
 
@@ -175,21 +179,33 @@
                     android:id="@+id/heightIcon"
                     android:layout_width="44dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/height_icon"
-                    android:tint="#103379"
                     android:layout_marginStart="25dp"
-                    android:layout_marginTop="15dp"/>
+                    android:src="@drawable/height_icon"
+                    android:tint="#103379" />
 
-                <TextView
+                <EditText
                     android:id="@+id/heightText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="180cm"
-                    android:textSize="16sp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
+                    android:inputType="number|numberDecimal"
+                    android:text="180"
                     android:textColor="@color/black"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="14dp"/>
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:gravity="end"
+                    android:text="cm"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <View
@@ -204,28 +220,40 @@
                 android:id="@+id/weightLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/heightLayout">
 
                 <ImageView
                     android:id="@+id/weightIcon"
-                    android:layout_width="100dp"
+                    android:layout_width="44dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="-4dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="1dp"
                     android:src="@drawable/weight_image"
-                    android:tint="#103379"/>
+                    android:tint="#103379" />
 
-                <TextView
+                <EditText
                     android:id="@+id/weightText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="75kg"
-                    android:textSize="16sp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/inter_medium"
+                    android:inputType="number|numberDecimal"
+                    android:text="75"
                     android:textColor="@color/black"
-                    android:layout_marginStart="-15dp"
-                    android:layout_marginTop="14dp"/>
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="25dp"
+                    android:text="kg"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <View

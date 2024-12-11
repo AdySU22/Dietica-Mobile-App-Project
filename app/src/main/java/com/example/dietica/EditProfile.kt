@@ -116,10 +116,7 @@ class EditProfile : BaseActivity() {
 
         // Set up button actions
         btnEditProfilePicture.setOnClickListener { openImageChooser() }
-        guestUserText.setOnClickListener { showNameEditDialog(guestUserText) }
         genderText.setOnClickListener { showGenderPicker(genderText) }
-        heightText.setOnClickListener { showNumberPicker(heightText, "Select Height", 100, 250) }
-        weightText.setOnClickListener { showNumberPicker(weightText, "Select Weight", 20, 200) }
         birthDateText.setOnClickListener { showDatePicker(birthDateText) }
 
         btnSave.setOnClickListener {
@@ -168,8 +165,8 @@ class EditProfile : BaseActivity() {
                     // Set fetched data
                     findViewById<TextView>(R.id.guestUserText).text = "$firstName $lastName"
                     findViewById<TextView>(R.id.genderText).text = gender
-                    findViewById<TextView>(R.id.heightText).text = "$height cm"
-                    findViewById<TextView>(R.id.weightText).text = "$weight kg"
+                    findViewById<TextView>(R.id.heightText).text = "$height"
+                    findViewById<TextView>(R.id.weightText).text = "$weight"
 
                     // Handle birthdate as Timestamp and format it
                     birthDateTimestamp?.toDate()?.let { date ->
@@ -243,7 +240,6 @@ class EditProfile : BaseActivity() {
         textContainer.visibility = View.VISIBLE
     }
 
-
     private fun saveProfileData(
         nameTextView: TextView,
         genderTextView: TextView,
@@ -271,6 +267,11 @@ class EditProfile : BaseActivity() {
 
         if (height == null || weight == null || birthDateTimestamp == null) {
             Toast.makeText(this, "Invalid height, weight, or birthdate.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        // If height and weight is impossible
+        if (height < 50 || height > 250 || weight < 30 || weight > 300) {
+            Toast.makeText(this, "Impossible height or weight.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -346,19 +347,6 @@ class EditProfile : BaseActivity() {
         }
     }
 
-
-    private fun showNameEditDialog(nameTextView: TextView) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Edit Name")
-        val input = EditText(this)
-        input.setText(nameTextView.text.toString())
-        builder.setView(input)
-
-        builder.setPositiveButton("Save") { _, _ -> nameTextView.text = input.text.toString() }
-        builder.setNegativeButton("Cancel", null)
-        builder.show()
-    }
-
     private fun showGenderPicker(genderText: TextView) {
         val genders = arrayOf("Male", "Female")
         val builder = AlertDialog.Builder(this)
@@ -366,36 +354,6 @@ class EditProfile : BaseActivity() {
         builder.setItems(genders) { _, which -> genderText.text = genders[which] }
         builder.show()
     }
-
-    private fun showNumberPicker(textView: TextView, title: String, min: Int, max: Int) {
-        val builder = AlertDialog.Builder(this)
-        val numberPicker = NumberPicker(this)
-
-        // Create an array of numbers in reverse order
-        val numbers = (min..max).toList().reversed().toTypedArray()
-
-        // Set the displayed values
-        numberPicker.minValue = 0
-        numberPicker.maxValue = numbers.size - 1
-        numberPicker.displayedValues = numbers.map { it.toString() }.toTypedArray()
-
-        // Set the initial value to match the current value in the TextView, or default to the starting value
-        val currentValue = textView.text.toString().replace(" cm", "").replace(" kg", "").toIntOrNull() ?: min
-        val initialIndex = numbers.indexOf(currentValue)
-        numberPicker.value = if (initialIndex != -1) initialIndex else numbers.size - 1 // Default to min if not found
-
-        builder.setTitle(title)
-        builder.setView(numberPicker)
-
-        builder.setPositiveButton("OK") { _, _ ->
-            // Get the actual value from the reversed array
-            val selectedValue = numbers[numberPicker.value]
-            textView.text = "$selectedValue ${if (title.contains("Height")) "cm" else "kg"}"
-        }
-        builder.setNegativeButton("Cancel", null)
-        builder.show()
-    }
-
 
     private fun showDatePicker(birthDateText: TextView) {
         val calendar = Calendar.getInstance()
